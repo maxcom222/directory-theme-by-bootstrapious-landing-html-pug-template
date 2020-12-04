@@ -1,0 +1,42 @@
+.card.border-0.shadow
+    .card-body.p-4
+        .text-block.pb-3
+            .media.align-items-center
+                .media-body
+                    h6 
+                        a.text-reset(href="detail-rooms.html") Modern Apt - Vibrant Neighborhood
+                    p.text-muted.text-sm.mb-0 Entire home in New York
+                    +stars(4, 'mt-n1')
+                a(href="detail-rooms.html")
+                    img.ml-3.rounded(src=`${path}img/photo/photo-1512917774080-9991f1c4c750.jpg`, alt="", width="100")
+                
+
+        .text-block.py-3
+            ul.list-unstyled.mb-0
+                li.mb-3
+                    i.fas.fa-users.fa-fw.text-muted.mr-2
+                    | 3 guests
+                li.mb-0
+                    i.far.fa-calendar.fa-fw.text-muted.mr-2
+                    | Apr 17, 2019 
+                    i.fas.fa-arrow-right.fa-fw.text-muted.mx-3
+                    | Apr 18, 2019
+        .text-block.pt-3.pb-0
+            table.w-100
+                tbody
+                    tr
+                        th.font-weight-normal.py-2 $432.02 x 1 night
+                        td.text-right.py-2 $432.02
+                    tr
+                        th.font-weight-normal.pt-2.pb-3 Service fee
+                        td.text-right.pt-2.pb-3 $67.48
+                tfoot
+                    tr.border-top
+                        th.pt-3 Total
+                        td.font-weight-bold.text-right.pt-3 $499.50
+
+    .card-footer.bg-primary-light.py-4.border-0
+        .media.align-items-center
+            .media-body
+                h6.text-primary Flexible – free cancellation
+                p.text-sm.text-primary.opacity-8.mb-0 Cancel within 48 hours of booking to get a full refund. <a href="#" class="text-reset ml-3">More details</a>

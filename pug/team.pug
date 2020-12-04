@@ -1,0 +1,71 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = ''  
+    - var navbarClass = ''  
+    - var headerClass = ''  
+    - var mapUsed = false
+
+block content
+    
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Team'})
+    - var heroHeading = 'Meet our team'
+    - var heroHeadingClass = 'hero-heading'
+    - var heroText = '<p class="text-muted">'+dummyText[0]+'</p>'
+    
+    include _pug-includes/inc-hero.pug
+
+    section.pt-6.pb-4
+        .container
+            - var people = []
+            - people.push({name: 'Meredith Goodwin', position: 'CEO & Founder', icon:'destination-map-1', bgClass: 'bg-primary-light', iconClass: 'text-primary'})            
+            - people.push({name: 'Weeks Garrett', position: 'Co-founder',icon:'real-estate-1', bgClass: 'bg-primary-light', iconClass: 'text-secondary'})
+            
+            - people.push({name: 'Fisher Bauer', position: 'CTO',icon:'pay-1', bgClass: 'bg-primary-light', iconClass: 'text-primary'})
+            
+            h6.subtitle.text-center.text-primary.mb-5 Our founders
+            .row.mb-7
+                each val, index in people
+                    +teamCard(val, index, 'col-sm-4')
+
+            - var people = []
+            - people.push({name: 'Meredith Goodwin', position: 'CEO & Founder', icon:'destination-map-1', bgClass: 'bg-secondary-light', iconClass: 'text-primary'})            
+            - people.push({name: 'Weeks Garrett', position: 'Co-founder',icon:'real-estate-1', bgClass: 'bg-secondary-light', iconClass: 'text-secondary'})
+            - people.push({name: 'Fisher Bauer', position: 'CTO',icon:'pay-1', bgClass: 'bg-secondary-light', iconClass: 'text-primary'})
+            - people.push({name: 'Aguilar Webb', position: 'Community', icon:'pay-1', bgClass: 'bg-secondary-light', iconClass: 'text-primary'})                    
+
+
+    section.py-5
+        .container.bg-gray-100.py-5.px-3.px-lg-5.rounded-lg.shadow-sm
+            .row
+                .col-lg-5
+                    .p-5
+                        img.img-fluid.rounded-circle.shadow-sm(src="img/avatar/avatar-0.jpg", alt="")            
+                .col-lg-6.d-flex.align-items-center
+                    div
+                        blockquote.blockquote-icon
+                            p.text-lg.text-gray-700.mb-4 #{dummyText[3]}   
+                            h6.text-lg.text-uppercase.text-primary — Meredith Goodwin, Founder
+
+
+
+    section.py-6
+        .container
+            h6.subtitle.text-center.mb-4 Sales
+            .row.mb-7
+                each val, index in people
+                    +teamCard(val, index)
+
+            - var people = []
+            - people.push({name: 'Meredith Goodwin', position: 'CEO & Founder', icon:'destination-map-1', bgClass: 'bg-info-light', iconClass: 'text-primary'})            
+            - people.push({name: 'Weeks Garrett', position: 'Co-founder',icon:'real-estate-1', bgClass: 'bg-info-light', iconClass: 'text-secondary'})
+            - people.push({name: 'Fisher Bauer', position: 'CTO',icon:'pay-1', bgClass: 'bg-info-light', iconClass: 'text-primary'})
+            - people.push({name: 'Aguilar Webb', position: 'Community', icon:'pay-1', bgClass: 'bg-info-light', iconClass: 'text-primary'})                    
+
+
+            h6.subtitle.text-center.mb-4 Marketing
+            .row
+                each val, index in people
+                    +teamCard(val, index)

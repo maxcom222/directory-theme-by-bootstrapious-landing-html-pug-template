@@ -1,0 +1,12 @@
+.sticky-top.mb-5(style="top: 120px;")
+    .sidebar-block
+        h6.sidebar-heading.ml-3 Documentation
+        nav.nav.nav-pills.flex-column
+            each name, link in docLinks
+                +docsSidebarLink(link, name, current)
+            
+    .sidebar-block
+        h6.sidebar-heading.ml-3 Components
+        nav.nav.nav-pills.flex-column
+            each name, link in componentLinks
+                +docsSidebarLink(link, name, current)

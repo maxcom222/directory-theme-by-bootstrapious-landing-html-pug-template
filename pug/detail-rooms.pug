@@ -1,0 +1,204 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'detail'  
+    - var navbarClass = ''  
+    - var headerClass = ''  
+    - var mapUsed = true
+
+block content
+    - gallery = []
+    - gallery.push({title: 'Our street',small: 'img/photo/photo-1426122402199-be02db90eb90.jpg', big:  'img/photo/photo-1426122402199-be02db90eb90.jpg'})
+    - gallery.push({title: 'Outside', small: 'img/photo/photo-1512917774080-9991f1c4c750.jpg', big:  'img/photo/photo-1512917774080-9991f1c4c750.jpg'})
+    - gallery.push({title: 'Rear entrance',small: 'img/photo/photo-1494526585095-c41746248156.jpg', big:  'img/photo/photo-1494526585095-c41746248156.jpg'})
+    - gallery.push({title: 'Kitchen',small: 'img/photo/photo-1484154218962-a197022b5858.jpg', big: 'img/photo/photo-1484154218962-a197022b5858.jpg'})
+    - gallery.push({title: 'Bedroom',small: 'img/photo/photo-1522771739844-6a9f6d5f14af.jpg', big:  'img/photo/photo-1522771739844-6a9f6d5f14af.jpg'})
+    - gallery.push({title: 'Bedroom',small: 'img/photo/photo-1488805990569-3c9e1d76d51c.jpg', big:  'img/photo/photo-1488805990569-3c9e1d76d51c.jpg'})
+
+    section
+        // Slider main container
+        .swiper-container.detail-slider.slider-gallery
+            // Additional required wrapper
+            .swiper-wrapper
+                // Slides
+                each val, index in gallery
+                    .swiper-slide
+                        a(href=val.big, data-toggle='gallery-top', title=val.title)
+                            img.img-fluid(src=val.big, alt=val.title)
+
+            .swiper-pagination.swiper-pagination-white
+            .swiper-button-prev.swiper-button-white
+            .swiper-button-next.swiper-button-white
+
+    .container.py-5
+        .row
+            .col-lg-8 
+                .text-block
+                    p.text-primary <i class="fa-map-marker-alt fa mr-1"></i> Brooklyn, New York
+                    h1 Mid-Century Modern Garden Paradise
+                    p.text-muted.text-uppercase.mb-4 Entire Apartment 
+
+                    ul.list-inline.text-sm.mb-4
+                        li.list-inline-item.mr-3 <i class="fa fa-users mr-1 text-secondary"></i> 4 guests
+                        li.list-inline-item.mr-3 <i class="fa fa-door-open mr-1 text-secondary"></i> 1 bedroom
+                        li.list-inline-item.mr-3 <i class="fa fa-bed mr-1 text-secondary"></i> 3 beds
+                        li.list-inline-item.mr-3 <i class="fa fa-bath mr-1 text-secondary"></i> 1 bath
+
+                    p.text-muted.font-weight-light Our garden basement apartment is fully equipped with everything you need to enjoy your stay. Very comfortable for a couple but plenty of space for a small family. Close to many wonderful Brooklyn attractions and quick trip to Manhattan. 
+                    
+                    h6.mb-3 The space
+
+                    p.text-muted.font-weight-light Welcome to Brooklyn! We are excited to share our wonderful neighborhood with you. Our modern apartment has a private entrance, fully equipped kitchen, and a very comfortable queen size bed. We are happy to accommodate additional guests with a single bed in the living room, another comfy mattress on the floor and can make arrangements for small children with a portable crib and highchair if requested. 
+
+                    p.text-muted.font-weight-light Also in the apartment:
+                    ul.text-muted.font-weight-light 
+                        li TV with Netflix and DirectTVNow
+                        li Free WiFi
+                        li Gourmet Coffee/Tea making supplies
+                        li Fresh Sheets and Towels
+                        li Toaster, microwave, pots and pans and basic cooking needs like salt, pepper, sugar, and olive oil.
+                        li Air Conditioning to keep you cool all summer!
+
+                    p.text-muted.font-weight-light The apartment is surprisingly quiet for being in the heart of a vibrant, bustling neighborhood.
+
+                    h6.mb-3 Interaction with guests
+
+                    p.text-muted.font-weight-light We live in the two floors above the garden apartment so we are usually available to answer questions. The garden apartment is separate from our living space. We are happy to provide advice on local attractions, restaurants and transportation around the city. If there's anything you need please don't hesitate to ask!
+
+
+                .text-block
+                    h4.mb-4 Amenities
+
+                    - equipment = []
+                    - equipment.push({name: 'Wifi', icon: 'fa-wifi'})
+                    - equipment.push({name: 'Cable TV', icon: 'fa-tv'})
+                    - equipment.push({name: 'Air conditioning', icon: 'fa-snowflake'})
+                    - equipment.push({name: 'Heating', icon: 'fa-thermometer-three-quarters'})
+                    - equipment.push({name: 'Toiletteries', icon: 'fa-bath'})
+                    - equipment.push({name: 'Equipped Kitchen', icon: 'fa-utensils'})
+                    - equipment.push({name: 'Desk for work', icon: 'fa-laptop'})
+                    - equipment.push({name: 'Washing machine', icon: 'fa-tshirt'})
+
+
+                    .row 
+                        .col-md-6
+                            ul.list-unstyled.text-muted
+                                each val, index in equipment
+                                    if (index < 4)
+                                        li.mb-2 
+                                            i(class=`fa ${val.icon} text-secondary w-1rem mr-3 text-center`)
+                                            span.text-sm #{val.name}
+                        .col-md-6
+                            ul.list-unstyled.text-muted
+                                each val, index in equipment
+                                    if (index >= 4)
+                                        li.mb-2 
+                                            i(class=`fa ${val.icon} text-secondary w-1rem mr-3 text-center`)
+                                            span.text-sm #{val.name}
+
+                .text-block
+
+                    h4.mb-0 Amenities alternative
+                    p.subtitle.text-sm.text-primary.mb-4 Alternative amenities display
+                    
+
+                    ul.list-inline
+                        each val, index in equipment
+                            li.list-inline-item.mb-2
+                                span.badge.badge-pill.badge-light.p-3.text-muted.font-weight-normal #{val.name}
+
+                .text-block
+
+                    .media
+                        img.avatar.avatar-lg.mr-4(src=`${path}img/avatar/avatar-10.jpg`, alt='Jack London')
+                        .media-body
+                            p 
+                                span.text-muted.text-uppercase.text-sm Hosted by 
+                                br
+                                strong Jack London
+                            p.text-muted.text-sm.mb-2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+                            p.text-muted.text-sm Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            p.text-sm
+                                a(href="user-profile.html") See Jack's 3 other listings <i class="fa fa-long-arrow-alt-right ml-2"></i>
+
+                .text-block
+
+                    h5.mb-4 Listing location
+
+                    .map-wrapper-300.mb-3
+                        #detailMap.h-100
+
+                .text-block
+                    h5.mb-4 Gallery
+                    
+                    include _pug-includes/inc-detail-gallery.pug
+
+
+                .text-block
+
+                    include _pug-includes/inc-detail-reviews.pug
+
+                    include _pug-includes/inc-detail-reviewform.pug
+
+                    
+            .col-lg-4
+                .p-4.shadow.ml-lg-4.rounded.sticky-top(style="top: 100px;")
+                    p.text-muted <span class="text-primary h2">$120</span> per night
+                    hr.my-4
+                    form(id="booking-form", method="get", action="#",class="form",autocomplete="off")
+                        .form-group
+                            label.form-label(for="bookingDate") Your stay *
+                            .datepicker-container.datepicker-container-right
+                                input(type="text", name="bookingDate", id="bookingDate", class="form-control", placeholder="Choose your dates", required="required")
+
+                        .form-group.mb-4
+                            label.form-label(for="guests") Guests *
+                            select.form-control(name="guests", id="guests")
+                                option(value="1") 1 Guest
+                                option(value="2") 2 Guests
+                                option(value="3") 3 Guests
+                                option(value="4") 4 Guests
+                                option(value="5") 5 Guests
+                        .form-group
+                            button(type="submit", class="btn btn-primary btn-block") Book your stay
+
+                    p.text-muted.text-sm.text-center Some additional text can be also placed here.
+
+                    hr.my-4
+                    .text-center
+                        p 
+                            a.text-secondary.text-sm(href="#") 
+                                i.fa.fa-heart
+                                |  Bookmark This Listing
+                            
+                        p.text-muted.text-sm 79 people bookmarked this place 
+
+
+    .py-6.bg-gray-100 
+        .container
+            
+            h5.mb-0 Similar places
+            p.subtitle.text-sm.text-primary.mb-4 You may also like         
+
+            include _pug-includes/inc-slider-rooms.pug
+                
+
+
+block additionalScripts
+    include _pug-includes/scripts-map.pug
+
+    script(src='js/map-detail.js')
+    
+    script.
+        createDetailMap({
+            mapId: 'detailMap',
+            mapZoom: 14,
+            mapCenter: [40.732346, -74.0014247],
+            circleShow: true,
+            circlePosition: [40.732346, -74.0014247]
+        })
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js') 
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.19.0/jquery.daterangepicker.min.js') 
+    script(src='js/datepicker-detail.js')    
+

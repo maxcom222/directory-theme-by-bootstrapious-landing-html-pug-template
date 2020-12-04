@@ -1,0 +1,44 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Your trips'})
+    - var heroClass = 'py-5 text-left bg-whsite'
+    - var heroHeading = 'Your nearest bookings'
+    - var heroHeadingClass = 'hero-heading mb-4'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5
+        .container
+
+            // Breadcrumbs 
+            ol(class=`breadcrumb ${breadcrumbClass}`)
+                each val in breadcrumbs
+                    if (val.link)
+                        li.breadcrumb-item
+                            a(href=val.link) #{val.name}
+                    else
+                        li.breadcrumb-item.active #{val.name}   
+            
+            h1(class=heroHeadingClass) #{heroHeading}
+            
+            p.text-muted.mb-5 You have no upcoming trips. Start exploring ideas for your next trip.
+
+            p.mb-6 
+                img.img-fluid(src="img/illustration/undraw_trip_dv9f.svg", alt="", style="width: 400px;")
+
+            h2.mb-5 Your past bookings
+
+            - var itemClass = 'col-xl-3 col-md-4 col-sm-6 mb-5'
+            
+            .row
+                each val, index in roomsJson.features
+                    if (index < 4)
+                        +placeVisited(val.properties, itemClass)
+

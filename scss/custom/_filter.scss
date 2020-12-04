@@ -1,0 +1,24 @@
+/*
+* ===================================================
+*     Category sidebar + filter
+* ===================================================
+*/
+
+.filter-block {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $gray-200;
+    &:last-of-type {
+        border-bottom: none;
+    }
+    &:first-of-type {
+        border-top: 1px solid $gray-200;
+    }
+}
+
+.sidebar-heading {
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+    color: $gray-600;
+    @include uppercase;
+}

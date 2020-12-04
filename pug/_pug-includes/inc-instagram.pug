@@ -1,0 +1,12 @@
+// Instagram
+section
+    .container-fluid.px-0
+        .swiper-container.instagram-slider
+            .swiper-wrapper
+
+                -var feed = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,10,11,12,13,14]
+
+                each val in feed
+                    .swiper-slide.overflow-hidden
+                        a(href="#")
+                            img.img-fluid.hover-scale(src=`${path}img/instagram/instagram-${val}.jpg`, alt=" ")

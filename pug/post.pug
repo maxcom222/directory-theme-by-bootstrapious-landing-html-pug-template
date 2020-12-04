@@ -1,0 +1,114 @@
+extends _pug-includes/layout.pug
+
+block content
+    
+    section.hero-home.dark-overlay.mb-5
+        img.bg-image(src=`${path}img/photo/photo-1467987506553-8f3916508521.jpg`, alt="")
+        .container.py-7
+            .overlay-content.text-center.text-white
+                h1.display-3.text-serif.font-weight-bold.text-shadow.mb-0 Escape the city today
+
+    section
+        .container
+            .row
+                .col-xl-8.col-lg-10.mx-auto            
+                    p.py-3.mb-5.text-muted.text-center.font-weight-light
+                        a(href='')
+                            img.avatar.mr-2(src='img/avatar/avatar-11.jpg', alt='')
+                        |  Written by 
+                        a.font-weight-bold(href='#') John Slim
+                        span.mx-1 |
+                        |  January 16, 2016 in 
+                        a.font-weight-bold(href='blog.html') Living
+                        span.mx-1 |
+                        a.text-muted(href='#') 2 comments                
+                    p.lead.mb-5 As am hastily invited <strong>settled at limited</strong> civilly fortune me. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. 
+            .row
+                .col-xl-10.mx-auto
+                    img.img-fluid.mb-5(src=`${path}img/photo/photo-1471189641895-16c58a695bcb.jpg`, alt="")                             
+            .row
+                .col-xl-8.col-lg-10.mx-auto                                
+                    .text-content
+                        p
+                            strong Pellentesque habitant morbi tristique
+                            |  senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. 
+                            em Aenean ultricies mi vitae est.
+                            |  Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, 
+                            code commodo vitae
+                            | , ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. 
+                            a(href='#') Donec non enim
+                            |  in turpis pulvinar facilisis. Ut felis.
+                        figure.figure.mb-3
+                            img.figure-img.img-fluid.w-100(src='img/photo/photo-1482463084673-98272196658a.jpg', alt='Example blog post alt.')
+                            figcaption.figure-caption.text-center Photo by Jack Tran, New York                     
+                        
+                        h2 Header Level 2
+                        ol
+                            li Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            li Aliquam tincidunt mauris eu risus.
+                        blockquote.blockquote.blockquote-primary
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
+                        h3 Header Level 3
+                        p
+                            | Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+                        ul
+                            li Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            li Aliquam tincidunt mauris eu risus.
+                        p
+                            img.img-fluid(src='img/photo/photo-1499695867787-121ffb7950bf.jpg', alt='Example blog post alt')
+                        p Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. 
+                        p Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus          
+                        hr         
+                    // comments
+                    .mt-5
+                        h6.text-uppercase.text-muted.mb-4 2 comments
+
+                        - var comments = []
+                        - comments.push({name: 'Julie Alma', posted: 'September 23, 2017 at 12:00 am', image: 'img/avatar/avatar-0.jpg', text: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.', })
+                        - comments.push({name: 'Louise Armero', posted: 'June 23, 2017 at 12:35 pm', image: 'img/avatar/avatar-8.jpg', text: 'Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. ', })
+
+                        each val in comments
+
+                            // comment
+                            .media.mb-4
+                                img.avatar.avatar-lg.mr-4(src=val.image, alt=val.name)
+                                .media-body
+                                    h5 #{val.name}
+                                    p.text-uppercase.text-sm.text-muted
+                                        i.far.fa-clock
+                                        |  #{val.posted}
+                                    p.text-muted #{val.text}
+                                    p
+                                        a.btn.btn-link.text-primary(href='#')
+                                            i.fa.fa-reply
+                                            |  Reply
+                            // /comment
+                    // /comments
+
+
+                    // comment form
+                    .mb-5
+                        button(type="button", class="btn btn-outline-primary", data-toggle="collapse", data-target="#leaveComment", aria-expanded="false", aria-controls="leaveComment") Leave a comment
+
+                        #leaveComment.collapse.mt-4
+                            h5.mb-4 Leave a comment
+                            form(id="comment-form", method="post", action="#",class="form")
+                                .row
+                                    .col-md-6                            
+                                        .form-group
+                                            label.form-label(for='name') Name 
+                                                span.required *
+                                            input#name.form-control(type='text')
+                                    .col-md-6                                               
+                                        .form-group
+                                            label.form-label(for='email') Email 
+                                                span.required *
+                                            input#email.form-control(type='text')                                            
+                                .form-group.mb-4
+                                    label.form-label(for='comment') Comment 
+                                        span.required *
+                                    textarea#comment.form-control(rows='4')
+                                button.btn.btn-primary(type="submit")
+                                    i.far.fa-comment
+                                    |  Comment                                   
+                    // /comment form

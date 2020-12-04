@@ -1,0 +1,101 @@
+if (!navbarClass)
+    - var navbarClass = 'fixed-top shadow navbar-light bg-white'
+if (!headerClass)
+    - var headerClass = 'header'
+
+header(class=headerClass)
+    // Navbar
+    nav(class=`navbar navbar-expand-lg ${navbarClass}`)
+        .container-fluid
+            
+            .d-flex.align-items-center
+                if inlineLogo
+                    a.navbar-brand.py-3(href=`${path}index.html`, style="line-height: 0;")
+                        include inc-logo.pug
+                else
+                    a.navbar-brand.py-1(href=`${path}index.html`)
+                        img(src=`${path}img/logo.svg`, alt="Directory logo")
+
+                form.form-inline.d-none.d-sm-flex(action="#", id="search")
+                    .input-label-absolute.input-label-absolute-left.input-reset.input-expand.ml-lg-2.ml-xl-3 
+                        label.label-absolute(for="search_search")
+                            i.fa.fa-search
+                            span.sr-only What are you looking for?
+                        input.form-control.form-control-sm.border-0.shadow-0.bg-gray-200(id="search_search", placeholder="Search", aria-label="Search")
+                        button.btn.btn-reset.btn-sm(type="reset")
+                            i.fa-times.fas
+
+
+            button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarCollapse", aria-controls="navbarCollapse", aria-expanded="false", aria-label="Toggle navigation")
+                i.fa.fa-bars
+            
+            // Navbar Collapse 
+            #navbarCollapse.collapse.navbar-collapse
+                form.form-inline.mt-4.mb-2.d-sm-none(action="#", id="searchcollapsed")
+                    .input-label-absolute.input-label-absolute-left.input-reset.w-100
+                        label.label-absolute(for="searchcollapsed_search")
+                            i.fa.fa-search
+                            span.sr-only What are you looking for?
+                        input.form-control.form-control-sm.border-0.shadow-0.bg-gray-200(id="searchcollapsed_search", placeholder="Search", aria-label="Search")
+                        button.btn.btn-reset.btn-sm(type="reset")
+                            i.fa-times.fas            
+                ul.navbar-nav.ml-auto
+                    li.nav-item.dropdown
+                        if active == 'home'
+                            - activeClass = 'active'
+                        else
+                            - activeClass = ''
+                        a#homeDropdownMenuLink(href="index.html", class=`nav-link dropdown-toggle ${activeClass}`, data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') 
+                            | Home
+                        .dropdown-menu(aria-labelledby='homeDropdownMenuLink')
+                            a.dropdown-item(href=`${path}index.html`) Rooms
+                            a.dropdown-item(href=`${path}index-2.html`) Restaurants
+                            a.dropdown-item(href=`${path}index-3.html`) Travel
+                            a.dropdown-item(href=`${path}index-4.html`) Real Estate <span class="badge badge-info-light ml-1 mt-n1">New</span>
+                    
+                    include inc-megamenu.pug
+
+                    li.nav-item
+                        if active == 'contact'
+                            a.nav-link.active(href=`${path}contact.html`) Contact
+                        else
+                            a.nav-link(href=`${path}contact.html`) Contact
+
+                    li.nav-item.dropdown
+                        if active == 'docs'
+                            - var docsActiveClass = 'active'
+                        else
+                            - var docsActiveClass = ''
+
+                        - var docLinks = {'docs/docs-introduction.html': 'Introduction', 'docs/docs-directory-structure.html': 'Directory structure', 'docs/docs-gulp.html': 'Gulp', 'docs/docs-customizing-css.html': 'Customizing CSS', 'docs/docs-credits.html': 'Credits', 'docs/docs-changelog.html': 'Changelog'}
+                        - var componentLinks = {'docs/components-bootstrap.html': 'Bootstrap', 'docs/components-directory.html': 'Theme'/*, 'component-variants/header.html': 'Header variants <span class="badge badge-info ml-1">New</span>'*/}
+
+                        a#docsDropdownMenuLink(href="index.html", class=`nav-link dropdown-toggle ${docsActiveClass}`, data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') 
+                            | Docs
+                            
+                        .dropdown-menu.dropdown-menu-right(aria-labelledby='docsDropdownMenuLink')
+                            +dropdownList('Documentation', docLinks)    
+                            .dropdown-divider
+                            +dropdownList('Components', componentLinks)
+
+                    if (!loggedUser)
+                        li.nav-item
+                            a.nav-link(href=`${path}login.html`) Sign in
+
+                        li.nav-item
+                            a.nav-link(href=`${path}signup.html`) Sign up
+
+                        li.nav-item.mt-3.mt-lg-0.ml-lg-3.d-lg-none.d-xl-inline-block
+                            a.btn.btn-primary(href=`${path}user-add-0.html`) Add a listing
+
+                    else
+                        li.nav-item.dropdown.ml-lg-3
+                            a#userDropdownMenuLink(href="#",data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') 
+                                img.avatar.avatar-sm.avatar-border-white.mr-2(src=`${path}img/avatar/avatar-10.jpg`, alt='Jack London')
+                            .dropdown-menu.dropdown-menu-right(aria-labelledby='userDropdownMenuLink')
+                                - userDropdownLinks = {'user-booking-1.html' : 'Booking process - 4 pages', 'user-grid.html' : 'Bookings &mdash; grid view', 'user-booking-detail.html' : 'Booking detail'}
+                                +dropdownList('Components', userDropdownLinks, true)
+                                .dropdown-divider
+                                a.dropdown-item(href=`${path}login.html`) <i class="fas fa-sign-out-alt mr-2 text-muted"></i> Sign out
+
+    // /Navbar 

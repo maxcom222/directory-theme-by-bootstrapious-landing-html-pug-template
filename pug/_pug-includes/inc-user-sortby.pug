@@ -1,0 +1,12 @@
+.d-flex.justify-content-between.align-items-center.flex-column.flex-lg-row.mb-5
+    .mr-3
+        p.mb-3.mb-lg-0 You have <strong>12 bookings</strong> in your property
+    .text-center
+        label.form-label.mr-2(for="form_sort") Sort by
+        select.selectpicker.mr-3.mb-3.mb-lg-0(name="sort", id="form_sort", data-style="btn-selectpicker", title="")
+            - var sortBy = ['Newest', 'Oldest', 'Paid']
+            each val, index in sortBy
+                option(value=`sortBy_${index}`) #{val}   
+        a(href="#").btn.btn-outline-secondary
+            i.fa.fa-download.mr-2
+            | Download CSV

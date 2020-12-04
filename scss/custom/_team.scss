@@ -1,0 +1,31 @@
+/*
+* ===================================================
+*     Homepage Elements
+* ===================================================
+*/
+
+.team-img {
+    position: relative;
+    z-index: 20;
+    max-width: 100%;
+}
+
+.team-circle {
+    display: inline-block;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding-bottom: 100%;
+    border-radius: 50%;
+    background-color: theme-color-level('primary', -11);
+    z-index: 0;
+}
+
+.team-body {
+    position: relative;
+    border-radius: $border-radius;
+    background: $white;
+    box-shadow: $box-shadow;
+}

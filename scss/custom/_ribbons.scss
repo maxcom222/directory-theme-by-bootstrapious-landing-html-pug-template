@@ -1,0 +1,52 @@
+/*
+* ===================================================
+*     RIBBONS
+* ===================================================
+*/
+
+.ribbon {
+    position: absolute;
+    top: 10px;
+    left: -11px;
+    z-index: 999;
+    display: inline-block;
+    font-family: $font-family-heading;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    padding: 3px 15px 5px;
+    color: #fff;
+    text-align: center;
+    &+.ribbon {
+        top: 60px;
+        &+.ribbon {
+            top: 110px;
+            &+.ribbon {
+                top: 160px;
+            }
+        }
+    }
+    &::before {
+        content: '';
+        border-left: 12px solid transparent;
+        border-right: 0 solid transparent;
+        border-top: 14px solid darken(theme-color('primary'), 20%);
+        position: absolute;
+        bottom: -14px;
+        left: 0;
+    }
+}
+
+@mixin ribbon-variant($parent, $color) {
+    #{$parent} {
+        background-color: $color !important;
+        &::before {
+            border-top-color: darken($color, 20%);
+        }
+    }
+}
+
+@each $color,
+$value in $theme-colors {
+    @include ribbon-variant('.ribbon-#{$color}', $value);
+}

@@ -1,0 +1,180 @@
+/*
+* ===================================================
+*     Homepage Elements
+* ===================================================
+*/
+
+// Homepage full-screen slider
+
+.hero-home {
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    @include media-breakpoint-up(md) {
+        min-height: 600px;
+    }
+}
+
+.multi-slider {
+    height: 100vh;
+    min-height: 800px;
+
+    .swiper-slide {
+        padding-top: 95px;
+    }
+}
+
+/*
+     Search bars on the homepage
+    ------------------------
+*/
+
+.search-bar {
+    border-radius: 10rem;
+    background: #fff;
+    box-shadow: $box-shadow;
+
+    .form-group {
+        position: relative;
+        margin-bottom: 0;
+
+        &::after {
+            display: block;
+            width: 1px;
+            height: 60%;
+            content: '';
+            background: #ddd;
+            @include position(absolute, 20%, $right: 0);
+        }
+
+        &.no-divider,
+        &:last-of-type {
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    .form-control {
+        height: $input-height-lg;
+    }
+
+    .input-label-absolute-right .label-absolute {
+        right: 0;
+    }
+
+    &.search-bar-with-tabs {
+        border-radius: $border-radius;
+
+    }
+
+}
+
+@include media-breakpoint-down(md) {
+    .search-bar {
+        border-radius: 20px;
+
+        .form-group {
+            margin-bottom: 1rem;
+
+            &::after {
+                display: block;
+                width: calc(100% - 4rem);
+                height: 1px;
+                content: '';
+                transform: translateX(-50%);
+                background: $gray-300;
+                @include position(absolute, $top: auto, $bottom: 0, $left: 50%, $right: auto);
+            }
+        }
+
+        .form-control {
+            height: $input-height;
+            padding: 10px 20px;
+        }
+
+        .input-label-absolute-right .label-absolute {
+            right: 1rem;
+        }
+
+        .bootstrap-select {
+            display: block !important;
+            width: 100% !important;
+            padding: 0;
+
+            button {
+                display: block;
+                width: 100% !important;
+                padding: 10px 20px;
+            }
+        }
+
+    }
+}
+
+.nav-tabs.search-bar-nav-tabs {
+    border-bottom: none;
+
+    .nav-link {
+        padding: 1rem 2rem 1.5rem;
+        margin-bottom: -10px;
+        font-weight: bold;
+
+        border: $nav-tabs-border-width solid transparent;
+        color: $nav-tabs-link-active-color;
+        background-color: rgba($white, .5);
+
+        @include simpleTransition();
+
+        @include border-top-radius($nav-tabs-border-radius);
+
+        @include hover-focus() {
+            color: $nav-tabs-link-active-color;
+            background-color: rgba($white, .8);
+        }
+
+    }
+
+    .nav-link.active,
+    .nav-item.show .nav-link {
+        color: theme-color('primary');
+        background-color: $nav-tabs-link-active-bg;
+        border-color: $white;
+    }
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    background: $gray-100;
+    box-shadow: 0 .05rem .3rem rgba($black, .1);
+}
+
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .swiper-slide {
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+}
+
+.advantage-number {
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    width: 3rem;
+    text-align: center;
+    opacity: 0.5;
+    color: theme-color('primary');
+    font-size: 90px;
+    font-weight: bold;
+    z-index: -1;
+}

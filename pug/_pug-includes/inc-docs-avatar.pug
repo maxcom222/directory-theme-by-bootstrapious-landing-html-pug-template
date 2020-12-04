@@ -1,0 +1,8 @@
+.row.align-items-center.text-center.mb-5
+
+    - var avatars  = ['avatar-xxl p-2','avatar-xxl', 'avatar-xl', 'avatar-lg', 'avatar', 'avatar-sm']
+
+    each val, index in avatars
+        .col-auto
+            img.avatar.mb-3(alt='Image', src=`${path}img/avatar/avatar-${index}.jpg`, class=val)
+            code.d-block .#{val}

@@ -1,0 +1,40 @@
+// theme mixins
+
+@import "mixins-custom";
+@import "functions";
+
+// theme components
+
+@import "breadcrumb";
+@import "navbar";
+@import "card";
+@import "home";
+@import "detail";
+@import "filter";
+@import "forms";
+@import "map";
+@import "icons";
+@import "navpills";
+@import "testimonials";
+@import "ribbons";
+@import "type";
+@import "accordion";
+@import "booking";
+@import "team";
+
+// 3rd party plugins styling
+
+@import "daterangepicker";
+@import "dropzone";
+@import "bootstrap-select";
+@import "magnificpopup";
+@import "nouislider";
+@import "swiper";
+
+// utils + docs
+
+@import "utils"; 
+@import "docs";
+
+// demo
+@import "demo";

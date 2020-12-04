@@ -1,0 +1,210 @@
+/*
+* ===================================================
+*     Custom form controls
+* ===================================================
+*/
+
+// 1. Label
+.form-label {
+    color: $gray-600;
+    font-size: $font-size-base * .8;
+    @include uppercase;
+}
+
+// 2. Underlined form control, i.e. Keep only border bottom
+.form-control.form-control-underlined {
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-left: 0;
+}
+
+// 3. Items +/- button
+
+.form-control.input-items {
+    width: 2rem;
+    border-color: transparent;
+    margin-left: .6rem;
+    margin-right: .6rem;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+
+    &:disabled {
+        background: $white;
+    }
+}
+
+.btn.btn-items {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    letter-spacing: 0;
+    font-weight: normal;
+    padding: 0;
+    border: solid 1px theme-color('primary');
+    text-align: center;
+    color: theme-color('primary');
+    flex-shrink: 0;
+}
+
+// 4. Input + absolutely positioned label inside it
+
+.input-label-absolute {
+    position: relative;
+}
+
+.label-absolute {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $gray-600;
+}
+
+.input-label-absolute-left {
+    .label-absolute {
+        left: .7rem;
+    }
+
+    .form-control {
+        padding-left: 2rem;
+    }
+}
+
+.input-label-absolute-right {
+    .label-absolute {
+        right: .7rem;
+    }
+
+    .form-control {
+        padding-right: 2rem;
+    }
+}
+
+// 5. Expanding input - used for search in the navbar
+
+.input-expand {
+    position: relative;
+    z-index: 50;
+
+    .form-control {
+        width: 100%;
+        max-width: 15rem;
+        transition: all .5s !important;
+    }
+
+    &.focus {
+        // position: absolute;
+
+        .form-control {
+            width: 15rem !important;
+        }
+    }
+}
+
+.input-reset.focus {
+    .form-control {
+        padding-right: 2rem;
+    }
+
+    .btn-reset {
+        display: block;
+    }
+}
+
+.btn-reset {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: $gray-600;
+    background: none;
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+// 6. Collapse button (+/- icon switching)
+
+.btn-collapse {
+
+    &::before {
+        display: inline-block;
+        height: 100%;
+        margin-right: .5rem;
+        content: '\f067';
+        text-align: center;
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+
+    }
+
+    &[aria-expanded='true'] {
+        &::before {
+            content: '\f068';
+        }
+    }
+}
+
+// 7. Muted button
+
+.btn-muted {
+    @include button-variant($text-muted, $text-muted);
+}
+
+.btn-outline-muted {
+    @include button-outline-variant($text-muted);
+}
+
+// 8. Adjust custom switch
+.custom-switch {
+    .custom-control-label {
+        height: $custom-switch-height;  
+        &::before {
+            height: $custom-switch-height;  
+        }
+    }
+    .custom-control-input:checked ~ .custom-control-label {
+        &::after {
+          transform: translateX($custom-switch-width - $custom-switch-indicator-size - .25rem);
+        }
+      }    
+    .text-sm {
+        display: inline-block;
+        margin-top: calc((#{$custom-switch-height} - #{$font-size-sm})/2);
+    }
+}
+
+// 9.  Social icon button
+
+.btn-social {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.btn-social-icon {
+    position: absolute;
+    left: 1rem;
+    width: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+// 10. Form Blocks
+
+.form-block {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid $gray-200;
+    &:first-of-type {
+        border-top: 1px solid $gray-200;
+    }
+    &:last-of-type {
+        border-bottom: none;
+    }
+}

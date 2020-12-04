@@ -1,0 +1,74 @@
+// Megamenu
+
+li.nav-item.dropdown.position-static
+    a.nav-link.dropdown-toggle(href="#", data-toggle='dropdown') Template
+    .dropdown-menu.megamenu.py-lg-0
+        .row
+            .col-lg-9
+                    .row.p-3.pr-lg-0.pl-lg-5.pt-lg-5
+                        .col-lg-3
+                            - links = {'index.html': 'Rooms', 'index-2.html': 'Restaurants',  'index-3.html': 'Travel', 'index-4.html': 'Real estate <span class="badge badge-info-light ml-1">New</span>'}
+                            +megamenuList('Homepage', links)   
+
+                            - links = {'category.html': 'Category - Map on the top', 'category-2.html': 'Category - Map on the right', 'category-3.html': 'Category - no map', 'detail.html' : 'Restaurant detail'}
+                            +megamenuList('Restaurants', links)                                                                                           
+
+                        .col-lg-3
+                            - links = {'category-rooms.html': 'Category - Map on the top', 'category-2-rooms.html': 'Category - Map on the right', 'category-3-rooms.html': 'Category - no map', 'detail-rooms.html' : 'Room detail'}
+                            +megamenuList('Rooms', links)
+
+                            - links = {'blog.html': 'Blog', 'post.html': 'Post'}                                                
+                            +megamenuList('Blog', links)    
+
+                            - pagesLinks = {'compare.html': 'Comparison', 'team.html': 'Team', 'contact.html': 'Contact'}
+
+                            +megamenuList('Pages', pagesLinks)                    
+                                    
+                        .col-lg-3
+                            - pagesLinks2 = {'pricing.html': 'Pricing', 'text.html' : 'Text page', 'faq.html' : 'F.A.Q.s', 'coming-soon.html' : 'Coming soon', '404.html': '404 page', 'knowledge-base.html' : 'Knowledge Base  <span class="badge badge-info-light ml-1">New</span>', 'knowledge-base-topic.html' : 'Knowledge Base  &mdash; Topic<span class="badge badge-info-light ml-1">New</span>', 'terms.html' : 'Terms & Conditions  <span class="badge badge-info-light ml-1">New</span>'}          
+                            
+                            +megamenuList('Pages', pagesLinks2)    
+
+                            - hostLinks = {'user-add-0.html': 'Add new listing - 6 pages', 'user-list.html' : 'Bookings &mdash; list view'}
+
+                            +megamenuList('Host', hostLinks)                             
+
+                        .col-lg-3
+                           
+                            - userLinks = {'user-profile.html': 'Profile', 'user-account.html': 'Account', 'user-personal.html': 'Personal info - forms', 'user-security.html': 'Password & security - forms', 'login.html' : 'Sign in', 'signup.html' : 'Sign up', 'user-booking-1.html' : 'Booking process - 4 pages', 'user-grid.html' : 'Bookings &mdash; grid view', 'user-booking-detail.html' : 'Booking detail', 'user-invoice.html' : 'Invoice  <span class="badge badge-info-light ml-1">New</span>', 'user-messages.html' : 'Messages <span class="badge badge-info-light ml-1">New</span>', 'user-messages-detail.html' : 'Message Detail  <span class="badge badge-info-light ml-1">New</span>',}
+                            
+                            +megamenuList('User', userLinks)    
+
+                    .row.megamenu-services.d-none.d-lg-flex.pl-lg-5
+                        .col-xl-3.col-lg-6.d-flex
+                            .megamenu-services-item
+                                +svgIcon('destination-map-1', 'megamenu-services-icon')
+                                div
+                                    h6.text-uppercase Best rentals
+                                    p.mb-0.text-muted.text-sm Find the perfect place
+                                                                
+                        .col-xl-3.col-lg-6.d-flex
+                            .megamenu-services-item
+                                +svgIcon('money-box-1', 'megamenu-services-icon')
+                                div
+                                    h6.text-uppercase Earn points
+                                    p.mb-0.text-muted.text-sm And get great rewards
+                            
+                        .col-xl-3.col-lg-6.d-flex
+                            .megamenu-services-item
+                                +svgIcon('customer-support-1', 'megamenu-services-icon')
+                                div
+                                    h6.text-uppercase 020-800-456-747
+                                    p.mb-0.text-muted.text-sm 24/7 Available Support
+                    
+                        .col-xl-3.col-lg-6.d-flex
+                            .megamenu-services-item
+                                +svgIcon('secure-payment-1', 'megamenu-services-icon')
+                                div
+                                    h6.text-uppercase Secure Payment
+                                    p.mb-0.text-muted.text-sm Secure Payment
+
+            .col-lg-3.d-none.d-lg-block
+                img.bg-image(src=`${path}img/photo/photo-1521170665346-3f21e2291d8b.jpg`, alt="")
+
+// /Megamenu end

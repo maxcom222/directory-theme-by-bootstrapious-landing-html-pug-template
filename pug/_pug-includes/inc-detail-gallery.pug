@@ -1,0 +1,13 @@
+- gallery = []
+- gallery.push({title: 'Our street',small: 'img/photo/photo-1426122402199-be02db90eb90.jpg', big:  'img/photo/photo-1426122402199-be02db90eb90.jpg'})
+- gallery.push({title: 'Outside', small: 'img/photo/photo-1512917774080-9991f1c4c750.jpg', big:  'img/photo/photo-1512917774080-9991f1c4c750.jpg'})
+- gallery.push({title: 'Rear entrance',small: 'img/photo/photo-1494526585095-c41746248156.jpg', big:  'img/photo/photo-1494526585095-c41746248156.jpg'})
+- gallery.push({title: 'Kitchen',small: 'img/photo/photo-1484154218962-a197022b5858.jpg', big: 'img/photo/photo-1484154218962-a197022b5858.jpg'})
+- gallery.push({title: 'Bedroom',small: 'img/photo/photo-1522771739844-6a9f6d5f14af.jpg', big:  'img/photo/photo-1522771739844-6a9f6d5f14af.jpg'})
+- gallery.push({title: 'Bedroom',small: 'img/photo/photo-1488805990569-3c9e1d76d51c.jpg', big:  'img/photo/photo-1488805990569-3c9e1d76d51c.jpg'})
+
+.row.gallery.mb-3.ml-n1.mr-n1
+    each val in gallery
+        .col-lg-4.col-6.px-1.mb-2
+            a(href=path + val.big, data-fancybox='gallery', title=val.title)
+                img.img-fluid(src=path + val.small, alt='...')

@@ -1,0 +1,41 @@
+
+    .theme-line-0 {
+      --layer1: #101010;}
+    
+    .theme-line-1 {
+      --layer2: #101010;
+      --layer1: #101010;}
+    
+    .theme-line-22 {
+      --layer1: #101010;
+      --layer2: #101010;}
+    
+    .theme-line-43 {
+      --layer3: #101010;
+      --layer2: #101010;
+      --layer1: #101010;}
+    
+    .theme-line-68 {
+      --layer2: #101010;
+      --layer3: #101010;
+      --layer1: #101010;}
+    
+    .theme-line-72 {
+      --layer3: #101010;
+      --layer1: #101010;
+      --layer2: #101010;}
+    
+    .theme-line-160 {
+      --layer1: #202020;}
+    
+    .theme-line-165 {
+      --layer2: #202020;
+      --layer1: #202020;}
+    
+    .theme-line-186 {
+      --layer1: #202020;
+      --layer2: #202020;}
+    
+    .theme-line-189 {
+      --layer1: #000;}
+    

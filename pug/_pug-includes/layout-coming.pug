@@ -1,0 +1,22 @@
+include mixins.pug
+doctype
+html(lang="en")
+  block vars
+    - var clientZone = false
+    - var active = ''
+    - var bodyAttrs = {}
+
+  if (!path)
+    - var path = ''
+
+  head
+    include head.pug
+
+  body
+
+    block content
+
+    if (locals.styleSwitcher)
+      include style-switcher.pug
+
+    include scripts.pug

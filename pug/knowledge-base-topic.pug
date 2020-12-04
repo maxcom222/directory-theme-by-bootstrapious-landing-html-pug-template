@@ -1,0 +1,106 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'text'  
+
+block content
+    
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Knowledge Base', link: 'knowledge-base.html'})
+    - breadcrumbs.push({name: 'How to rent your apartment?'})
+    - var heroHeading = 'How to rent your apartment?'    
+    
+    - var heroText = '<p class="text-muted">Non adipisicing nisi commodo et consectetur est veniam pariatur. Fugiat occaecat nisi incididunt nostrud anim culpa eiusmod excepteur duis elit elit.</p>'
+    
+    include _pug-includes/inc-hero.pug
+
+    section.py-5
+        .container
+            .row
+                .col-lg-8                           
+                    .text-content
+                        p
+                            strong Pellentesque habitant morbi tristique
+                            |  senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. 
+                            em Aenean ultricies mi vitae est.
+                            |  Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, 
+                            code commodo vitae
+                            | , ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. 
+                            a(href='#') Donec non enim
+                            |  in turpis pulvinar facilisis. Ut felis.
+                        
+                        h2 Header Level 2
+                        ol
+                            li Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            li Aliquam tincidunt mauris eu risus.
+                        blockquote.blockquote.blockquote-primary.bg-gray-100.p-5
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
+                        h3 Header Level 3
+                        p
+                            | Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+
+                        
+                    .row.my-5
+                        .col-lg-6.mx-auto
+                            .card.shadow.border-0.text-center
+                                .card-header.bg-gray-100.border-0
+                                    h4.h5.card-text Was this article helpful?
+                                .card-body.py-4
+                                    button.btn.btn-success
+                                        i.fa.fa-thumbs-up.mr-2
+                                        | Yes
+                                    button.btn.btn-danger
+                                        i.fa.fa-thumbs-down.mr-2
+                                        | No
+
+                .col-lg-4
+                    .pl-xl-4
+                        .card.border-0.shadow.mb-5
+
+                            .card-header.bg-primary-100.py-4.border-0
+                                .media.align-items-center
+                                        .media-body
+                                            p.subtitle.text-sm.text-primary Need more help?
+                                            h4.mb-0 Similar Topics
+                                        +svgIcon('screwdriver-1', 'svg-icon svg-icon-light w-3rem h-3rem ml-3 text-primary')
+
+                            - subtopics = ['Sint consequat aliquip?', 'Adipisicing voluptate magna quis sunt dolor velit.', 'Ad pariatur anim magna?', 'officia aliqua fugiat ex?', 'Sint consequat aliquip?', 'Adipisicing voluptate magna quis sunt dolor velit.', 'Ad pariatur anim magna?', 'officia aliqua fugiat ex?']
+
+                            .list-group.list-group-flush.text-sm.my-3
+                                each subtopic in subtopics
+                                    a.list-group-item.list-group-item-action.text-muted(href='knowledge-base-topic.html') 
+                                        i.far.fa-file.mr-2
+                                        | #{subtopic}                                
+
+
+    section.py-6.bg-gray-100
+        .container
+            .row
+                .col-lg-10.col-xl-8.mx-auto.text-center
+                    h4.subtitle.text-primary.mb-4 Get Support From Real People
+                    p.text-muted.mb-5 #{dummyText[3]}
+
+                    - support = [1, 2, 3, 4, 5]
+
+                    ul.list-unstyled.d-flex.justify-content-center
+                        each supportPerson in support
+                            li
+                                a(href="#")
+                                    img.avatar.avatar-lg.avatar-border-white.hover-animate.mx-2(src=`${path}img/avatar/avatar-${supportPerson}.jpg`, alt='')
+
+    section.pb-5
+        .container
+            .row
+                .col-md-8.col-lg-6.mx-auto
+                    .card.border-0.shadow.mt-n5.mb-5
+                        .card-header.bg-gray-100.py-4.border-0
+                            .media.align-items-center
+                                    .media-body
+                                        p.subtitle.text-sm.text-primary Drop Us a Line
+                                        h4.mb-0 Contact
+                                    +svgIcon('fountain-pen-1', 'svg-icon svg-icon-light w-3rem h-3rem ml-3 text-primary')
+
+                        .card-body
+                            p.text-muted #{dummyText[4]}
+                            a.btn.btn-primary(href='#') Let us know

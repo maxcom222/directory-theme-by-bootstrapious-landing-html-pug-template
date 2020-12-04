@@ -1,0 +1,40 @@
+include dummyText
+include mixins.pug
+doctype
+html(lang="en")
+  block vars
+    - var clientZone = false
+    - var active = ''
+    - var bodyAttrs = {}
+
+  if (!path)
+    - var path = ''
+  
+  head
+    include head.pug
+
+    if (active == 'docs')
+      - var bodyAttrs = {'data-spy': "scroll", 'data-target': "#components-nav", 'data-offset':"81", 'style': 'padding-top: 72px;'}
+    else if (hideNavbar == true)
+      - var bodyAttrs = {}
+    else if (bodyAttrs)
+      - var bodyAttrs = bodyAttrs
+    else
+      - var bodyAttrs = {'style': 'padding-top: 72px;'}
+
+  body&attributes(bodyAttrs)
+
+    if (!hideNavbar)
+      include navbar.pug
+
+    block content
+
+    if (!hideFooter)
+      include footer.pug
+
+    if (locals.styleSwitcher)
+      include style-switcher.pug
+
+    include scripts.pug
+
+    block additionalScripts

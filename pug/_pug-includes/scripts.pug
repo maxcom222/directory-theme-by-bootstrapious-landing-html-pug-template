@@ -1,0 +1,65 @@
+// JavaScript files
+script.
+    // ------------------------------------------------------- //
+    //   Inject SVG Sprite - 
+    //   see more here 
+    //   https://css-tricks.com/ajaxing-svg-sprite/
+    // ------------------------------------------------------ //
+    function injectSvgSprite(path) {
+
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", path, true);
+        ajax.send();
+        ajax.onload = function(e) {
+        var div = document.createElement("div");
+        div.className = 'd-none';
+        div.innerHTML = ajax.responseText;
+        document.body.insertBefore(div, document.body.childNodes[0]);
+        }
+    }    
+    // to avoid CORS issues when viewing using file:// protocol, using the demo URL for the SVG sprite
+    // use your own URL in production, please :)
+    // https://demo.bootstrapious.com/directory/1-0/icons/orion-svg-sprite.svg
+    //- injectSvgSprite('${path}icons/orion-svg-sprite.svg'); 
+    injectSvgSprite('https://demo.bootstrapious.com/directory/1-4/icons/orion-svg-sprite.svg'); 
+
+// jQuery
+script(src=`${path}vendor/jquery/jquery.min.js`)
+// Bootstrap JS bundle - Bootstrap + PopperJS
+script(src=`${path}vendor/bootstrap/js/bootstrap.bundle.min.js`)
+// Magnific Popup - Lightbox for the gallery
+script(src=`${path}vendor/magnific-popup/jquery.magnific-popup.min.js`)
+// Smooth scroll
+script(src=`${path}vendor/smooth-scroll/smooth-scroll.polyfills.min.js`)
+// Bootstrap Select
+script(src=`${path}vendor/bootstrap-select/js/bootstrap-select.min.js`)
+// Object Fit Images - Fallback for browsers that don't support object-fit
+script(src=`${path}vendor/object-fit-images/ofi.min.js`)
+// Swiper Carousel                       
+script(src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js')
+
+if (locals.styleSwitcher)
+    script(src=`${path}vendor/jquery.cookie/jquery.cookie.js`) 
+    script(src=`${path}js/demo.js`)
+
+if (active == 'docs')
+    script(src=`${path}vendor/prismjs/prism.js`)
+    script(src=`${path}vendor/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js`)
+    script(type='text/javascript').
+        // Optional
+        Prism.plugins.NormalizeWhitespace.setDefaults({
+        'remove-trailing': true,
+        'remove-indent': true,
+        'left-trim': true,
+        'right-trim': true,
+        });
+
+if (path === '')
+    script.
+        var basePath = ''
+else 
+    script.
+        var basePath = '../'
+
+// Main Theme JS file    
+script(src=`${path}js/theme.js`)

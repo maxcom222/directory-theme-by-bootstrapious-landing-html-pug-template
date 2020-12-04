@@ -1,0 +1,117 @@
+extends _pug-includes/layout.pug
+
+block vars 
+    - var active = 'category'
+    - var mapUsed = true
+    - var hideTopbar = true
+
+block content
+
+    .container-fluid
+        .row
+            .col-lg-6.py-5.p-xl-5
+
+                h1.text-serif.mb-4 Eat in Manhattan, NY
+
+                hr.my-4
+
+                include _pug-includes/inc-var-neighbourhoods.pug
+
+                form(action="#")
+                    .row
+                        .col-xl-4.col-md-6.mb-4
+                            label.form-label(for="form_search") Keyword
+                            .input-label-absolute.input-label-absolute-right
+                                .label-absolute
+                                    i.fa.fa-search
+                                input.form-control.pr-4(type="search", name="search", placeholder="Keywords", id="form_search")
+                        .col-xl-4.col-md-6.mb-4
+                            label.form-label(for="form_neighbourhood") Neighbourhood
+                            select.selectpicker.form-control(name="neighbourhood", id="form_neighbourhood", multiple, data-style="btn-selectpicker", data-live-search="true", data-selected-text-format="count > 1", title="")
+                                each val, index in neighbourhoods
+                                    option(value=`neighbourhood_${index}`) #{val}    
+                        .col-xl-4.col-md-6.mb-4
+                            - var restaurantTypes = ['Hipster', 'Music club', 'Bar', 'Pub', 'Deli', 'Bistro']
+                            label.form-label(for="form_category") Category
+                            select.selectpicker.form-control(name="category", id="form_category", multiple, data-style="btn-selectpicker", data-selected-text-format="count > 1", title="")
+                                each val, index in restaurantTypes
+                                    option(value=`category_${index}`) #{val}    
+                        .col-12.mb-4
+                            - var restaurantTypes = ['Hipster', 'Music club', 'Bar', 'Pub', 'Deli', 'Bistro']
+                            label.form-label Tag
+                            ul.list-inline.mb-0
+                                each val,index in restaurantTypes
+                                    li.list-inline-item
+                                        .custom-control.custom-checkbox
+                                            input.custom-control-input(type='checkbox', id=`type_${index}`, name="type[]")
+                                            label.custom-control-label(for=`type_${index}`) #{val}
+                        .col-12.pb-4
+                            #moreFilters.collapse
+                                .mb-4
+                                    - var cuisineTypes = ['Fusion', 'Indian', 'French', 'American', 'Mexican', 'Other']
+                                    label.form-label Cuisine
+                                    ul.list-inline.mb-0
+                                        each val,index in cuisineTypes
+                                            li.list-inline-item
+                                                .custom-control.custom-checkbox
+                                                    input.custom-control-input(type='checkbox', id=`cuisine_${index}`, name="cuisine[]")
+                                                    label.custom-control-label(for=`cuisine_${index}`) #{val}
+                                .row
+                                    .col-xl-6.mb-4
+                                        label.form-label Price
+                                        
+                                        #slider-snap.text-primary
+                                        .nouislider-values
+                                            .min From $
+                                                span#slider-snap-value-from
+                                            .max To $
+                                                span#slider-snap-value-to
+                                        input(type="hidden", name="pricefrom", id="slider-snap-input-from", value="40")
+                                        input(type="hidden", name="priceto",  id="slider-snap-input-to", value="110")
+                                    
+                                    .col-xl-6.mb-4
+                                        label.form-label Vegetarians
+                                        - var vegetarians = ['All', 'Vegetarian only']
+                                        ul.list-inline.mb-0
+                                            each val,index in vegetarians
+                                                li.list-inline-item
+                                                    .custom-control.custom-radio
+                                                        input.custom-control-input(type='radio', id=`vegetarians_${index}`, name="vegetarians")
+                                                        label.custom-control-label(for=`vegetarians_${index}`) #{val}
+
+                        .col-6.mb-4
+                            button.btn.btn-primary(type="submit") 
+                                i.fas.fa-filter.mr-1
+                                | Filter                
+                        .col-6.mb-4.text-right
+                            +collapseButton('moreFilters', 'More filters', 'Less filters')  
+                        
+                hr.my-4
+
+                include _pug-includes/inc-category-sortby.pug
+                                
+                - var itemClass = 'col-sm-6 mb-5 hover-animate'
+                
+                .row
+                    each val, index in restaurantsJson.features
+                        +venue(val.properties, itemClass)
+
+                include _pug-includes/inc-pagination.pug
+
+            .col-lg-6.map-side-lg.pr-lg-0
+                #categorySideMap.map-full.shadow-left
+
+
+
+block additionalScripts
+    include _pug-includes/scripts-map.pug
+
+    script(src='js/map-category.js')                                
+    script.
+        createListingsMap({
+            mapId: 'categorySideMap',
+            jsonFile: 'js/restaurants-geojson.json',
+            //tileLayer: tileLayers[5]  - uncomment for a different map styling
+        });
+
+    include _pug-includes/scripts-nouislider.pug

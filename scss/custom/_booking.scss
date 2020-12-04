@@ -1,0 +1,16 @@
+/*
+* ===================================================
+*    Booking
+* ===================================================
+*/
+.date-tile {
+    display: flex;
+    width: 4.5rem;
+    height: 4.5rem;
+    text-align: center;
+    color: $primary;
+    border-radius: $border-radius;
+    background: $primary-200;
+    align-items: center;
+    justify-content: center;
+}

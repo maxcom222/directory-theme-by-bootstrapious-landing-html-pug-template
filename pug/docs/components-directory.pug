@@ -1,0 +1,164 @@
+extends ../_pug-includes/layout
+
+block vars
+    - var active = 'docs'  
+    - var bodyAttrs = {'data-spy': "scroll", 'data-target': "#components-nav", 'data-offset':"80"}
+    - var path = '../'    
+    - var mapUsed = true 
+
+block content
+
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: '../index.html'})
+    - breadcrumbs.push({name: 'Theme Components'})
+    - var heroHeading = 'Theme Components'
+    - var heroText = '<p class="lead text-muted">This is a quick showcase of some of the main Bootstrap components that come with this template.</p>'
+    - var current = 'docs/components-directory.html'
+    
+    include ../_pug-includes/inc-hero
+
+    section.py-6   
+        .container-fluid
+            .row.px-xl-5
+                .col-lg-2
+                    include ../_pug-includes/inc-docs-sidebar
+
+                .col-lg-8.position-relative
+
+                        +componentDocItem('Accordion', '<p class="lead">Block components used to create an Accordion using Bootstrap\' collapse plugin.</p>')
+
+                            include ../_pug-includes/inc-docs-accordion
+
+                        +componentDocItem('Avatar', '<p class="lead">Classes to format your user images. You can combine avatar classes with padding utility class to give to the image a nice white border.</p>')
+
+                            include ../_pug-includes/inc-docs-avatar
+
+                        +componentDocItem('Bootstrap Select', '<p class="lead">Classes to format your user images. You can combine avatar classes with padding utility class to give to the image a nice white border.</p><p><a href="https://developer.snapappointments.com/bootstrap-select/">Visit plugin website</a></p>')
+
+                            include ../_pug-includes/inc-docs-bootstrapselect
+
+                        +componentDocItem('Gallery with lightbox', '<p class="lead">A simple gallery using the Magnific Popup plugin as the lightbox.</p><p>Magnific Popup is a responsive lightbox & dialog script with focus on performance and providing best experience for user with any device.</p> <p><a href="https://dimsemenov.com/plugins/magnific-popup/">Visit plugin website</a></p>')    
+                            include ../_pug-includes/inc-detail-gallery                            
+
+                        +componentDocItem('Icons - Directory', '<p class="lead">This theme also comes with a <strong>150+ Premium SVG icons</strong>. Icons included cover mostly e-commerce, restaurant and travel niches.</p><p class="text-muted text-large">For a complete icon reference, see <a href="../icons/demo.html">here</a>.</p>')
+
+                            include ../_pug-includes/inc-docs-icons
+
+                        +componentDocItem('Icons - Font Awesome', '<p class="lead">Vector icons and social logos on your website with Font Awesome, the web’s most popular icon set and toolkit.</p><p>These icons are mostly used in buttons or for social network links. For a complete icon reference, see <a href="https://fontawesome.com/icons?d=gallery">here</a>.</p>')
+
+                            include ../_pug-includes/inc-docs-icons-fa
+
+                        +componentDocItem('Maps', '<p class="lead">Maps inside this theme use Leaflet and tiles from <a href="https://maps.wikimedia.org/">Wikimedia Maps</a>.</p><p>Big advantage compared to Google Maps is that these maps are free to use. For the map tiles, you can also use maps from Mapbox or OpenStreet maps.</p><p><a href="https://leafletjs.com/">Visit Leaflet website</a></p>')    
+                            include ../_pug-includes/inc-docs-map
+
+                        +componentDocItem('Ribbon', '<p class="lead">Ribbons can be used in the venue component, venue carousels but also separately. Its parent needs a <code>position: relative;</code> and you can use theme colours for ribbon backgrounds.</p>')
+
+                            .card.bg-gray-100.w-50.position-relative.py-6.border-0.shadow
+                                .ribbon.ribbon-primary Primary
+                                .ribbon.ribbon-secondary Secondary
+                                .ribbon.ribbon-info Info
+
+                        +componentDocItem('Swiper', '<p class="lead">Touch enabled jQuery plugin that lets you create a beautiful responsive carousel sliders.</p><p>Used for the single-item carousels and also for the card carousels. You can initialize the plugin in JavaScript or you can also <code>.swiper-init</code> on your carousel and pass the configuration array in stringified JSON in the <code>data-swiper</code> attribute as in the example below.</p> <p><a href="https://idangero.us/swiper/">Visit plugin website</a></p>')
+
+                            include ../_pug-includes/inc-docs-swiper
+
+                        +componentDocItem('Background image', '<p class="lead">Utility class that turns a <code>&lt;img class=&quot;bg-image&quot;&gt;</code> into a background image for its background. Useful e.g. for carousels. Make sure that image\'s parent container and the content that should be placed over the image are relatively positioned.</p>')    
+                            include ../_pug-includes/inc-docs-image
+
+                        +componentDocItem('Image overlay', '<p class="lead">Utility class that darkens or lightens the backround image of the element to enhance the legibility. It can be used with cards, carousel slides, etc.</p><p>Gradient overlay adds vertical gradient that\'s darkest on the bottom third of the element.</p>')  
+                            include ../_pug-includes/inc-docs-overlay
+
+                            .card.bg-gray-100.border-0
+                                .card-body 
+                                    h6.text-muted.text-uppercase.font-weight-normal.mb-3 Class reference
+                                    p.card-text <code>.dark-overlay</code>, <code>.light-overlay</code>,  <code>.gradient-overlay</code>  - CSS class to be used on the element
+                                    p.card-text <code>.overlay-content</code> - use this class on the element's content to increase its Z-index and move it above the overlay layer
+                                    
+                        +componentDocItem('Responsive borders', '<p class="lead">Responsive borders as an addition to Bootstrap\'s <a href="https://getbootstrap.com/docs/4.1/utilities/borders/">border utilities</a>.</p>')    
+
+                            .card.bg-gray-100.border-0
+                                .card-body 
+                                    h6.text-muted.text-uppercase.font-weight-normal.mb-3 Class reference
+                                    p.card-text <code>.border-sm</code>, <code>.border-md</code>, etc.
+
+                        +componentDocItem('Block utilities', '<p class="lead">Additional utility classes, for block elements mostly.</p>')    
+
+                            .card.bg-gray-100.border-0
+                                .card-body 
+                                    h6.text-muted.text-uppercase.font-weight-normal.mb-3 Class reference
+                                    p.card-text <code>.bg-gray-100</code> to <code>.bg-gray-900</code> - grayscale backgrounds
+                                    p.card-text <code>.bg-primary-light</code>, <code>.bg-secondary-light</code> - lighter backgrounds for the theme colours
+                                    p.card-text <code>.opacity-1</code> to <code>.opacity-9</code> - opacity helper
+                                    p.card-text <code>.hover-scale</code> - scale element on hover
+                                    p.card-text <code>.hover-animate</code> - move element up by few pixels on hover
+                                    p.card-text <code>.hover-scale-bg-image</code> - scale element's background picture on hover
+                        
+                        +componentDocItem('Text utilities', '<p class="lead">Text utility classes to control text size and more.</p>')    
+
+                            .card.bg-gray-100.border-0
+                                .card-body 
+                                    h6.text-muted.text-uppercase.font-weight-normal.mb-3 Class reference
+                                    p.card-text <code>.text-gray-100</code> to <code>.text-gray-900</code> - grayscale text colours
+                                    p.card-text <code>.text-sm</code>, <code>.text-lg</code>, <code>.text-xl</code> - text sizes
+                                    p.card-text <code>.letter-spacing-1</code> to <code>.letter-spacing-5</code> - letter spacing 0.1em to 0.5em
+                                    p.card-text <code>.z-index-1</code> to <code>.z-index-5</code> - z-index from 10 to 50
+                                    p.card-text <code>.text-hover-primary</code>, etc. - text colour on hover/focus for theme colours
+                                    p.card-text <code>.overflow-visible</code> and <code>.overflow-hidden</code> - overflow control
+
+                .col-lg-2
+                    nav#components-nav.nav.nav-pills.flex-column.sticky-top.ml-1.p-3.mb-5.border-left(style="top: 120px;")
+                        h6.sidebar-heading Main components
+                        - var components = ['Accordion', 'Avatar', 'Bootstrap Select', 'Gallery with lightbox', 'Icons - Directory', 'Icons - Font Awesome', 'Maps',  'Ribbon', 'Swiper']
+                        each val in components
+                            +componentDocNav(val)
+                    
+                        h6.sidebar-heading.mt-3 Utilities
+
+                        - var components = ['Background image', 'Image overlay', 'Responsive borders', 'Block utilities', 'Text utilities'] 
+                        each val in components
+                            +componentDocNav(val)
+
+block additionalScripts
+    include ../_pug-includes/scripts-map 
+
+    script(src=`${path}js/map-category.js`)                                
+    script(src=`${path}js/map-detail.js`)                                
+    script.
+        createListingsMap({
+            mapId: 'categoryMap',
+            markerPath: '../img/marker.svg',
+            markerPathHighlight: '../img/marker-hover.svg',
+            jsonFile: '../js/restaurants-geojson.json',
+            imgBasePath: '../img/photo/'
+        });
+
+    script.
+        createListingsMap({
+            mapId: 'categoryMap2',
+            markerPath: '../img/marker.svg',
+            markerPathHighlight: '../img/marker-hover.svg',            
+            jsonFile: '../js/rooms-geojson.json',
+            mapPopupType: 'rental',
+            useTextIcon: true,
+            imgBasePath: '../img/photo/'
+        });   
+
+    script.
+        createDetailMap({
+            mapId: 'detailMap',
+            mapCenter: [40.732346, -74.0014247],
+            markerShow: true,
+            markerPosition: [40.732346, -74.0014247],
+            markerPath: '../img/marker.svg',
+        })    
+
+    script.
+        createDetailMap({
+            mapId: 'detailMap2',
+            mapZoom: 14,
+            mapCenter: [40.732346, -74.0014247],
+            circleShow: true,
+            circlePosition: [40.732346, -74.0014247],
+            markerPath: '../img/marker.svg',
+        })            
+

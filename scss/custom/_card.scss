@@ -1,0 +1,73 @@
+/*
+* ===================================================
+*     Card Elements
+* ===================================================
+*/
+
+.card-poster {
+    flex-direction: row;
+    align-items: flex-end;
+    color: $white;
+    border: none;
+    overflow: hidden;
+    box-shadow: $box-shadow-sm;
+    min-height: 350px;
+}
+
+.card-img-overlay-top {
+    position: absolute;
+    top: $card-spacer-y;
+    right: $card-spacer-x;
+    left: $card-spacer-x;
+}
+
+.card-img-overlay-bottom {
+    position: absolute;
+    right: $card-spacer-x;
+    bottom: $card-spacer-y;
+    left: $card-spacer-x;
+}
+
+.card-fav-icon {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    opacity: 0.5;
+    color: $white;
+    border-radius: 50%;
+    background: $gray-800;
+    line-height: 2.5rem;
+
+    &:hover {
+        opacity: .7;
+    }
+
+    svg {
+        vertical-align: middle;
+        opacity: 1;
+        stroke-width: 5;
+    }
+}
+
+
+.card-highlight {
+    margin-top: -2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.card-status {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    left: -1px;
+    height: 5px;
+    background: rgba(0, 40, 100, 0.12);
+    @include border-radius($card-inner-border-radius $card-inner-border-radius 0 0);
+}
+
+.card-stars {
+    min-width: 65px;
+    margin-top: 2px;
+}

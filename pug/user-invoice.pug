@@ -1,0 +1,126 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Account', link: 'user-account.html'})
+    - breadcrumbs.push({name: 'Invoice 202009001'})
+
+    - var heroClass = 'py-5 text-left bg-white'
+    - var heroHeading = 'Hello, I\'m Jack!'
+    - var heroHeadingClass = 'hero-heading mb-0'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5.p-print-0
+        .container
+            .row.mb-4.d-print-none
+                .col-lg-6
+                    // Breadcrumbs 
+                    ol(class=`breadcrumb ${breadcrumbClass}`)
+                        each val in breadcrumbs
+                            if (val.link)
+                                li.breadcrumb-item
+                                    a(href=val.link) #{val.name}
+                            else
+                                li.breadcrumb-item.active #{val.name}   
+                .col-lg-6.text-lg-right
+                    button.btn.btn-primary.mr-2
+                        i.far.fa-file-pdf.mr-2
+                        |  Download PDF
+                    button.btn(onclick="window.print()")
+                        i.fas.fa-print.mr-2
+                        |  Print
+
+
+            .card.border-0.shadow.shadow-print-0
+                .card-header.bg-gray-100.p-5.border-0.px-print-0
+                    .row
+                        .col-6.d-flex.align-items-center
+                            img(src=`${path}img/logo.svg`, alt='Directory')
+                        .col-6.text-right
+                            h3.mb-0 Invoice 202009001
+                            p.mb-0 Issued on Sep 01, 2020
+                .card-body.p-5.p-print-0
+                    .row.mb-4
+                        .col-sm-6.pr-lg-3
+                            h2.h6.text-uppercase.mb-4 Supplier
+                            h6.mb-1 Directory, Inc.
+                            p.text-muted 13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br><strong>Great Britain</strong>
+                        .col-sm-6.pl-lg-4
+                            h2.h6.text-uppercase.mb-4 Customer
+                            h6.mb-1 James Brown
+                            p.text-muted 13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br><strong>Great Britain</strong>
+
+
+                    .row.mb-5
+                        - details = []
+                        - details.push({title: 'Bank account', value: 'hello@bootstrapious.com'})
+                        - details.push({title: 'Reference', value: '202009001'})
+                        - details.push({title: 'Payment method', value: 'Bank transfer'})
+                        .col-md-6.pr-lg-3.text-sm
+                            each val in details
+                                .row
+                                    .col-6.text-uppercase.text-muted #{val.title}
+                                    .col-6.text-right #{val.value}
+
+                        - details = []
+                        - details.push({title: 'Issued on', value: 'Sep 01, 2020'})
+                        - details.push({title: 'Due on', value: 'Sep 01, 2020'})
+                        
+                        .col-md-6.pl-lg-4.text-sm
+                            each val in details
+                                .row
+                                    .col-6.text-uppercase.text-muted #{val.title}
+                                    .col-6.text-right #{val.value}
+
+                    .table-responsive.text-sm.mb-5
+                        table.table.table-striped
+                            thead.bg-gray-200
+                                tr.border-0
+                                    th.center #
+                                    th Item
+                                    th Description
+                                    th.text-right Price
+                                    th.center Qty
+                                    th.text-right Total
+
+                                
+                            tbody
+                                - table = []
+                                - table.push({name: 'Room Rental Services', description: 'August', items: 1, itemPrice: '$958.00', itemTotal: '$958.00'})
+                                - table.push({name: 'Premium Listing', description: 'London', items: 1, itemPrice: '$100.00', itemTotal: '$100.00'})
+                                each val, index in table
+                                    tr
+                                        td.text-center #{index + 1}
+                                        td.font-weight-bold #{val.name}
+                                        td #{val.description}
+                                        td.text-right #{val.itemPrice}
+                                        td.text-center #{val.items}
+                                        td.text-right #{val.itemTotal}
+
+                    .row
+                        .col-sm-7.col-lg-5.col-xl-4.ml-auto
+                            table.table
+                                tbody
+                                    tr.text-sm
+                                        td.font-weight-bold Subtotal
+                                        td.text-right $1,058
+                                    tr.text-sm
+                                        td.font-weight-bold VAT (21%)
+                                        td.text-right $222.18
+                                    tr
+                                        td.text-uppercase.font-weight-bold Total
+                                        td.text-right.font-weight-bold $1,280.18
+                .card-footer.bg-gray-100.p-5.px-print-0.border-0.text-right.text-sm
+                    p.mb-0 Thank you for you business. Directory, Inc.
+
+
+
+
+                    
+

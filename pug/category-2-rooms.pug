@@ -1,0 +1,204 @@
+extends _pug-includes/layout.pug
+
+block vars 
+    - var active = 'category'
+    - var mapUsed = true
+    - var hideTopbar = true
+
+block content
+
+    .container-fluid
+        .row
+            .col-lg-6.py-4.p-xl-5
+
+                h2.mb-4 Stay on Manhattan, NY
+
+                hr.my-4
+
+                include _pug-includes/inc-var-neighbourhoods.pug
+
+                form(action="#", autocomplete="off")
+                    .row
+                        .col-xl-4.col-md-6.mb-4
+                            label.form-label(for="form_dates") Dates
+                            .datepicker-container.datepicker-container-left
+                                input(type="text", name="bookingDate", id="form_dates", class="form-control", placeholder="Choose your dates")              
+
+                        .col-xl-4.col-md-6.mb-4
+                            - var guests = [1,2,3,4,5]
+                            label.form-label(for="form_guests") Guests
+                            select.selectpicker.form-control(name="guests", id="form_guests", data-style="btn-selectpicker", title=" ")
+                                each val, index in guests
+                                    option(value=`guests_${index}`) #{val}    
+
+                        .col-xl-4.col-md-6.mb-4
+                            - var types = ['Entire place', 'Private room', 'Shared room']
+                            label.form-label(for="form_type") Home type
+                            select.selectpicker.form-control(name="type", id="form_type", multiple, data-style="btn-selectpicker", title="")
+                                each val, index in types
+                                    option(value=`type_${index}`) #{val}    
+
+                        .col-xl-4.col-md-6.mb-4
+                            label.form-label Price range
+                            
+                            #slider-snap.text-primary
+                            .nouislider-values
+                                .min From $
+                                    span#slider-snap-value-from
+                                .max To $
+                                    span#slider-snap-value-to
+                            input(type="hidden", name="pricefrom", id="slider-snap-input-from", value="40")
+                            input(type="hidden", name="priceto",  id="slider-snap-input-to", value="110")                                    
+
+                        .col-md-6.col-lg-12.col-xl-8.mb-4.d-xl-flex.justify-content-center
+                            div
+                                label.form-label Host and booking
+                                ul.list-inline.mb-0.mt-1
+                                    li.list-inline-item
+                                        .custom-control.custom-switch
+                                            input#instantBook.custom-control-input(type='checkbox')
+                                            label.custom-control-label(for='instantBook') 
+                                                span.text-sm Instant book
+                                    li.list-inline-item
+                                        .custom-control.custom-switch
+                                            input#superhost.custom-control-input(type='checkbox')
+                                            label.custom-control-label(for='superhost') 
+                                                span.text-sm Superhost
+
+
+
+                        .col-12.pb-4
+                            #moreFilters.collapse
+
+                                .filter-block
+                                    h6.mb-3 Location
+                                    .row
+                                        .col-xl-4.col-md-6.mb-4.mb-xl-0
+                                            label.form-label(for="form_neighbourhood") Neighbourhood
+                                            select.selectpicker.form-control(name="neighbourhood", id="form_neighbourhood", multiple, data-style="btn-selectpicker", data-live-search="true", data-selected-text-format="count > 1", title="")
+                                                each val, index in neighbourhoods
+                                                    option(value=`neighbourhood_${index}`) #{val}    
+
+                                        .col-xl-8
+                                            - var neighbourhoodTags = ['Hipster', 'Business', 'Family', 'Green']
+                                            label.form-label Neighbourhood Tag
+                                            ul.list-inline.mt-xl-1.mb-0
+                                                each val,index in neighbourhoodTags
+                                                    li.list-inline-item
+                                                        .custom-control.custom-checkbox
+                                                            input.custom-control-input(type='checkbox', id=`type_${index}`, name="type[]")
+                                                            label.custom-control-label(for=`type_${index}`) #{val}                                            
+                                .filter-block
+                                    h6.mb-3 Rooms and beds
+                                    .row
+                                        .col-lg-4
+                                            label.form-label Beds
+                                            .d-flex.align-items-center
+                                                .btn.btn-items.btn-items-decrease -
+                                                input.form-control.input-items.input-items-greaterthan(type='text', value='1+', disabled)
+                                                .btn.btn-items.btn-items-increase +
+                                      
+                                        .col-lg-4
+                                            label.form-label Bedrooms
+                                            .d-flex.align-items-center
+                                                .btn.btn-items.btn-items-decrease -
+                                                input.form-control.input-items.input-items-greaterthan(type='text', value='1+', disabled)
+                                                .btn.btn-items.btn-items-increase +
+                                      
+                                        .col-lg-4
+                                            label.form-label Bathrooms
+                                            .d-flex.align-items-center
+                                                .btn.btn-items.btn-items-decrease -
+                                                input.form-control.input-items.input-items-greaterthan(type='text', value='1+', disabled)
+                                                .btn.btn-items.btn-items-increase +
+                                      
+
+                                .filter-block 
+                                    h6.mb-3 Trip type
+                                    
+                                    .row.pt-1
+                                        .col-sm-6
+                                            .custom-control.custom-switch.mb-3
+                                                input#forfamilies.custom-control-input(type='checkbox', name="forfamilies", aria-describedby="forfamiliesHelp")
+                                                label.custom-control-label(for='forfamilies') 
+                                                    span.text-sm For Families
+                                                
+                                            small.text-muted.form-text#forfamiliesHelp Explore entire homes with 5-star reviews from families and essentials like a kitchen and TV
+                                        .col-sm-6
+                                            .custom-control.custom-switch.mb-3
+                                                input#forwork.custom-control-input(type='checkbox', name="forwork", aria-describedby="forworkHelp")
+                                                label.custom-control-label(for='forwork') 
+                                                    span.text-sm For work
+
+                                            small.text-muted.form-text#forworkHelp Explore top-rated homes with essentials like a workspace, wifi, and self check-in
+                                
+                                .filter-block 
+                                    h6.mb-3 Amenities
+                                    
+                                    - var amenities = ['Kitchen', 'Shampoo', 'Heating', 'Air conditioning', 'Washer', 'Dryer', 'Wifi', 'Breakfast', 'Indoor fireplace', 'Buzzer/wireless intercom', 'Doorman', 'Hangers', 'Iron', 'Hair dryer', 'Laptop friendly workspace']
+
+                                    ul.list-inline.mb-0
+                                        each val,index in amenities
+                                            li.list-inline-item
+                                                .custom-control.custom-checkbox
+                                                    input.custom-control-input(type='checkbox', id=`amenities_${index}`, name="amenities[]")
+                                                    label.custom-control-label(for=`amenities_${index}`) #{val}                               
+
+                                .filter-block 
+                                    h6.mb-3 Facilities
+
+                                    - var facilities = ['Free parking on premises', 'Gym', 'Hot tub', 'Pool']
+
+                                    ul.list-inline.mb-0
+                                        each val,index in facilities
+                                            li.list-inline-item
+                                                .custom-control.custom-checkbox
+                                                    input.custom-control-input(type='checkbox', id=`facilities_${index}`, name="facilities[]")
+                                                    label.custom-control-label(for=`facilities_${index}`) #{val}                               
+
+
+                    .row
+                        .col-sm-6.mb-4.order-2.order-sm-1
+                            button.btn.btn-primary(type="submit") 
+                                i.fas.fa-search.mr-1
+                                | Search                
+                        .col-sm-6.mb-4.text-sm-right.order-1.order-sm-2
+                            +collapseButton('moreFilters', 'More filters', 'Less filters')   
+                        
+                hr.my-4
+
+                include _pug-includes/inc-category-sortby.pug
+                                
+                - var itemClass = 'col-sm-6 mb-5 hover-animate'
+                
+                .row
+                    each val, index in roomsJson.features
+                        +place(val.properties, itemClass)
+
+                include _pug-includes/inc-pagination.pug
+
+            .col-lg-6.map-side-lg.pr-lg-0
+                #categorySideMap.map-full.shadow-left
+
+
+
+block additionalScripts
+    include _pug-includes/scripts-map.pug
+    
+    script(src='js/map-category.js')                                
+    script.
+        createListingsMap({
+            mapId: 'categorySideMap',
+            jsonFile: 'js/rooms-geojson.json',
+            mapPopupType: 'rental',
+            useTextIcon: true,
+            //tileLayer: tileLayers[5]  - uncomment for a different map styling
+        });   
+
+    // Daterange picker
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js') 
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.19.0/jquery.daterangepicker.min.js') 
+    script(src='js/datepicker-category.js')  
+
+    include _pug-includes/scripts-nouislider.pug

@@ -1,0 +1,27 @@
+// Price Slider
+script(src='vendor/nouislider/nouislider.min.js')
+script.
+    var snapSlider = document.getElementById('slider-snap');
+
+    noUiSlider.create(snapSlider, {
+        start: [ 40, 110 ],
+        snap: false,
+        connect: true,
+        step: 1,
+        range: {
+            'min': 40,
+            'max': 110
+        }
+    });
+    var snapValues = [
+        document.getElementById('slider-snap-value-from'),
+        document.getElementById('slider-snap-value-to')
+    ];
+    var inputValues = [
+        document.getElementById('slider-snap-input-from'),
+        document.getElementById('slider-snap-input-to')
+    ];
+    snapSlider.noUiSlider.on('update', function( values, handle ) {
+        snapValues[handle].innerHTML = values[handle];
+        inputValues[handle].value = values[handle];
+    })

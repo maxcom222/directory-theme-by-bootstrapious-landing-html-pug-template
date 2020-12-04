@@ -1,0 +1,106 @@
+extends ../_pug-includes/layout
+
+block vars
+    - var active = 'docs'  
+    - var bodyAttrs = {'data-spy': "scroll", 'data-target': "#components-nav", 'data-offset':"80"}
+    - var path = '../'    
+
+block content
+
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: '../index.html'})
+    - breadcrumbs.push({name: 'Documentation', link: 'docs-introduction.html'})
+    - breadcrumbs.push({name: 'Directory structure'})
+    - var heroHeading = 'Directory structure'
+    - var current = 'docs/docs-directory-structure.html'
+    
+    include ../_pug-includes/inc-hero
+
+    section.py-6
+        .container-fluid
+            .row.px-xl-5
+                .col-lg-2
+                    include ../_pug-includes/inc-docs-sidebar
+
+                .col-lg-10.col-xl-8.docs-content
+
+                    +componentDocItem('HTML folder')
+                    
+                        p Folder where all the HTML pages are located. The pages here form a <strong>demo static site</strong>, mostly equivalent to the online demo (HTML source not minified and CDNs are not used here).
+                        p  If you don't need to make any changes to the theme, you're good to go. All of the theme's CSS files are also pre-generated for you, so you can start connecting the theme to your app or a CMS of your choice.
+                        p  You can open any of the files in your browser to see it in action, or modify their markup or content to suit your needs.
+                        p  If you will be using Gulp and HTML combination to help you with your work, these HTML files would be used by Gulp during the development.
+
+                        p                
+                            strong Html folder also contains these subfolders:
+
+                        ul
+                            li
+                                code /css
+                                |  - main theme stylesheet (style.default.css), its colour variants and their minified counterparts.
+                            li
+                                code /docs
+                                |  - documentation you are reading now
+                            li
+                                code /icons
+                                |  - custom SVG icon sprite + its reference doc
+                            li
+                                code /fonts
+                            li
+                                code /img
+                                |  - Images for demo purposes.
+                            li
+                                code /js
+                                |  - JavaScript files
+                    
+                    +componentDocItem('Pug folder')
+                    
+                        p Folder where all the Pug source files are located. <strong>Editing Pug files is now the recommended method to work with this theme</strong>. 
+                        p With the extensive usage of mixins, includes and layouts, you will avoid repetitive tasks you would need to do if working with HTML source. E.g., if you change the navbar, the change will be applied in all your pages, unlike when developing with HTML, where you would need to do the same change in every file.
+                        p Learn more about Pug syntax <a href="https://pugjs.org/api/getting-started.html">here</a>.
+
+                        p                
+                            strong Pug folder also contains these subfolders:
+
+                        ul
+                            li
+                                code /_pug-includes
+                                |  - pug layouts and snippets
+                            li
+                                code /css
+                                |  - custom.css for quick CSS changes, SCSS files get compiled automatically
+                            li
+                                code /docs
+                                |  - pug source files for the documentation you are reading now
+                            li
+                                code /icons
+                                |  - custom SVG icon sprite + its reference doc
+                            li
+                                code /fonts
+                            li
+                                code /img
+                                |  - Images for demo purposes.
+                            li
+                                code /js
+                                |  - JavaScript files
+
+                    +componentDocItem('SCSS folder')
+                    
+                        p  SCSS contains Bootstrap&rsquo;s and theme&rsquo;s SCSS sources structured in the following subfolders
+                        ul
+                            li <code>bootstrap</code> - full SCSS source for the Bootstrap framework.
+                            li <code>modules</code> - theme overrides and custom components for this theme
+                            li <code>style.*.scss</code> - main theme SCSS files that get compiled into theme main stylesheets style.*.css. The * represents the colour variant
+                            li <code>core.scss</code> - file that handles all the SASS imports - mixins, Bootstrap and theme variables, Bootstrap framework
+                            li <code>user.scss</code> - a place for you to add your own custom CSS declarations to keep them separate from the core theme files, which aids updating.
+                            li <code>user-variables.scss</code> - a place for you to add your own custom SCSS variables to override the Bootstrap and theme defaults. This prevents the need to edit the core Bootstrap/theme files and prevents the problems from updating the theme.
+
+                    +componentDocItem('Dist folder')
+
+                        p If you will be using the Gulp workflow, here is where the development files will be saved and the Browsersync server running from. 
+
+                    +componentDocItem('Build folder')
+
+                        p If you will be using the Gulp workflow, here is where the build files will be saved when you'd run one of the Gulp build commands. 
+
+

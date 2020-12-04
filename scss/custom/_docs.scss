@@ -1,0 +1,49 @@
+/*
+* ===================================================
+*     Docs
+* ===================================================
+*/
+
+.docs-item {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid $gray-300;
+    margin-bottom: .5rem;
+
+    &:first-of-type {
+        padding-top: 0;
+    }
+
+    &:last-of-type {
+        border-bottom: none;
+    }
+
+    .docs-desc {
+        //font-size: $font-size-lg;
+        color: $gray-600;
+
+        p.lead {
+            color: $body-color;
+        }
+    }
+}
+
+.sidebar-block {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $gray-200;
+
+    &:last-of-type {
+        border-bottom: none;
+    }
+
+    &:first-of-type {
+        padding-top: 0;
+    }
+}
+
+.sidebar-heading {
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+    color: $gray-600;
+    @include uppercase;
+}

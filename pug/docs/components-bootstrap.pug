@@ -1,0 +1,92 @@
+extends ../_pug-includes/layout
+
+block vars
+    - var active = 'docs'  
+    - var bodyAttrs = {'data-spy': "scroll", 'data-target': "#components-nav", 'data-offset':"80"}
+    - var path = '../'    
+
+block content
+
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: '../index.html'})
+    - breadcrumbs.push({name: 'Bootstrap Components'})
+    - var heroHeading = 'Bootstrap Components'
+    - var heroText = '<p class="lead text-muted">This is a quick showcase of some of the main Bootstrap components that come with this template.</p>'
+    - var current = 'docs/components-bootstrap.html'
+    
+    include ../_pug-includes/inc-hero
+
+
+    section.py-6    
+        .container-fluid
+            .row.px-xl-5
+                .col-lg-2
+                    include ../_pug-includes/inc-docs-sidebar
+
+                .col-lg-10.col-xl-8.px-lg-5.docs-content.position-relative
+                    +componentDocItem('Alert', '<p class="lead">Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages. See the <a href="https://getbootstrap.com/docs/4.1/components/alerts/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-alert            
+
+                    +componentDocItem('Badge', '<p class="lead">Small count and labeling component. See the <a href="https://getbootstrap.com/docs/4.1/components/badge/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-badge            
+
+                    +componentDocItem('Breadcrumb', '<p class="lead">Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.. See the <a href="https://getbootstrap.com/docs/4.1/components/breadcrumb/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-breadcrumb            
+
+                    +componentDocItem('Buttons', '<p class="lead">Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more. See the <a href="https://getbootstrap.com/docs/4.1/components/buttons/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-buttons            
+
+                    +componentDocItem('Card', '<p class="lead">Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.. See the <a href="https://getbootstrap.com/docs/4.1/components/card/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-card  
+
+                    +componentDocItem('Dropdowns', '<p class="lead">Toggle contextual overlays for displaying lists of links and more with the Bootstrap dropdown plugin. See the <a href="https://getbootstrap.com/docs/4.1/components/dropdowns/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-dropdowns  
+
+                    +componentDocItem('Forms', '<p class="lead">Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms. See the <a href="https://getbootstrap.com/docs/4.1/components/forms/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-forms  
+
+                    +componentDocItem('List Group', '<p class="lead">List groups are a flexible and powerful component for displaying a series of content. Modify and extend them to support just about any content within. See the <a href="https://getbootstrap.com/docs/4.1/components/list group/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-listgroup  
+                    
+                    +componentDocItem('Modal', '<p class="lead">Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content. See the <a href="https://getbootstrap.com/docs/4.1/components/modal/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-modal  
+
+                    +componentDocItem('Navbar', '<p class="lead"> Bootstrap’s powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for our collapse plugin. See the <a href="https://getbootstrap.com/docs/4.1/components/navbar/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-navbar  
+                
+                    
+                    +componentDocItem('Navs', '<p class="lead">Documentation and examples for how to use Bootstrap’s included navigation components. See the <a href="https://getbootstrap.com/docs/4.1/components/navs/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-navs  
+
+                    +componentDocItem('Pagination', '<p class="lead">Pagination to indicate a series of related content exists across multiple pages. See the <a href="https://getbootstrap.com/docs/4.1/components/pagination/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-pagination  
+
+                    +componentDocItem('Progress', '<p class="lead">Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels. See the <a href="https://getbootstrap.com/docs/4.1/components/progress/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-progress  
+
+                    +componentDocItem('Tooltips', '<p class="lead">Custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-attributes for local title storage. See the <a href="https://getbootstrap.com/docs/4.1/components/tooltips/">Bootstrap documentation</a> for more details. </p>')
+
+                        include ../_pug-includes/inc-docs-tooltips  
+                        
+                        
+
+                .col-lg-2
+                    nav#components-nav.nav.nav-pills.flex-column.sticky-top.ml-1.p-3.mb-5.border-left(style="top: 120px;")
+                        h6.sidebar-heading.ml-3 Main components
+                        - var components = ['Alert', 'Badge', 'Breadcrumb', 'Buttons', 'Card', 'Dropdowns', 'Forms',  'List Group', 'Modal', 'Navbar', 'Navs', 'Pagination', 'Progress', 'Tooltips']
+                        each val in components
+                            +componentDocNav(val)                
+

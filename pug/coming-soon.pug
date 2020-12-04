@@ -1,0 +1,16 @@
+extends _pug-includes/layout-coming.pug
+
+block content
+    .mh-full-screen.d-flex.align-items-center.dark-overlay
+        img.bg-image(src=`${path}img/photo/photo-1490578474895-699cd4e2cf59.jpg`, alt="Coming Soon")
+        .container.text-white.text-center.text-lg.overlay-content.py-6.py-lg-0
+            h1.text-hide.mx-auto.mb-6 Coming soon
+                img.img-fluid(src=`${path}img/coming-soon.png`, alt="Coming Soon")
+            h3.mb-5.text-shadow Our directory is coming to you soon.
+            p.font-weight-light.mb-4 <i class="fas fa-map-marker-alt mr-2"></i> Directory Ltd. | 25 Baker St., LB8 E18 London, UK
+            ul.list-inline
+                - social = ['twitter', 'facebook', 'instagram', 'pinterest', 'vimeo']
+                each val in social
+                    li.list-inline-item
+                        a.text-white(href="#", target="_blank", title=val)
+                            i(class=`fab fa-${val}`)            

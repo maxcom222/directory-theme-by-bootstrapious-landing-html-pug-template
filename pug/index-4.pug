@@ -1,0 +1,158 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'home'  
+
+
+block content
+    section.d-flex.align-items-center.dark-overlay.bg-cover(style="background-image: url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);")
+        .container.py-6.py-lg-7.text-white.overlay-content
+            .row
+                .col-xl-8
+                    h1.display-3.font-weight-bold.text-shadow Let us guide you home
+                    p.text-lg.text-shadow.mb-6 Uncover the best offers on the real estate market.
+                    
+
+    - var cities = []
+    - cities.push({name: 'San Francisco', image: 'img/photo/photo-1449034446853-66c86144b0ad.jpg', class: 'col-lg-8'})
+    - cities.push({name: 'Los Angeles', image: 'img/photo/photo-1429554429301-1c7d5ae2d42e.jpg', class: 'col-lg-4'})
+    - cities.push({name: 'Santa Monica', image: 'img/photo/photo-1523430410476-0185cb1f6ff9.jpg', class: 'col-lg-4'})
+    - cities.push({name: 'San Diego', image: 'img/photo/photo-1505245208761-ba872912fac0.jpg', class: 'col-lg-4'})
+    - cities.push({name: 'Fresno', image: 'img/photo/photo-1519867850-74775a87e783.jpg', class: 'col-lg-4'})
+
+    - var types = ['Duplex', 'Appartment', 'House', 'Land', 'Other']
+
+    - var prices  = ['$5,000', '$10,000', '$25,000', '$50,000'];
+
+    mixin searchForm()
+        form(action="#")
+            .row
+                .col-lg-4.d-flex.align-items-center.form-group.no-divider
+                    select.selectpicker.form-control(title='Location', data-style="btn-form-control", multiple, data-selected-text-format="count > 2")
+                        each val, index in cities
+                            option(value=`city_${index}`) #{val.name}
+                        
+                .col-md-6.col-lg-3.d-flex.align-items-center.form-group.no-divider
+                    select.selectpicker(title='Type', data-style="btn-form-control", multiple, data-selected-text-format="count > 2")
+                        each val, index in types
+                            option(value=`type_${index}`) #{val}
+                .col-md-6.col-lg-3.d-flex.align-items-center.form-group.no-divider
+                    select.selectpicker(title='Max price', data-style="btn-form-control")
+                        each val, index in prices
+                            option(value=`price_${index}`) #{val}
+                .col-lg-2.form-group.mb-0
+                    button.btn.btn-primary.btn-block.h-100(type="submit") Search 
+    
+
+
+    .container.position-relative.mt-n6.z-index-20
+        ul.nav.nav-tabs.search-bar-nav-tabs(role="tablist")
+            li.nav-item.mr-2
+                a.nav-link.active(href='#buy', data-toggle="tab", role="tab") Buy
+            li.nav-item.mr-2
+                a.nav-link(href='#rent', data-toggle="tab", role="tab") Rent
+            li.nav-item
+                a.nav-link(href='#sell', data-toggle="tab", role="tab") Sell
+
+        .search-bar.search-bar-with-tabs.p-3.p-lg-4
+            .tab-content
+                #buy.tab-pane.fade.show.active(role="tabpanel")
+                    +searchForm()
+
+                #rent.tab-pane.fade(role="tabpanel")
+                    +searchForm()
+
+                #sell.tab-pane.fade(role="tabpanel")
+                    +searchForm()
+
+    section.py-6
+        .container
+            .row.mb-lg-6
+                .col-md-8
+                    p.subtitle.text-secondary Find your home today
+                    h2.mb-md-0 Featured listings around you
+                .col-md-4.d-md-flex.align-items-center.justify-content-end
+                    a.text-muted.text-sm(href="category-rooms.html") 
+                        | See all featured listings
+                        i.fas.fa-angle-double-right.ml-2
+
+        .container-fluid
+            include _pug-includes/inc-slider-homes.pug
+
+    - var grid = []
+    - grid.push({name: 'San Francisco', image: 'img/photo/photo-1449034446853-66c86144b0ad.jpg', class: 'col-lg-8'})
+    - grid.push({name: 'Los Angeles', image: 'img/photo/photo-1429554429301-1c7d5ae2d42e.jpg', class: 'col-lg-4'})
+    - grid.push({name: 'Santa Monica', image: 'img/photo/photo-1523430410476-0185cb1f6ff9.jpg', class: 'col-lg-4'})
+    - grid.push({name: 'San Diego', image: 'img/photo/photo-1505245208761-ba872912fac0.jpg', class: 'col-lg-4'})
+    - grid.push({name: 'Fresno', image: 'img/photo/photo-1519867850-74775a87e783.jpg', class: 'col-lg-4'})
+
+
+    // Our picks section
+    section.py-6.bg-gray-100
+        .container
+            .row.mb-5
+                .col-md-8
+                    p.subtitle.text-primary Most popular cities
+                    h2 What's on our radar
+                .col-md-4.d-md-flex.align-items-center.justify-content-end
+                    a.text-muted.text-sm(href="category-3-rooms.html") 
+                        | See all cities
+                        i.fas.fa-angle-double-right.ml-2
+
+            .row
+                each val, index in grid
+                    if (index < 2)
+                        +grid(val)
+            .row
+                each val, index in grid
+                    if (index >= 2)
+                        +grid(val)
+
+
+    section.py-6
+        .container
+            .pb-lg-4
+                p.subtitle.text-secondary Why us?
+                h2.mb-5 Discover the best investment opportunities around you
+            
+            - var advantages = []
+            - advantages.push({name: 'Find the best investment area', icon:'destination-map-1', bgClass: 'bg-primary-light', iconClass: 'text-primary'})            
+            - advantages.push({name: 'Purchase a property', icon:'real-estate-1', bgClass: 'bg-secondary-light', iconClass: 'text-secondary'})
+            
+            - advantages.push({name: 'Profit', icon:'pay-1', bgClass: 'bg-primary-light', iconClass: 'text-primary'})
+
+            .row
+                each val, index in advantages
+                    .col-sm-6.col-lg-4.mb-3.mb-lg-0
+                        .px-0.pr-lg-4
+                            .icon-rounded.mb-3(class=val.bgClass)
+                                +svgIcon(val.icon, 'w-2rem h-2rem ' + val.iconClass)
+                            h3.h6.text-uppercase #{val.name}
+                            p.text-muted.text-sm #{dummyText[index].substr(0, 100)}
+    include _pug-includes/inc-divider-4.pug
+
+    section.py-6
+        .container
+            .row.mb-lg-6
+                .col-md-8
+                    p.subtitle.text-secondary Who are we?
+                    h2.mb-md-0 Meet our team
+                .col-md-4.d-md-flex.align-items-center.justify-content-end
+                    a.text-muted.text-sm(href="team.html") 
+                        | Meet us all
+                        i.fas.fa-angle-double-right.ml-2
+
+            - var people = []
+            - people.push({name: 'Meredith Goodwin', position: 'CEO & Founder', icon:'destination-map-1', bgClass: 'bg-secondary-light', iconClass: 'text-primary'})            
+            - people.push({name: 'Weeks Garrett', position: 'Co-founder',icon:'real-estate-1', bgClass: 'bg-secondary-light', iconClass: 'text-secondary'})
+            
+            - people.push({name: 'Fisher Bauer', position: 'CTO',icon:'pay-1', bgClass: 'bg-secondary-light', iconClass: 'text-primary'})
+            - people.push({name: 'Aguilar Webb', position: 'Community', icon:'pay-1', bgClass: 'bg-secondary-light', iconClass: 'text-primary'})
+
+            .row
+                each val, index in people
+                    +teamCard(val, index)
+
+    include _pug-includes/inc-as-seen-in.pug
+
+    include _pug-includes/inc-instagram.pug

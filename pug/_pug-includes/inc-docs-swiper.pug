@@ -1,0 +1,64 @@
+// Slider main container
+- var itemClass = 'w-100 h-100'
+.swiper-container.swiper-container-mx-negative.swiper-init(data-swiper='{"slidesPerView":3,"spaceBetween":20,"loop":true,"roundLengths":true,"breakpoints":{"991":{"slidesPerView":2},"565":{"slidesPerView":1}},"pagination":{"el":".swiper-pagination","clickable":true,"dynamicBullets":true}}')
+    // Additional required wrapper
+    .swiper-wrapper.pb-5
+        // Slides
+        each val in roomsJson.features
+            .swiper-slide.h-auto.px-2
+                +place(val.properties, itemClass)
+
+    // If we need pagination
+    .swiper-pagination
+
+h6.text-muted Initialize the slider via <code>.swiper-init</code> and <code>data-swiper</code> attribute.
+
+pre.mb-5
+    code.language-html.
+        &lt;!-- Slider main container--&gt;
+        &lt;div class=&quot;swiper-container swiper-container-mx-negative swiper-init&quot; data-swiper='{&quot;slidesPerView&quot;:3,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;roundLengths&quot;:true,&quot;breakpoints&quot;:{&quot;991&quot;:{&quot;slidesPerView&quot;:2},&quot;565&quot;:{&quot;slidesPerView&quot;:1}},&quot;pagination&quot;:{&quot;el&quot;:&quot;.swiper-pagination&quot;,&quot;clickable&quot;:true,&quot;dynamicBullets&quot;:true}}'&gt;
+            &lt;!-- Additional required wrapper--&gt;
+            &lt;div class=&quot;swiper-wrapper pb-5&quot;&gt;
+                &lt;!-- Slides--&gt;
+                &lt;div class=&quot;swiper-slide h-auto px-2&quot;&gt;
+                    Slide ...
+                &lt;/div&gt;
+                &lt;div class=&quot;swiper-slide h-auto px-2&quot;&gt;
+                    Slide ...
+                &lt;/div&gt;
+                &lt;div class=&quot;swiper-slide h-auto px-2&quot;&gt;
+                    Slide ...
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- If we need pagination--&gt;
+            &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+h6.text-muted Or use JavaScript
+
+pre
+    code.language-js.
+        var itemsSlider = new Swiper('.items-slider', {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            loop: true,
+            roundLengths: true,
+            breakpoints: {
+                1200: {
+                    slidesPerView: 3
+                },
+                991: {
+                    slidesPerView: 2
+                },
+                565: {
+                    slidesPerView: 1
+                }
+            },
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true
+            },
+        });    

@@ -1,0 +1,27 @@
+/**
+ * Directory – Directory & Listing Bootstrap 4 Theme v. 1.6.0
+ * Homepage: https://themes.getbootstrap.com/product/directory-directory-listing-bootstrap-4-theme/
+ * Copyright 2020, Bootstrapious - https://bootstrapious.com
+ */
+
+// functions.scss - Bootstrap functions
+@import "bootstrap/functions"; 
+
+// your variables + overrides of Bootstrap variables 
+@import "user/user-variables"; 
+
+// custom variables + overrides of Bootstrap variables for this theme
+@import "custom/variables"; 
+
+// bootstrap main
+@import "bootstrap/bootstrap";
+
+// 3rd party plugin variables
+@import "custom/variables-3rd-party.scss";
+
+// theme components
+@import "custom/theme";
+
+// your components
+@import "user/user"; 
+

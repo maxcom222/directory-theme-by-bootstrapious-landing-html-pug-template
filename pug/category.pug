@@ -1,0 +1,64 @@
+extends _pug-includes/layout.pug
+
+block vars 
+    - var active = 'category'
+    - var navbarClass = ''  
+    - var headerClass = ''  
+    - var mapUsed = true
+
+block content
+
+    section
+        .map-wrapper-450
+            #categoryMap.h-100
+
+    section.py-5.bg-gray-100.shadow
+        .container
+            //- 
+                ul.breadcrumb
+                    li.breadcrumb-item
+                        a(href='index.html') Home
+                    li.breadcrumb-item.active New York
+                        
+            h1 New York
+            p.lead.mb-5 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+        
+            h5 City Quarters            
+            ul.nav.nav-pills-custom
+                li.nav-item
+                    a.nav-link.active(href="#") Mount Vernon
+                li.nav-item
+                    a.nav-link(href="#") Johnstown
+                li.nav-item
+                    a.nav-link(href="#") Jamestown
+                li.nav-item
+                    a.nav-link(href="#") Hudson
+                li.nav-item
+                    a.nav-link(href="#") Kingston
+
+    section.py-5
+        .container
+            
+            //- include _pug-includes/inc-category-filtertop
+            
+            include _pug-includes/inc-category-sortby.pug
+
+            include _pug-includes/inc-var-rooms.pug
+            - var itemClass = 'col-sm-6 col-lg-4 mb-5 hover-animate'
+            
+            .row
+                each val, index in restaurantsJson.features
+                    +venue(val.properties, itemClass)
+
+            include _pug-includes/inc-pagination.pug
+
+block additionalScripts
+    include _pug-includes/scripts-map.pug
+
+    script(src='js/map-category.js')                                
+    script.
+        createListingsMap({
+            mapId: 'categoryMap',
+            jsonFile: 'js/restaurants-geojson.json',
+            //tileLayer: tileLayers[5] - uncomment for a different map styling
+        }); 

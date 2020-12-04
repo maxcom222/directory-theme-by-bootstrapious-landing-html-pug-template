@@ -1,0 +1,31 @@
+.py-5
+
+    button(type="button", class="btn btn-outline-primary", data-toggle="collapse", data-target="#leaveReview", aria-expanded="false", aria-controls="leaveReview") Leave a review
+
+    #leaveReview.collapse.mt-4
+        h5.mb-4 Leave a review
+
+        form(id="contact-form", method="get", action="#",class="form")
+            .row
+                .col-sm-6
+                    .form-group
+                        label.form-label(for="name") Your name *
+                        input(type="text", name="name", id="name", class="form-control", placeholder="Enter your name", required="required")
+                .col-sm-6
+                    .form-group
+                        label.form-label(for="rating") Your rating *
+                        select.custom-select.focus-shadow-0(name="rating", id="rating")
+                            option(value='5') &#9733;&#9733;&#9733;&#9733;&#9733; (5/5)
+                            option(value='4') &#9733;&#9733;&#9733;&#9733;&#9734; (4/5)
+                            option(value='3') &#9733;&#9733;&#9733;&#9734;&#9734; (3/5)
+                            option(value='2') &#9733;&#9733;&#9734;&#9734;&#9734; (2/5)
+                            option(value='1') &#9733;&#9734;&#9734;&#9734;&#9734; (1/5)
+
+            .form-group
+                label.form-label(for="email") Your email *
+                input(type="email", name="email", id="email", class="form-control", placeholder="Enter your  email", required="required")
+            .form-group
+                label.form-label(for="review") Review text *
+                textarea(rows="4", name="review", id="review", class="form-control", placeholder="Enter your review", required="required")
+            
+            button(type="submit", class="btn btn-primary") Post review

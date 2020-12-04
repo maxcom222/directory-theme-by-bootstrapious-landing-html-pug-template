@@ -1,0 +1,66 @@
+h6 Maps with multiple points
+p.text-muted Maps that are used in the category listings show multiple points/markers. Also, popup windows are automatically attached to these points. To display this type of map, you need to provide your list of points in a <a href="http://geojson.org/">GeoJSON file</a>. These files will contain location data together with accompanying data like title, description, image path, etc. See below the links to the particular GeoJSON files used in this theme.
+
+h6.text-muted.mb-4 Map with multiple points - venues
+.map-wrapper-450.mb-2
+    #categoryMap.h-100
+p.text-muted.text-sm GeoJSON file used to generate this map: 
+    a(href=`${path}js/restaurants-geojson.json`) restaurants-geojson.json
+pre.mb-5
+    code.language-js.
+        // Create an example category map
+        createListingsMap({
+            mapId: 'categoryMap',
+            markerPath: 'img/marker.svg',
+            markerPathHighlight: 'img/marker-hover.svg',
+            jsonFile: 'js/restaurants-geojson.json',
+            imgBasePath: 'img/photo/'
+        });
+
+h6.text-muted.mb-4 Map with multiple points - rentals
+.map-wrapper-450.mb-2
+    #categoryMap2.h-100
+p.text-muted.text-sm GeoJSON file used to generate this map: 
+    a(href=`${path}js/rooms-geojson.json`) rooms-geojson.json
+pre.mb-5
+    code.language-js.
+        // Create an example category map for rentals - text labels with price, different popup style
+        createListingsMap({
+            mapId: 'categoryMap2',
+            markerPath: 'img/marker.svg',
+            markerPathHighlight: 'img/marker-hover.svg',            
+            jsonFile: 'js/rooms-geojson.json',
+            mapPopupType: 'rental',
+            useTextIcon: true,
+            imgBasePath: 'img/photo/'
+        });   
+
+h6 Maps with a single marker
+p.text-muted Maps used on the detail pages do not contain popups and do not use a GeoJSON file. You pass all the data to the JavaScript function.
+
+h6.text-muted.mb-4 Single-marker map
+.map-wrapper-300.mb-3
+    #detailMap.h-100
+pre.mb-5
+    code.language-js.
+        // Create an example detail map for venue
+        createDetailMap({
+            mapId: 'detailMap',
+            mapCenter: [40.732346, -74.0014247],
+            markerShow: true,
+            markerPosition: [40.732346, -74.0014247],
+            markerPath: 'img/marker.svg',
+        })    
+h6.text-muted.mb-4 Single-marker map, circle instead of the marker
+.map-wrapper-300.mb-3
+    #detailMap2.h-100
+pre.mb-5
+    code.language-js.
+        // Create an example detail map for rentals - show circle instead of the marker
+        createDetailMap({
+            mapId: 'detailMap2',
+            mapZoom: 14,
+            mapCenter: [40.732346, -74.0014247],
+            circleShow: true,
+            circlePosition: [40.732346, -74.0014247]
+        })        

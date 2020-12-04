@@ -1,0 +1,35 @@
+@mixin simpleTransition($duration: 0.2s, $ease: ease-out) {
+    transition: all $duration $ease;
+}
+
+@mixin textShadow ($x-axis: 0, $y-axis: 1px, $blur: 1px, $color: #fff) {
+    text-shadow: $x-axis $y-axis $blur $color;
+}
+
+@mixin rounded($radius: 5px) {
+    border-radius: $radius;
+}
+
+@mixin uppercase() {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+@mixin no-uppercase() {
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+@mixin horizontal-gradient ($startColor: #eee, $endColor: white) {
+    background-color: $startColor;
+    background-image: linear-gradient(left, $startColor, $endColor);
+}
+
+// Position Mixin
+@mixin position($pos: null, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $pos;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+ }

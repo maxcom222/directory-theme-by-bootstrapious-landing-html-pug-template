@@ -1,0 +1,455 @@
+/*
+* ===================================================
+*    Custom Bootstrapious Utils
+* ===================================================
+*/
+
+/*
+   Text utils 
+   ------------------------
+*/
+
+.text-uppercase {
+    @include uppercase;
+}
+
+.text-xs {
+    font-size: $font-size-xs;
+}
+
+.text-sm {
+    font-size: $font-size-sm;
+}
+
+.text-base {
+    font-size: $font-size-base;
+}
+
+.text-lg {
+    font-size: $font-size-lg;
+}
+
+.text-xl {
+    font-size: $font-size-xl;
+}
+
+.text-serif {
+    font-family: $font-family-serif !important;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-primary {
+    text-shadow: 2px 2px 2px rgba(theme-color('primary'), .1);
+}
+
+.mb-30px {
+    margin-bottom: 30px;
+}
+
+/*
+    Rounded corners - lg, sm 
+   ------------------------
+*/
+
+.rounded-lg {
+    border-radius: $border-radius-lg;
+}
+
+.rounded-sm {
+    border-radius: $border-radius-sm;
+}
+
+.rounded-xl {
+    border-radius: 10rem;
+}
+
+/*
+    Border - 0 for table cells
+   ------------------------
+*/
+
+.border-0 {
+
+    >th,
+    >td {
+        border: none !important;
+    }
+}
+
+/*
+    Star checkbox
+   ------------------------
+*/
+
+.form-star {
+
+    label {
+        position: relative;
+        margin-bottom: 0;
+        cursor: pointer;
+        color: $gray-300;
+        min-height: $font-size-base * $line-height-base;
+
+        &::before {
+            content: "\f005";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            transition: all .2s ease;
+            font-size: 1.0625rem;
+        }
+    }
+
+    >input:checked~label {
+        color: theme-color('warning');
+    }
+
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+}
+
+
+/*
+    Responsive borders - border-[breakpoint]
+   ------------------------
+*/
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        .border#{$infix} {
+            border: $border-width solid $border-color !important;
+        }
+    }
+}
+
+/*
+    Avatars
+   ------------------------
+*/
+
+.avatar {
+    display: inline-block;
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    border: $border-color;
+    border-radius: 50%;
+    background: $white;
+    box-shadow: $box-shadow;
+    line-height: 3rem;
+
+    &.avatar-sm {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    &.avatar-lg {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    &.avatar-xl {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    &.avatar-xxl {
+        width: 10rem;
+        min-width: 10rem;
+        height: 10rem;
+    }
+
+    &.avatar-border-white {
+        border: solid 2px $white;
+    }
+}
+
+/*
+    Opacity helpers - .opacity-[1-9]   
+    ------------------------
+*/
+
+
+$opacity: 1 2 3 4 5 6 7 8 9;
+
+@each $current-opacity in $opacity {
+    .opacity-#{$current-opacity} {
+        opacity: #{$current-opacity/10};
+    }
+}
+
+/*
+    Z-index helpers - .z-index-[10-50]   
+    ------------------------
+*/
+
+$z-index: 10 20 30 40 50;
+
+@each $current-z-index in $z-index {
+    .z-index-#{$current-z-index} {
+        z-index: #{$current-z-index};
+    }
+}
+
+/*
+     Letter spacing helpers - .letter-spacing-[1-5]
+    ------------------------
+*/
+
+$spacing: .1em .2em .3em .4em .5em;
+
+@each $current-spacing in $spacing {
+    $i: index($spacing, $current-spacing);
+
+    .letter-spacing-#{$i} {
+        letter-spacing: #{$current-spacing};
+    }
+}
+
+/*
+     Colours and backgrounds
+    ------------------------
+*/
+
+
+@each $color,
+$value in $theme-colors {
+    .text-hover-#{$color} {
+
+        &:focus,
+        &:hover {
+            color: $value !important;
+        }
+    }
+
+    .bg-#{$color}-light {
+        background-color: theme-color-level($color, -11);
+    }
+}
+
+@each $color,
+$value in $grays {
+    .bg-gray-#{$color} {
+        background: $value !important;
+    }
+
+    .text-gray-#{$color} {
+        color: $value;
+    }
+}
+
+.bg-primary-100 {
+    background: $primary-100;
+}
+
+@each $color,
+$value in $theme-colors {
+    .badge-#{$color}-light {
+        color: $value;
+        background-color: theme-color-level($color, -11);
+    }
+}
+
+.table-hover {
+    tbody tr.no-stripe {
+        background-color: transparent !important;
+    }
+}
+
+.table-hover {
+    tbody tr.no-hover {
+        @include hover() {
+            background-color: transparent !important;
+        }
+    }
+}
+
+/*
+     Transparent overlays
+    ------------------------
+*/
+
+.light-overlay,
+.dark-overlay,
+.gradient-overlay {
+    position: relative;
+    overflow: hidden;
+
+    .overlay-content {
+        position: relative;
+        z-index: 20;
+    }
+
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: ' ';
+        opacity: .3;
+        background: #000;
+    }
+}
+
+.light-overlay {
+    &::after {
+        opacity: .3;
+        background: #fff;
+    }
+}
+
+.gradient-overlay {
+    &::after {
+        opacity: 1;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 78%, rgba(0, 0, 0, 0.65) 100%);
+    }
+}
+
+/*
+     Other
+    ------------------------
+*/
+
+.overflow-visible {
+    overflow: visible !important;
+}
+
+.overflow-y-visible {
+    overflow-y: visible !important;
+}
+
+.shadow-0 {
+    box-shadow: none !important;
+}
+
+.left-box {
+    box-shadow: inset 7px 0 9px -7px rgba(0, 0, 0, 0.7);
+}
+
+.hover-scale {
+    transition: $transition-base;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.hover-animate {
+    transition: $transition-base;
+
+    &:hover,
+    &:focus {
+        transform: translate3d(0, -2px, 5px);
+    }
+}
+
+.hover-scale-bg-image {
+    .bg-image {
+        transition: $transition-base;
+    }
+
+    &:hover,
+    &:focus {
+        .bg-image {
+            transform: scale(1.05);
+        }
+    }
+}
+
+.tile-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 30;
+}
+
+.close-absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+img.bg-image {
+    font-family: 'object-fit: cover;';
+    object-fit: cover;
+}
+
+.bg-cover {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.full-screen {
+    height: calc(100vh - #{$navbarHeight});
+}
+
+.mh-full-screen {
+    min-height: 100vh;
+
+    // hack for IE 11
+    @media screen and (-ms-high-contrast: active),
+    screen and (-ms-high-contrast: none) {
+        height: 100vh;
+    }
+}
+
+.list-group {
+    border-radius: $list-group-border-radius
+}
+
+@media print {
+
+    .shadow-print-0 {
+        box-shadow: none !important;
+    }
+
+    .px-print-0 {
+        padding-left: 0 !important; 
+        padding-right: 0 !important; 
+    }
+
+    .p-print-0 {
+        padding: 0 !important; 
+    }
+
+}
+
+// fixes for IE11
+@media screen and (-ms-high-contrast: active),
+screen and (-ms-high-contrast: none) {
+
+    .card {
+        display: block;
+    }
+
+    .card-img-top,
+    .card-img-bottom,
+    .card-img {
+        width: auto;
+        min-width: 100%;
+        height: auto;
+    }
+
+
+}

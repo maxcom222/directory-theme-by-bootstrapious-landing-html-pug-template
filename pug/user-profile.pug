@@ -1,0 +1,77 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Michelle'})
+    - var heroClass = 'py-5 text-left bg-white'
+    - var heroHeading = 'Hello, I\'m Jack!'
+    - var heroHeadingClass = 'hero-heading mb-0'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5
+        .container
+
+            .row
+
+                .col-lg-3.mr-lg-auto
+                    .card.border-0.shadow.mb-6.mb-lg-0
+                        .card-header.bg-gray-100.py-4.border-0.text-center
+                            a.d-inline-block(href="#")
+                                img.d-block.avatar.avatar-xxl.p-2.mb-2(src=`${path}img/avatar/avatar-10.jpg`, alt="")       
+                            h5 Jack London
+                            p.text-muted.text-sm.mb-0 Los Angeles, CA  
+                        .card-body.p-4
+                            .media.align-items-center.mb-3
+                                .icon-rounded.icon-rounded-sm.bg-primary-light.mr-2
+                                    +svgIcon('diploma-1', 'text-primary svg-icon-md')
+                                .media-body
+                                    p.mb-0 2877 reviews
+                            .media.align-items-center.mb-3
+                                .icon-rounded.icon-rounded-sm.bg-primary-light.mr-2
+                                    +svgIcon('checkmark-1', 'text-primary svg-icon-md')
+                                .media-body
+                                    p.mb-0 Verified
+                            hr
+
+                            h6 Jack provided
+                            ul.card-text.text-muted
+                                li Government ID
+                                li Email address
+                                li Phone number
+                            
+
+                .col-lg-9.pl-lg-5
+                    h1(class=heroHeadingClass) #{heroHeading}
+                    
+                    .text-block
+                        p 
+                            span.badge.badge-secondary-light Joined in 2011
+                        p.text-muted #{dummyText[3]}  
+                        p.text-muted #{dummyText[4]}  
+
+                    
+                    .text-block
+                        h4.mb-5 Jack's Listings
+
+                        - var itemClass = 'col-sm-6 col-lg-4 mb-30px hover-animate'
+                        
+                        .row
+                            each val, index in roomsJson.features
+                                +place(val.properties, itemClass)
+
+                    .text-block
+
+                        include _pug-includes/inc-detail-reviews.pug
+
+                        include _pug-includes/inc-detail-reviewform.pug
+
+
+
+                    
+

@@ -1,0 +1,107 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'home'  
+
+
+block content
+    section.d-flex.align-items-center.dark-overlay.bg-cover(style="background-image: url(img/photo/photo-1525610553991-2bede1a236e2.jpg);")
+        .container.py-6.py-lg-7.text-white.overlay-content.text-center 
+            .row
+                .col-xl-10.mx-auto
+                    h1.display-3.font-weight-bold.text-shadow Discover Directory
+                    p.text-lg.text-shadow Uncover the best places to eat, drink, and shop nearest to you.
+                    
+
+    .container
+        .search-bar.rounded.p-3.p-lg-4.position-relative.mt-n5.z-index-20
+            form(action="#")
+                .row
+                    .col-lg-4.d-flex.align-items-center.form-group
+                        input.form-control.border-0.shadow-0(type="search", name="search", placeholder="What are you searching for?")
+                    .col-md-6.col-lg-3.d-flex.align-items-center.form-group
+                        .input-label-absolute.input-label-absolute-right.w-100
+                            label.label-absolute(for="location")
+                                i.fa.fa-crosshairs
+                                .sr-only City
+                            input.form-control.border-0.shadow-0(type="text", name="location", placeholder="Location" id="location")      
+                    .col-md-6.col-lg-3.d-flex.align-items-center.form-group.no-divider
+                        select.selectpicker(title='Categories', data-style="btn-form-control")
+                            option(value='small') Restaurants
+                            option(value='medium') Hotels
+                            option(value='large') Cafes
+                            option(value='x-large') Garages
+                    .col-lg-2.form-group.mb-0
+                        button.btn.btn-primary.btn-block.h-100(type="submit") Search 
+
+    - var grid = []
+    - grid.push({name: 'San Francisco', image: 'img/photo/photo-1449034446853-66c86144b0ad.jpg', class: 'col-lg-8'})
+    - grid.push({name: 'Los Angeles', image: 'img/photo/photo-1429554429301-1c7d5ae2d42e.jpg', class: 'col-lg-4'})
+    - grid.push({name: 'Santa Monica', image: 'img/photo/photo-1523430410476-0185cb1f6ff9.jpg', class: 'col-lg-4'})
+    - grid.push({name: 'San Diego', image: 'img/photo/photo-1505245208761-ba872912fac0.jpg', class: 'col-lg-4'})
+    - grid.push({name: 'Fresno', image: 'img/photo/photo-1519867850-74775a87e783.jpg', class: 'col-lg-4'})
+
+
+    // Our picks section
+    section.py-6
+        .container
+            .row.mb-5
+                .col-md-8
+                    p.subtitle.text-primary Most popular cities
+                    h2 What's trending
+                .col-md-4.d-md-flex.align-items-center.justify-content-end
+                    a.text-muted.text-sm(href="category.html") 
+                        | See all cities
+                        i.fas.fa-angle-double-right.ml-2
+
+            .row
+                each val, index in grid
+                    if (index < 2)
+                        +grid(val)
+            .row
+                each val, index in grid
+                    if (index >= 2)
+                        +grid(val)
+
+
+    section.pt-4.pb-6
+        .container
+            .pb-lg-4
+                p.subtitle.text-secondary One-of-a-kind directory app
+                h2.mb-5 Discover great local businesses around you
+            
+            - var advantages = []
+            - advantages.push({name: 'Find the perfect place', icon:'love-pin-1', bgClass: 'bg-secondary-light', iconClass: 'text-secondary'})
+            - advantages.push({name: 'Book your seats', icon:'pay-by-card-1', bgClass: 'bg-primary-light', iconClass: 'text-primary'})
+            - advantages.push({name: 'Enjoy your evening', icon:'food-1', bgClass: 'bg-secondary-light', iconClass: 'text-secondary'})
+            - advantages.push({name: 'Earn points', icon:'pay-1', bgClass: 'bg-primary-light', iconClass: 'text-primary'})
+
+            .row
+                each val, index in advantages
+                    .col-sm-6.col-lg-3.mb-3.mb-lg-0
+                        .px-0.pr-lg-3
+                            .icon-rounded.mb-3(class=val.bgClass)
+                                +svgIcon(val.icon, 'w-2rem h-2rem ' + val.iconClass)
+                            h3.h6.text-uppercase #{val.name}
+                            p.text-muted.text-sm #{dummyText[index].substr(0, 100)}
+
+
+    section.py-6.bg-gray-100 
+        .container
+            .text-center.pb-lg-4
+                p.subtitle.text-secondary Try something new today
+                h2.mb-5 Popular places around you
+        .container-fluid
+            include _pug-includes/inc-slider-restaurants.pug
+
+            .text-center.mt-5
+                a.btn.btn-outline-primary(href="category-2.html") See all places
+
+    
+    include _pug-includes/inc-divider-2.pug
+
+    include _pug-includes/inc-brands.pug
+
+    include _pug-includes/inc-divider-3.pug
+
+    include _pug-includes/inc-instagram.pug

@@ -1,0 +1,67 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Add new listing'})
+    - var heroHeading = 'Add new listing'
+    - var heroHeadingClass = 'hero-heading mb-5'
+    
+    //- include _pug-includes/inc-hero
+    
+    +progress(60)
+
+    section.py-5
+        .container
+            
+            +stepsHeading('Disposition and Amenities', 3)
+
+            form
+                .row.form-block
+                    .col-lg-4
+                        h4 Rooms and beds
+                        p.text-muted.text-sm  The number and types of beds you have determines how many guests can stay comfortably
+                    .col-lg-7.ml-auto
+                        .row
+                            .col-lg-4
+                                label.form-label Beds
+                                .d-flex.align-items-center
+                                    .btn.btn-items.btn-items-decrease -
+                                    input.form-control.input-items(type='text', value='1', disabled)
+                                    .btn.btn-items.btn-items-increase +
+                            
+                            .col-lg-4
+                                label.form-label Bedrooms
+                                .d-flex.align-items-center
+                                    .btn.btn-items.btn-items-decrease -
+                                    input.form-control.input-items(type='text', value='1', disabled)
+                                    .btn.btn-items.btn-items-increase +
+                            
+                            .col-lg-4
+                                label.form-label Bathrooms
+                                .d-flex.align-items-center
+                                    .btn.btn-items.btn-items-decrease -
+                                    input.form-control.input-items(type='text', value='1', disabled)
+                                    .btn.btn-items.btn-items-increase +
+
+                .row.form-block
+                    .col-lg-4
+                        h4 Amenities
+                        p.text-muted.text-sm #{dummyText[2]}
+                    .col-lg-7.ml-auto
+                        .form-group
+                            - var amenities = ['Kitchen', 'Shampoo', 'Heating', 'Air conditioning', 'Washer', 'Dryer', 'Wifi', 'Breakfast', 'Indoor fireplace', 'Buzzer/wireless intercom', 'Doorman', 'Hangers', 'Iron', 'Hair dryer', 'Laptop friendly workspace']
+
+                            label.form-label Available Amenities
+                            ul.list-inline.mb-0
+                                each val,index in amenities
+                                    li.list-inline-item
+                                        .custom-control.custom-checkbox
+                                            input.custom-control-input(type='checkbox', id=`amenities_${index}`, name="amenities[]")
+                                            label.custom-control-label.text-muted(for=`amenities_${index}`) #{val}    
+
+                +stepsAdd(3)

@@ -1,0 +1,61 @@
+extends ../_pug-includes/layout
+
+block vars
+    - var active = 'docs'  
+    - var bodyAttrs = {'data-spy': "scroll", 'data-target': "#components-nav", 'data-offset':"80"}
+    - var path = '../'    
+
+block content
+
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: '../index.html'})
+    - breadcrumbs.push({name: 'Documentation', link: 'docs-introduction.html'})
+    - breadcrumbs.push({name: 'Customizing CSS'})
+    - var heroHeading = 'Customizing CSS'
+    - var current = 'docs/docs-customizing-css.html'
+    
+    include ../_pug-includes/inc-hero
+
+
+    section.py-6    
+        .container-fluid
+            .row.px-xl-5
+                .col-lg-2
+                    include ../_pug-includes/inc-docs-sidebar
+
+                .col-lg-10.col-xl-8.docs-content
+
+                    +componentDocItem('SCSS Method')
+                        p
+                            | The most flexible way to edit the theme CSS or to add your own code and components to use SCSS. As mentioned before, there are two files already prepared for your changes - 
+                            code _user-variables.scss
+                            |  and 
+                            code _user.scss
+                            | .
+                        p
+                            | To configure the theme, e.g. to change colours for some elements, to change font sizes, etc., use  
+                            code _user-variables.scss
+                            | . Any variable from 
+                            code scss/bootstrap/_variables.scss
+                            |  or 
+                            code scss/modules/_variables.scss
+                            |  can be overridden here with your own value.
+                        p
+                            | To add your own CSS code, declare it in the 
+                            code _user.scss
+                            |  file.
+                        p
+                            | To compile the SCSS, you can use the 
+                            code gulpfile.js
+                            |  included in this theme (recommended) or you can download an app for your OS and compile it that way. In case you would be using an app, don’t forget to add vendor prefixes to your code too (done by Autoprefixer in the Gulp ).
+                        span.badge.badge-info Recommended
+
+                    +componentDocItem('CSS Method')                        
+                        p
+                            | If you prefer to work with Sell as a static source and not to use Gulp or Sass, you will need to add your custom CSS through a separate CSS file. For this use, there is a blank 
+                            code custom.css
+                            |  file in the CSS folder.
+
+
+
+

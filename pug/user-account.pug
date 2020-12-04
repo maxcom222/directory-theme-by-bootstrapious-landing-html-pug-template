@@ -1,0 +1,52 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Your account'})
+    - var heroClass = 'py-5 text-left bg-white'
+    - var heroHeading = 'Your account'
+    - var heroHeadingClass = 'hero-heading mb-0'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5
+        .container
+
+            // Breadcrumbs 
+            ol(class="breadcrumb #{breadcrumbClass}")
+                each val in breadcrumbs
+                    if (val.link)
+                        li.breadcrumb-item
+                            a(href=val.link) #{val.name}
+                    else
+                        li.breadcrumb-item.active #{val.name}   
+            
+            h1(class=heroHeadingClass) #{heroHeading}
+            
+            p.text-muted.mb-5 Manage your account and settings here.
+
+            - var settings = []
+            - settings.push({name: 'Personal info', text: 'Provide personal details and how we can reach you', link: 'user-personal.html', icon: 'identity-1'})
+            - settings.push({name: 'Login & security', text: 'Update your password and secure your account', link: 'user-security.html', icon: 'password-1'})
+            - settings.push({name: 'Payments & payouts', text: 'Review payments, payouts, coupons, gift cards, and taxes', link: '#', icon: 'pay-by-card-1'})
+            - settings.push({name: 'Notifications', text: 'Choose notification preferences and how you want to be contacted', link: '#', icon: 'chat-app-1'})
+            - settings.push({name: 'Privacy & sharing', text: 'Control connected apps, what you share, and who sees it', link: '#', icon: 'diary-1'})
+            - settings.push({name: 'Global preferences', text: 'Set your default language, currency, and timezone', link: '#', icon: 'mix-1'})
+
+            .row
+                each val in settings
+                    .col-6.col-md-4.mb-30px
+                        .card.h-100.border-0.shadow.hover-animate
+                            .card-body
+                                .icon-rounded.bg-secondary-light.mb-3
+                                    +svgIcon(val.icon, 'text-secondary w-2rem h-2rem')
+                                
+                                h5.card-title.mb-3
+                                    a.text-decoration-none.text-dark.stretched-link(href=val.link) #{val.name}
+
+                                p.text-muted.card-text.text-sm #{val.text}

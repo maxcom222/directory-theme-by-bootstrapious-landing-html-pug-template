@@ -1,0 +1,32 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = ''  
+    - var navbarClass = ''  
+    - var headerClass = ''  
+    - var mapUsed = false
+
+block content
+    
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Pricing'})
+    - var heroHeading = 'Plans & Pricing'
+    - var heroHeadingClass = 'hero-heading'
+    - var heroText = '<p class="text-lg text-muted mb-5">Flexible options that move with you</p><p class="mb-0"><a href="#" class="btn btn-primary mr-4">Get started</a><a href="#" class="btn btn-outline-primary">Contact sales</a></p>'
+    
+    include _pug-includes/inc-hero.pug
+
+    section.py-6
+        .container
+            .row
+                - var pricing = ['Single User', '5GB Storage', 'Unlimited Public Projects', 'Community Access', 'Unlimited Private Projects', 'Dedicated Phone Support', 'Monthly Status Reports']
+
+                .col-lg-4
+                    +pricingCard('Free', 0, pricing, 2)
+
+                .col-lg-4
+                    +pricingCard('Plus', 9, pricing, 4, true)
+                    
+                .col-lg-4
+                    +pricingCard('Pro', 30, pricing, 6)    

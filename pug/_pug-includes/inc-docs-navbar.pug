@@ -1,0 +1,103 @@
+// Navbar Example 1
+nav(class="navbar navbar-expand-lg navbar-light shadow mb-3")
+    .container-fluid   
+        // Navbar Header  
+        a.navbar-brand.text-uppercase.font-weight-bold(href="index.html")
+            span Directory  
+        
+        button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarExample", aria-controls="navbarExample", aria-expanded="false", aria-label="Toggle navigation")
+            i.fa.fa-bars
+        
+        #navbarExample.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+                li.nav-item.active
+                    a.nav-link(href='#')
+                        | Home 
+                        span.sr-only (current)
+                li.nav-item
+                    a.nav-link(href='#') Link
+                li.nav-item.dropdown
+                    a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                        | Dropdown
+                    .dropdown-menu(aria-labelledby='navbarDropdown')
+                        a.dropdown-item(href='#') Action
+                        a.dropdown-item(href='#') Another action
+                        .dropdown-divider
+                        a.dropdown-item(href='#') Something else here
+                li.nav-item
+                    a.nav-link.disabled(href='#') Disabled
+            form.form-inline.my-2.my-lg-0
+                input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
+                button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Search
+
+// Navbar Example 2
+nav(class="navbar navbar-expand-lg navbar-light shadow mb-3")
+    .container-fluid   
+        // Navbar Header  
+        a.navbar-brand(href="index.html")
+            span.font-weight-bold.text-uppercase Directory  
+        
+        button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarExample2", aria-controls="navbarExample2", aria-expanded="false", aria-label="Toggle navigation")
+            i.fa.fa-bars
+        
+        #navbarExample2.collapse.navbar-collapse
+            ul.navbar-nav.mx-auto
+                li.nav-item.active
+                    a.nav-link(href='#')
+                        | Home 
+                        span.sr-only (current)
+                li.nav-item
+                    a.nav-link(href='#') Link
+                li.nav-item.dropdown
+                    a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                        | Dropdown
+                    .dropdown-menu(aria-labelledby='navbarDropdown')
+                        a.dropdown-item(href='#') Action
+                        a.dropdown-item(href='#') Another action
+                        .dropdown-divider
+                        a.dropdown-item(href='#') Something else here
+            .right-col.d-flex.align-items-center.justify-content-between.justify-content-lg-end.my-3.my-lg-0
+                // Search Button
+                .nav-item.navbar-icon-link
+                    +svgIcon('search-1')
+                        
+                .nav-item.user 
+                    a.navbar-icon-link(href='#')
+                        +svgIcon('male-user-1')      
+                        span.text-sm.ml-2.ml-lg-0.text-uppercase.text-sm.font-weight-bold.d-none.d-sm-inline.d-lg-none Log in                   
+
+// Navbar Example 3
+nav(class="navbar navbar-expand-lg navbar-dark bg-dark shadow")
+    .container-fluid   
+        // Navbar Header  
+        a.navbar-brand(href="index.html")
+            span.font-weight-bold.text-uppercase Directory  
+        
+        button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarExample3", aria-controls="navbarExample3", aria-expanded="false", aria-label="Toggle navigation")
+            i.fa.fa-bars
+        
+        #navbarExample3.collapse.navbar-collapse
+            ul.navbar-nav.mx-auto
+                li.nav-item.active
+                    a.nav-link(href='#')
+                        | Home 
+                        span.sr-only (current)
+                li.nav-item
+                    a.nav-link(href='#') Link
+                li.nav-item.dropdown
+                    a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                        | Dropdown
+                    .dropdown-menu(aria-labelledby='navbarDropdown')
+                        a.dropdown-item(href='#') Action
+                        a.dropdown-item(href='#') Another action
+                        .dropdown-divider
+                        a.dropdown-item(href='#') Something else here
+            .right-col.d-flex.align-items-center.justify-content-between.justify-content-lg-end.my-3.my-lg-0
+                // Search Button
+                .nav-item.navbar-icon-link
+                    +svgIcon('search-1')
+                        
+                .nav-item.user 
+                    a.navbar-icon-link(href='#')
+                        +svgIcon('male-user-1')      
+                        span.text-sm.ml-2.ml-lg-0.text-uppercase.text-sm.font-weight-bold.d-none.d-sm-inline.d-lg-none Log in                   

@@ -1,0 +1,59 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Add new listing'})
+    - var heroHeading = 'Add new listing'
+    - var heroHeadingClass = 'hero-heading mb-5'
+    
+    //- include _pug-includes/inc-hero
+    
+    +progress(80)
+
+    section.py-5
+        .container
+            
+            +stepsHeading('Photos', 4)
+            
+            .row.form-block
+                .col-lg-4
+                    h4 Photos
+                    p.text-muted.text-sm #{dummyText[2]}
+                .col-lg-7.ml-auto
+                    .form-group            
+                        form#demo-upload.dropzone(action='/upload')
+                            .dz-message.text-muted
+                                p Drop files here or click to upload.
+                                p
+                                    span.note (This is just a demo dropzone. Selected files are <STRONG>not</STRONG> actually uploaded.)
+
+                    #dropzoneTemplate.d-none
+                        .dz-preview.dz-file-preview
+                            .dz-image
+                                img(data-dz-thumbnail='', alt='', src=`${path}img/logo-square.svg`)
+                            .dz-details
+                                .dz-filename
+                                    span(data-dz-name='')
+                                .dz-size(data-dz-size='')
+                            .dz-progress
+                                span.dz-upload(data-dz-uploadprogress='')
+                            .dz-success-mark
+                                span.dz-icon
+                                    i.fa-check.fa
+                            .dz-error-mark
+                                span.dz-icon
+                                    i.fa-times.fa
+                            .dz-error-message
+                                span(data-dz-errormessage='')
+            
+            +stepsAdd(4)
+
+block additionalScripts
+    // Dropzone.js
+    script(src='vendor/dropzone/dropzone.js')
+    // Dropzone Init

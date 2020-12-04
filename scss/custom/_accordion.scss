@@ -1,0 +1,16 @@
+/*
+* ===================================================
+*    Accordion
+* ===================================================
+*/
+.accordion-link {
+    display: block;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}

@@ -1,0 +1,24 @@
+.card.border-0.shadow.mb-6.mb-lg-0
+    .card-header.bg-gray-100.py-4.border-0.text-center
+        a.d-inline-block(href="#")
+            img.d-block.avatar.avatar-xxl.p-2.mb-2(src=`${path}img/avatar/avatar-10.jpg`, alt="")       
+        h5 Jack London
+        p.text-muted.text-sm.mb-0 Los Angeles, CA  
+    .card-body.p-4
+        .media.align-items-center.mb-3
+            .icon-rounded.icon-rounded-sm.bg-primary-light.mr-2
+                +svgIcon('diploma-1', 'text-primary svg-icon-md')
+            .media-body
+                p.mb-0 2877 reviews
+        .media.align-items-center.mb-3
+            .icon-rounded.icon-rounded-sm.bg-primary-light.mr-2
+                +svgIcon('checkmark-1', 'text-primary svg-icon-md')
+            .media-body
+                p.mb-0 Verified
+        hr
+
+        h6 Jack provided
+        ul.card-text.text-muted
+            li Government ID
+            li Email address
+            li Phone number

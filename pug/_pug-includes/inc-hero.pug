@@ -1,0 +1,35 @@
+-var containerClass = 'position-relative'
+
+if (heroImage)
+    - breadcrumbClass = 'text-white justify-content-center no-border mb-0'
+    - heroClass = 'py-6 py-lg-7 text-white dark-overlay'
+    - containerClass = 'overlay-content'
+
+if (!heroClass)
+    -var heroClass = 'py-5 py-lg-7'
+
+if (!heroHeadingClass)
+    - var heroHeadingClass = 'hero-heading'    
+
+if (!breadcrumbClass)
+    -var breadcrumbClass = 'pl-0  justify-content-center'
+
+// Hero Section
+if (heroHeading)
+    section.hero(class=heroClass)
+        if heroImage
+            img.bg-image(src=heroImage, alt=heroHeading)
+        .container(class=containerClass)
+            // Breadcrumbs 
+            ol(class=`breadcrumb ${breadcrumbClass}`)
+                each val in breadcrumbs
+                    if (val.link)
+                        li.breadcrumb-item
+                            a(href=val.link) #{val.name}
+                    else
+                        li.breadcrumb-item.active #{val.name}                         
+            
+            h1(class=heroHeadingClass) #{heroHeading}
+            if heroText 
+                .row
+                    .col-xl-8.mx-auto !{heroText}

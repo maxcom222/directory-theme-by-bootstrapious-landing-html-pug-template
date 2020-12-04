@@ -1,0 +1,12 @@
+// Slider main container
+- var itemClass = 'w-100 h-100 hover-animate'
+.swiper-container.swiper-container-mx-negative.swiper-init.pt-3(data-swiper='{"slidesPerView":4,"spaceBetween":20,"loop":true,"roundLengths":true,"breakpoints":{"1200":{"slidesPerView":3},"991":{"slidesPerView":2},"565":{"slidesPerView":1}},"pagination":{"el":".swiper-pagination","clickable":true,"dynamicBullets":true}}')
+    // Additional required wrapper
+    .swiper-wrapper.pb-5
+        // Slides
+        each val in roomsJson.features
+            .swiper-slide.h-auto.px-2
+                +place(val.properties, itemClass)
+
+    // If we need pagination
+    .swiper-pagination

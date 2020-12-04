@@ -1,0 +1,395 @@
+mixin megamenuList(heading, links)
+    // Megamenu list
+    h6.text-uppercase !{heading}
+    
+    ul.megamenu-list.list-unstyled
+        each name, link in links
+            li.megamenu-list-item
+                a.megamenu-list-link(href=`${path}${link}`) !{name}   
+
+mixin dropdownList(heading, links, noHeading)
+
+    - noHeading = noHeading || false
+
+    if !noHeading
+        h6.dropdown-header.font-weight-normal #{heading}
+    each name, link in links
+        a.dropdown-item(href=`${path}${link}`) !{name} 
+
+mixin docsSidebarLink(link, name, current)
+
+    - var activeClass = ''
+    
+    if current == link 
+        - activeClass = 'active'
+        
+    a.nav-link.mb-2(class=activeClass, href=`${path}${link}`) !{name}  
+
+mixin place(val, itemClass)
+
+    if (!imgBasePath)
+        - var imgBasePath = path + 'img/photo/'
+
+    - stars = [1,2,3,4,5]
+
+    // place item
+    div(class=itemClass, data-marker-id=`${val.id || ''}`)
+        .card.h-100.border-0.shadow
+            .card-img-top.overflow-hidden.gradient-overlay 
+                img.img-fluid(src=`${imgBasePath}${val.image}` alt=val.name)
+                a.tile-link(href="detail-rooms.html")
+                .card-img-overlay-bottom.z-index-20
+                    .media.text-white.text-sm.align-items-center
+                        img.avatar.avatar-border-white.mr-2(src=`${path}${val.avatar}`, alt=val.person)
+                        .media-body #{val.person}
+                .card-img-overlay-top.text-right
+                    a.card-fav-icon.position-relative.z-index-40(href="javascript: void();") 
+                        +svgIcon('heart-1', 'text-white')
+
+            .card-body.d-flex.align-items-center
+                .w-100
+                    h6.card-title
+                        a.text-decoration-none.text-dark(href="detail-rooms.html") #{val.name}
+                    .d-flex.card-subtitle.mb-3
+                        p.flex-grow-1.mb-0.text-muted.text-sm #{val.subtitle}
+                        p.flex-shrink-1.mb-0.card-stars.text-xs.text-right
+                            for star, starIndex in stars
+                                if (starIndex + 1 <= val.stars)
+                                    i.fa.fa-star.text-warning
+                                else
+                                    i.fa.fa-star.text-gray-300                                   
+                    p.card-text.text-muted
+                        span.h4.text-primary $#{val.price}
+                        |  per night
+mixin home(val, itemClass)
+
+    if (!imgBasePath)
+        - var imgBasePath = path + 'img/photo/'
+
+    if (val.index % 2 == 0)
+        - beds = 3
+        - baths = 2
+        - price = '$150k'
+        - type = 'House'
+        - size = '350 m<sup>2</sup>'
+    else 
+        - beds = 2
+        - baths = 1
+        - price = '$65k'
+        - type = 'Apartment'
+        - size = '85 m<sup>2</sup>'
+
+
+    div(class=itemClass, data-marker-id=`${val.id || ''}`)
+        .card.h-100.border-0.shadow
+            .card-img-top.overflow-hidden.gradient-overlay 
+                img.img-fluid(src=`${imgBasePath}${val.image}` alt=val.name)
+                a.tile-link(href="detail-rooms.html")
+                .card-img-overlay-top.text-right
+                    a.card-fav-icon.position-relative.z-index-40(href="javascript: void();") 
+                        +svgIcon('heart-1', 'text-white')
+
+            .card-body.d-flex.align-items-center
+                .w-100
+                    h6.card-title
+                        a.text-decoration-none.text-dark(href="detail-rooms.html") #{val.name}
+                    p.text-sm.text-secondary.card-subtitle.mb-2
+                            i.fa.fa-map-marker.text-secondary.opacity-4.mr-1
+                            | San Francisco
+                    p.text-sm.text-muted.text-uppercase #{type}
+                    
+                    p.card-text.d-flex.justify-content-between.text-gray-800.text-sm
+                        span.mr-1
+                            i.fa.fa-ruler-combined.text-primary.opacity-4.text-xs.mr-1
+                            | !{size}   
+
+                        span.mr-1
+                            i.fa.fa-bed.text-primary.opacity-4.text-xs.mr-1
+                            | #{beds}
+
+                        span.mr-1
+                            i.fa.fa-bath.text-primary.opacity-4.text-xs.mr-1
+                            | #{baths}
+
+                        span
+                            i.fa.fa-tag.text-primary.opacity-4.text-xs.mr-1
+                            | #{price}
+
+mixin travelDarkCard(val, itemClass)
+
+    - stars = [1,2,3,4,5]
+
+    // place item
+    div(class=itemClass, data-marker-id=`${val.id || ''}`)
+        .card.h-100.border-0.shadow-lg.bg-dark.hover-animate
+            .card-img-top.overflow-hidden.gradient-overlay 
+                img.img-fluid(src=val.image, alt=val.name)
+                a.tile-link(href="detail-rooms.html")
+                .card-img-overlay-top.text-right
+                    a.card-fav-icon.position-relative.z-index-40(href="javascript: void();") 
+                        +svgIcon('heart-1', 'text-white')
+
+            .card-body.d-flex.align-items-center
+                .w-100
+                    h6.card-title
+                        a.text-decoration-none.text-white(href="detail-rooms.html") #{val.name}
+                    .d-flex.card-subtitle
+                        p.flex-grow-1.mb-0.text-muted.text-sm #{val.subtitle}
+                        p.flex-shrink-1.mb-0.card-stars.text-xs.text-right
+                            for star, starIndex in stars
+                                if (starIndex + 1 <= val.stars)
+                                    i.fa.fa-star.text-warning
+                                else
+                                    i.fa.fa-star.text-gray-300                                   
+
+
+mixin placeVisited(val, itemClass)
+
+    if (!imgBasePath)
+        - var imgBasePath = path + 'img/photo/'
+
+    - stars = [1,2,3,4,5]
+
+    // place item
+    div(class=itemClass, data-marker-id=`${val.id || ''}`)
+        .card.h-100.border-0.shadow
+            .card-img-top.overflow-hidden
+                a(href="user-booking-detail.html")
+                    img.img-fluid(src=`${imgBasePath}${val.image}`, alt=val.name)
+
+            .card-body.d-flex.align-items-center
+                .w-100
+                    p.subtitle.font-weight-normal.text-sm.mb-2 March 2019
+                    h6.card-title
+                        a.text-decoration-none.text-dark(href="user-booking-detail.html") #{val.name}
+                    .d-flex.card-subtitle.mb-3
+                        p.flex-grow-1.mb-0.text-muted.text-sm #{val.subtitle}
+                        p.flex-shrink-1.mb-0.card-stars.text-xs.text-right
+                            for star, starIndex in stars
+                                if (starIndex + 1 <= val.stars)
+                                    i.fa.fa-star.text-warning
+                                else
+                                    i.fa.fa-star.text-gray-300                                   
+
+mixin venue(val, itemClass)
+
+    if (!imgBasePath)
+        - var imgBasePath = 'img/photo/'
+
+    - stars = [1,2,3,4,5]
+
+    // venue item
+    div(class=itemClass, data-marker-id=`${val.id || ''}`)
+        .card.h-100.border-0.shadow
+            .card-img-top.overflow-hidden.dark-overlay.bg-cover(style=`background-image: url(${imgBasePath}${val.image}); min-height: 200px;`)
+                //- img.img-fluid(src=`${imgBasePath}${val.image}`, alt=val.name)
+                a.tile-link(href="detail.html")
+                .card-img-overlay-bottom.z-index-20
+                    h4.text-white.text-shadow #{val.name}
+                    p.mb-2.text-xs
+                        for star, starIndex in stars
+                            if (starIndex + 1 <= val.stars)
+                                i.fa.fa-star.text-warning
+                            else
+                                i.fa.fa-star.text-gray-300                     
+                .card-img-overlay-top.d-flex.justify-content-between.align-items-center
+                    .badge.badge-transparent.badge-pill.px-3.py-2 #{val.category}
+                    a.card-fav-icon.position-relative.z-index-40(href="javascript: void();") 
+                        +svgIcon('heart-1', 'text-white')
+
+            .card-body
+                p.text-sm.text-muted.mb-3  #{val.about.substr(0, 120) + '...'}
+                p.text-sm.text-muted.text-uppercase.mb-1 By <a href="#" class="text-dark">Matt Damon</a>
+                p.text-sm.mb-0
+                    each tag, index in val.tags
+                        a.mr-1(href="#") #{tag}
+                            if (index != (val.tags.length - 1))
+                                | ,
+
+
+            
+
+mixin pricingCard(name, price, pricing, highlight, chosen)
+    - chosen = chosen || false
+    - cardClass = 'shadow'
+    
+    if (chosen)
+        - cardClass = 'card-highlight shadow-lg'
+
+    // pricing card
+    .card.mb-5.mb-lg-0.border-0(class=cardClass)
+        if (chosen)
+            .card-status.bg-primary
+        .card-body
+            h2.text-base.subtitle.text-center.text-primary.py-3 #{name}
+            p.text-muted.text-center
+                span.h1.text-dark $#{price}
+                span.ml-2 / month
+            hr
+
+            ul.fa-ul.my-4
+
+                each val, index in pricing
+                    if index <= highlight
+                        li.mb-3
+                            span.fa-li.text-primary
+                                i.fas.fa-check
+                            | #{val}
+                    else
+                        li.mb-3.text-muted
+                            span.fa-li
+                                i.fas.fa-times
+                            | #{val}
+            .text-center
+                a.btn.btn-outline-primary(href='#') Select
+    // /pricing card 
+
+mixin teamCard(val, index, itemClass)
+
+    if (!itemClass)
+        - itemClass = 'col-sm-6 col-lg-3'
+    
+    - bgClass = (val.bgClass != 'bg-primary-light') ? val.bgClass : false;
+
+    .mb-3.mb-lg-0(class=itemClass)
+        .card.border-0.hover-animate.bg-transparent
+            a.position-relative(href="#")
+                img.card-img-top.team-img(src=`img/avatar/agent-${index}.png`, alt="")
+                .team-circle(class=bgClass)
+            .card-body.team-body.text-center
+                h6.card-title #{val.name}
+                p.card-subtitle.text-muted.text-xs.text-uppercase #{val.position}    
+
+mixin blog(val, itemClass)
+
+    if (!imgBasePath)
+        - var imgBasePath = 'img/photo/'
+
+    - stars = [1,2,3,4,5]
+
+    // blog item
+    .col-lg-4.col-sm-6.mb-4(class=itemClass)
+        .card.shadow.border-0.h-100
+            a(href="post.html")
+                img.img-fluid.card-img-top(src=val.image, alt="...")   
+            .card-body
+                a.text-uppercase.text-muted.text-sm.letter-spacing-2(href="#") #{val.category} 
+                h5.my-2
+                    a.text-dark(href="post.html") #{val.name}          
+                p.text-gray-500.text-sm.my-3
+                    i.far.fa-clock.mr-2
+                    | January 16, 2016
+                p.my-2.text-muted.text-sm #{val.intro.substr(0, 100) + '...'}
+                a.btn.btn-link.pl-0(href="post.html") Read more
+                    i.fa.fa-long-arrow-alt-right.ml-2
+
+mixin grid(val)
+
+    if (!imgBasePath)
+        - var imgBasePath = 'img/photo/'
+
+    .d-flex.align-items-lg-stretch.mb-4(class=val.class)
+        .card.shadow-lg.border-0.w-100.border-0.hover-animate(style=`background: center center url(${val.image}) no-repeat; background-size: cover;`)
+            a.tile-link(href=`${path}category.html`)  
+            .d-flex.align-items-center.h-100.text-white.justify-content-center.py-6.py-lg-7
+                h3.text-shadow.text-uppercase.mb-0 #{val.name}
+
+mixin svgIcon(icon, iconClass)
+    if (!iconClass)
+        - iconClass = ''
+    svg.svg-icon(class=iconClass)
+        use(xlink:href=`#${icon}`)  
+
+mixin collapseButton(id, textCollapsed, textExpanded, textClass)
+
+    - textClass = textClass || 'text-secondary'
+
+    button.btn.btn-link.btn-collapse.pl-0(class=textClass, type="button", data-toggle="collapse", data-target=`#${id}`, aria-expanded="false" aria-controls=id, data-expanded-text=textExpanded, data-collapsed-text=textCollapsed) #{textCollapsed}
+
+
+mixin componentDocNav(name)
+    
+    - var componentId = name.split(' ').join('').toLowerCase()
+
+    a.nav-link(data-smooth-scroll, href=`#${componentId}`) #{name}
+
+mixin componentDocItem(name, desc, showCode)
+    
+    - var componentId = name.split(' ').join('').toLowerCase()
+
+    .docs-item(id=componentId)
+        h5.text-uppercase.mb-4 !{name}
+        div.docs-desc !{desc}
+        
+        if showCode
+            a.btn.btn-link.pl-0(data-toggle="collapse", data-target=`#${componentId}code`) Show code 
+                i.fa-arrow-right.fa.ml-2
+
+        if block
+            .mt-5        
+                block
+
+mixin progress(value)
+    .progress.rounded-0.sticky-top(style="height: 8px; top: 71px;")
+        .progress-bar(role='progressbar', style=`width: ${value}%`, aria-valuenow=value, aria-valuemin='0', aria-valuemax='100')
+    
+mixin stepsAdd(step, finalStep, urlPrefix)
+    - var previous = step - 1;
+    - var next = step + 1;
+    - var text = 'Next step'
+
+    - finalStep = finalStep || 4
+    - urlPrefix = urlPrefix || 'user-add-'
+
+    - previousUrl = urlPrefix + previous + '.html'
+    - nextUrl = urlPrefix + next + '.html'
+
+    if (step == 4) 
+        - var text = 'Finish'
+
+    .row.form-block.flex-column.flex-sm-row
+        .col.text-center.text-sm-left
+            if (previous != 0)
+                a.btn.btn-link.text-muted(href=previousUrl) 
+                    i.fa-chevron-left.fa.mr-2
+                    | Back
+        .col.text-center.text-sm-right
+            a.btn.btn-primary.px-3(href=nextUrl) 
+                | #{text}
+                i.fa-chevron-right.fa.ml-2
+
+mixin stepsHeading(name, step, heading)
+    
+    - heading = heading || 'Add new listing'
+
+    p.subtitle.text-primary #{heading}
+    h1.h2.mb-5  #{name} <span class="text-muted float-right">Step #{step}</span>      
+
+mixin stars(stars, divClass)
+
+    if (!divClass)
+        - divClass = ''
+    - starsArray = [1,2,3,4,5]
+
+    div(class=divClass)
+        for star, starIndex in starsArray
+            if (starIndex + 1 <= stars)
+                i.fa.fa-xs.fa-star.text-primary
+            else
+                i.fa.fa-xs.fa-star.text-gray-200
+
+
+mixin componentDocCode(name)
+    - var codeId = name.split(' ').join('').toLowerCase() + 'code'
+
+    pre.collapse(id=codeId)
+        code.language-html
+            +escape()
+                block
+
+mixin escape()
+    - var oldBuf = buf;
+    - buf = [];
+    block
+    - buf  = oldBuf.concat(buf.map(jade.escape));
+

@@ -1,0 +1,39 @@
+extends ../_pug-includes/layout
+
+block vars
+    - var active = 'docs'  
+    - var bodyAttrs = {'data-spy': "scroll", 'data-target': "#components-nav", 'data-offset':"80"}
+    - var path = '../'    
+
+block content
+
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: '../index.html'})
+    - breadcrumbs.push({name: 'Documentation', link: 'docs-introduction.html'})
+    - breadcrumbs.push({name: 'Introduction'})
+    - var heroHeading = 'Docs - Introduction'
+    - var current = 'docs/docs-introduction.html'
+    
+    include ../_pug-includes/inc-hero
+
+    section.py-6
+        .container-fluid
+            .row.px-xl-5
+                .col-lg-2
+                    include ../_pug-includes/inc-docs-sidebar
+
+                .col-lg-10.col-xl-8.docs-content
+                    p Hey, welcome to the <strong>Directory Theme official documentation</strong>. 
+                    p If you own a theme’s license already, thank you very much for purchasing! If not yet, you can <a href="https://themes.getbootstrap.com/product/directory-directory-listing-bootstrap-4-theme/">buy the theme’s license here</a>.
+                    p This documentation is to help you with template’s customization. Basic HTML and CSS knowledge is required to customize this template. 
+
+                    hr.my-5
+
+                    h5.text-uppercase.mb-5 Theme info
+
+                    p <span class="text-uppercase text-muted">Item Name:</span> Directory
+                    p <span class="text-uppercase text-muted">Author:</span> Bootstrapious
+                    p <span class="text-uppercase text-muted">Contact email for support & pre-sale questions: </span>
+                        a.text-dark(href='mailto:hello@bootstrapious.com') hello@bootstrapious.com
+
+

@@ -1,0 +1,80 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'contact'  
+    - var navbarClass = ''  
+    - var headerClass = ''  
+    - var mapUsed = true
+
+block content
+    
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Contact'})
+    - var heroHeading = 'How can we help you today?'
+    - var heroImage = 'img/photo/photo-1522143049013-2519756a52d4.jpg'
+    //- - var heroText = '<p class="lead">Are you curious about something?  As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built party world. Of so am he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.</p>'
+    
+    include _pug-includes/inc-hero.pug
+
+    section.py-6
+        .container        
+            .row
+                include _pug-includes/inc-contact-main.pug
+
+    section.py-6.bg-gray-100
+        .container
+            h2.h4.mb-5 Contact form
+            .row
+                .col-md-7.mb-5.mb-md-0
+                    form(id="contact-form", method="post", action="contact.php",class="form")
+                        .controls
+                            .row
+                                .col-sm-6
+                                    .form-group
+                                        label.form-label(for="name") Your firstname *
+                                        input(type="text", name="name", id="name", class="form-control", placeholder="Enter your firstname", required="required")
+                                .col-sm-6
+                                    .form-group
+                                        label.form-label(for="surname") Your lastname *
+                                        input(type="text", name="surname", id="surname", class="form-control", placeholder="Enter your  lastname", required="required")
+                            .form-group
+                                label.form-label(for="email") Your email *
+                                input(type="email", name="email", id="email", class="form-control", placeholder="Enter your  email", required="required")
+                            .form-group
+                                label.form-label(for="message") Your message for us *
+                                textarea(rows="4", name="message", id="message", class="form-control", placeholder="Enter your message", required="required")
+                            
+                            button(type="submit", class="btn btn-outline-primary") Send message
+                                
+
+                .col-md-5
+                    .pl-lg-4
+                        p.text-muted Effects present letters inquiry no an removed or friends. Desire behind latter me though in. Supposing shameless am he engrossed up additions. My possible peculiar together to. Desire so better am cannot he up before points. Remember mistaken opinions it pleasure of debating. Court front maids forty if aware their at. Chicken use are pressed removed. 
+                        p.text-muted Able an hope of body. Any nay shyness article matters own removal nothing his forming. Gay own additions education satisfied the perpetual. If he cause manor happy. Without farther she exposed saw man led. Along on happy could cease green oh. 
+                        .social
+                            ul.list-inline
+                            
+                                - var social = ['twitter', 'facebook', 'instagram', 'pinterest', 'vimeo']
+                            
+                                each val in social
+                                    li.list-inline-item
+                                        a(href="#", target="_blank")
+                                            i(class=`fab fa-${val}`)
+
+    .map-wrapper-300
+        #detailMap.h-100
+
+block additionalScripts
+    include _pug-includes/scripts-map.pug
+
+    script(src='js/map-detail.js')
+
+    script.
+        createDetailMap({
+            mapId: 'detailMap',
+            mapCenter: [40.732346, -74.0014247],
+            markerShow: true,
+            markerPosition: [40.732346, -74.0014247],
+            markerPath: 'img/marker.svg',
+        })

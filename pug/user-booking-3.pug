@@ -1,0 +1,66 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+
+block content
+       
+    - var breadcrumbs = []
+    
+    +progress(75)
+
+    section.py-5
+        .container
+
+            .row
+                .col-lg-7
+
+                    +stepsHeading('Confirm and pay', 3, 'Book your holiday home')
+
+                    .text-block
+                        include _pug-includes/inc-booking-alert.pug
+
+                    .text-block
+                         form(action="#")
+
+                            .d-flex.justify-content-between.align-items-end.mb-4
+                                h5.mb-0 Pay with your card
+                                .text-muted
+                                    i.fab.fa-cc-amex.fa-2x.mr-2 
+                                    i.fab.fa-cc-visa.fa-2x.mr-2 
+                                    i.fab.fa-cc-mastercard.fa-2x
+                            select.selectpicker.form-control.mb-3(name="payment", id="form_payment", data-style="btn-selectpicker")
+                               option(value="") Visa •••• 5687
+                               option(value="") Mastercard •••• 4569
+
+                            +collapseButton('addNewCard', 'Add a new card', 'Close', 'text-muted') 
+
+                            
+                            .row#addNewCard.collapse
+                                .form-group.col-md-6
+                                    label.form-label(for="card-name") Name on Card
+                                    input.form-control(type="text", name="card-name", placeholder="Name on card", id="card-name")
+                                .form-group.col-md-6
+                                    label.form-label(for="card-number") Card Number
+                                    input.form-control(type="text", name="card-number", placeholder="Card number", id="card-number")
+                                .form-group.col-md-4
+                                    label.form-label(for="expiry-date") Expiry Date
+                                    input.form-control(type="text", name="expiry-date", placeholder="MM/YY", id="expiry-date")
+                                .form-group.col-md-4
+                                    label.form-label(for="cvv") CVC/CVV
+                                    input.form-control(type="text", name="cvv", placeholder="123", id="cvv")
+                                .form-group.col-md-4
+                                    label.form-label(for="zip") ZIP
+                                    input.form-control(type="text", name="zip", placeholder="123", id="zip")
+
+                    .text-block
+                        h6 Cancellation policy
+                        p.text-sm.text-muted #{dummyText[3].substr(0, 100)}.
+                        p.text-sm.text-muted #{dummyText[4].substr(0, 100)}.
+
+                    +stepsAdd(3, 3, 'user-booking-')
+
+                    
+
+                .col-lg-5.pl-xl-5
+                    include _pug-includes/inc-booking-cards.pug

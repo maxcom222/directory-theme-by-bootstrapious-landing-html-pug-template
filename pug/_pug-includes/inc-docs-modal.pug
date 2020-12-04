@@ -1,0 +1,23 @@
+// Button trigger modal
+button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal')
+    | Launch demo modal
+// Modal
+#exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-body
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') × 
+                h2#exampleModalLabel.modal-title.mb-3 Modal title
+                p.text-muted
+                    strong Pellentesque habitant morbi tristique
+                    |  senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. 
+                    em Aenean ultricies mi vitae est.
+                    |  Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, 
+                    code commodo vitae
+                    | , ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. 
+                    a(href='#') Donec non enim
+                    |  in turpis pulvinar facilisis. Ut felis.
+            .modal-footer.justify-content-end
+                button.btn.btn-primary(type='button') Save changes
+                button.btn.btn-outline-muted(type='button', data-dismiss='modal') Close

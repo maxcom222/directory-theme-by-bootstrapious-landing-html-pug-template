@@ -1,0 +1,272 @@
+/*
+* ===================================================
+*     Navbar
+* ===================================================
+*/
+
+// SVG positioning and styling of the text to inherit
+// colour of the navbar
+.navbar-brand-svg {
+    vertical-align: baseline;
+
+    .navbar-brand-svg-text {
+        fill: currentColor;
+    }
+
+    .text-primary {
+        fill: theme-colors('primary');
+    }
+}
+
+
+// Absolutely position header, used on the homepage 
+// w/ the image background behind it
+
+.header-absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: $zindex-fixed;
+}
+
+// Used for navbar w/ transparent background
+.bg-hover-white {
+    @include simpleTransition;
+
+    &:hover {
+        background: $white !important;
+    }
+}
+
+// Used for navbar w/ transparent background, when it gets
+// fixed, it gets also a white background
+.navbar.fixed-top.bg-fixed-white {
+    background: $white !important;
+}
+
+.navbar {
+
+    .nav-link {
+        font-size: $navbar-link-size;
+        font-weight: bold;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .dropdown-toggle {
+        &::after {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            margin-left: $caret-width;
+            content: '\f107';
+            vertical-align: top;
+            border: none;
+            font-family: "Font Awesome\ 5 Free";
+            font-weight: 900;
+
+        }
+    }
+
+    .dropdown-menu {
+        min-width: 200px;
+        margin-top: $navbar-padding-y;
+        transition: transform .2s;
+        transform: translateY(30px);
+        color: #333;
+        border: none;
+        outline: none !important;
+        font-size: 0.9rem;
+
+        &::after {
+            display: block;
+            width: 0;
+            height: 0;
+            content: '';
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid #fff;
+            border-left: 7px solid transparent;
+            @include position(absolute, -5px, $left: 30px);
+        }
+
+        &::before {
+            display: block;
+            width: 0;
+            height: 0;
+            content: '';
+            border-right: 7px solid transparent;
+            border-bottom: 8px solid #f1f1f1;
+            border-left: 7px solid transparent;
+            @include position(absolute, -8px, $left: 30px);
+        }
+
+        &.dropdown-menu-right {
+            &::after {
+                @include position(absolute, -5px, $right: 30px, $left: auto);
+            }
+
+            &::before {
+                @include position(absolute, -8px, $right: 30px, $left: auto);
+            }
+        }
+    }
+
+    /* align with the navbar bottom */
+    .megamenu {
+        margin-top: 0px;
+    }
+
+
+}
+
+
+/*
+* ===================================================
+*     Megamenu
+* ===================================================
+*/
+
+.megamenu {
+    overflow: hidden;
+    width: 100%;
+    border: none !important;
+    border-radius: 0;
+    z-index: 9999;
+
+    .megamenu-list {
+        margin-bottom: 1.5rem;
+        padding: 0;
+        font-size: 0.8rem;
+    }
+
+    .megamenu-list-item {
+        margin-bottom: 5px;
+    }
+
+    .megamenu-list-link {
+        padding: 5px 0;
+        text-decoration: none;
+        color: $gray-600;
+
+        &:hover {
+            color: $gray-900;
+            background: none;
+        }
+    }
+
+    .megamenu-services {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background: $gray-100;
+
+        .megamenu-services-item {
+            display: flex;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .megamenu-services-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+    }
+}
+
+// Dropdown menus in navbar offset from the top
+// and also setting the max-height for the sticky navbar's menu
+// and white bg for collapsed transparent navbars
+.navbar-expand {
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        $next: breakpoint-next($breakpoint, $grid-breakpoints);
+        $infix: breakpoint-infix($next, $grid-breakpoints);
+
+        &#{$infix} {
+            @include media-breakpoint-down($breakpoint) {
+
+                .dropdown-menu {
+                    margin-top: 0;
+                    transition: transform .1s;
+                    transform: translateY(0);
+                    border: none;
+                    box-shadow: none;
+
+                    &:before,
+                    &:after {
+                        display: none;
+                    }
+                }
+
+                &.navbar-sticky {
+                    .navbar-collapse {
+                        overflow-y: auto;
+                        max-height: 80vh;
+                    }
+                }
+
+                &.fixed-top {
+                    .navbar-collapse {
+                        overflow-y: auto;
+                        max-height: 80vh;
+
+                        &.collapsing {
+                            overflow-y: hidden;
+                        }
+                    }
+                }
+
+                &.bg-transparent {
+                    .navbar-collapse {
+                        margin-right: -$navbar-padding-x;
+                        margin-left: -$navbar-padding-x;
+                        padding-top: 1rem;
+                        padding-right: $navbar-padding-x;
+                        padding-bottom: 1rem;
+                        padding-left: $navbar-padding-x;
+                        }
+                    &.navbar-dark {
+                        .navbar-collapse {
+                            background: rgba(theme-color(dark), .7);
+                        }
+                    }
+                    &.navbar-light {
+                        .navbar-collapse {
+                            background: rgba($white, .7);
+                        }
+                    }                    
+                    
+                }
+
+            }
+
+            @include media-breakpoint-up($next) {
+                .navbar-nav {
+                    .nav-link.dropdown-toggle {
+                        padding-right: $navbar-nav-link-padding-x + .8rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+* ===================================================
+*     Multi-level dropdown
+* ===================================================
+*/
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -2px !important;
+}

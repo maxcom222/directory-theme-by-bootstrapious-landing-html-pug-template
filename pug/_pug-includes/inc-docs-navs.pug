@@ -1,0 +1,38 @@
+.card.mb-3
+    .card-body
+        h6.title-decorative Horizontal
+        ul.nav
+            li.nav-item
+                a.nav-link.active(href='#') Active
+            li.nav-item
+                a.nav-link(href='#') Link
+            li.nav-item
+                a.nav-link(href='#') Link
+            li.nav-item
+                a.nav-link.disabled(href='#') Disabled
+.card.mb-3
+    .card-body
+        h6.title-decorative Vertical
+        nav.nav.flex-md-column
+            a.nav-link.active(href='#') Active
+            a.nav-link(href='#') Link
+            a.nav-link(href='#') Link
+            a.nav-link.disabled(href='#') Disabled
+.card.mb-3
+    .card-body
+        h6.mb-4 Tabs
+        ul#myTab.nav.nav-tabs(role='tablist')
+            li.nav-item
+                a#tab1.nav-link.active(data-toggle='tab', href='#tab1-content', role='tab', aria-controls='tab1-content', aria-selected='true') Tab One
+            li.nav-item
+                a#tab2.nav-link(data-toggle='tab', href='#tab2-content', role='tab', aria-controls='tab2-content', aria-selected='false') Tab Two
+            li.nav-item
+                a#tab3.nav-link(data-toggle='tab', href='#tab3-content', role='tab', aria-controls='tab3-content', aria-selected='false') Tab Three
+
+        .tab-content.py-5.px-3
+            #tab1-content.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='tab1-content')
+                p.text-muted #{dummyText[0]}
+            #tab2-content.tab-pane.fade(role='tabpanel', aria-labelledby='tab2-content')
+                p.text-muted #{dummyText[1]}
+            #tab3-content.tab-pane.fade(role='tabpanel', aria-labelledby='tab3-content')
+                p.text-muted #{dummyText[2]}

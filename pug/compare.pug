@@ -1,0 +1,121 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = ''  
+    - var navbarClass = ''  
+    - var headerClass = ''  
+    - var mapUsed = false
+
+block content
+    
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Comparison'})
+    - var heroHeading = 'Comparison'
+    - var heroHeadingClass = 'hero-heading'
+    
+    include _pug-includes/inc-hero.pug
+
+    section.py-6
+        .container
+            .row
+                - var items = ['Area', 'Rooms', 'Bedrooms', 'Bathrooms', 'Air conditioning', 'Swimming pool', 'Laundry', 'Window covering', 'Gym', 'Internet']
+
+                - var values = []
+                - values.push({type: 'text', values: ['150 sq.m.', '250 sq.m.', '350 sq.m.', '350 sq.m.']});
+                - values.push({type: 'text', values: [3,3,4,4]});
+                - values.push({type: 'text', values: [2,2,3,4]});
+                - values.push({type: 'text', values: [1,1,2,4]});
+                - values.push({type: 'icons', values: [true, true, false, true]});
+                - values.push({type: 'icons', values: [true, false, true, false]});
+                - values.push({type: 'icons', values: [true, true, false, true]});
+                - values.push({type: 'icons', values: [true, true, false, true]});
+                - values.push({type: 'icons', values: [true, true, true, true]});
+                - values.push({type: 'icons', values: [false, true, false, true]});
+
+                table.table.table-responsive-lg.text-gray-700.table-striped.table-hover
+                    tr.no-hover.no-stripe
+                        th.border-top-0
+
+                        - var imgBasePath = path + 'img/photo/'
+                        - stars = [1,2,3,4,5]
+
+                        each property, index in roomsJson.features
+                            
+                            - var val = property.properties;
+
+                            if (index < 4)
+                                td.border-top-0.pb-0(style="min-width: 200px")
+                                    a.d-inline-block.text-reset.text-decoration-none(href="detail-rooms.html")
+                                        span.h6 #{val.name}
+                                        br
+                                        span.text-xs
+                                            for star, starIndex in stars
+                                                if (starIndex + 1 <= val.stars)
+                                                    i.fa.fa-star.text-warning
+                                                else
+                                                    i.fa.fa-star.text-gray-300       
+                                        br
+                                        if (index == 0)
+                                            span.badge.badge-primary-light.mt-3 Our choice
+                                        else if (index == 1)
+                                            span.badge.badge-warning-light.mt-3 Popular
+                                        else if (index == 2)
+                                            span.badge.badge-success-light.mt-3 Cheapest
+                    tr.no-hover.no-stripe
+                        th.border-top-0
+
+                        - var imgBasePath = path + 'img/photo/'
+                        - stars = [1,2,3,4,5]
+
+                        each property, index in roomsJson.features
+                            
+                            - var val = property.properties;
+
+                            if (index < 4)
+                                td.border-top-0(style="min-width: 200px")
+                                    a.d-inline-block.hover-animate(href="detail-rooms.html")
+                                        img.img-fluid.rounded(src=`${imgBasePath}${val.image}` alt=val.name) 
+                    tr.no-hover.no-stripe
+                        th.border-top-0
+
+                        - var imgBasePath = path + 'img/photo/'
+                        - stars = [1,2,3,4,5]
+
+                        each property, index in roomsJson.features
+                            
+                            - var val = property.properties;
+
+                            if (index < 4)
+                                td.border-top-0
+                                    strong.text-sm $#{val.price}/night
+                                    a.btn.btn-sm.btn-outline-primary.float-right(href='#') Book
+                                        
+                                        
+                    each row, rowIndex in items
+                        tr
+                            th.py-4.align-middle #{row}
+                            if (values[rowIndex])
+                                each val, index in values[rowIndex].values 
+                                    if (values[rowIndex].type == 'text')
+                                        td.py-4.text-center.align-middle #{val}
+                                    else if (values[rowIndex].type == 'icons')
+                                        td.py-4.text-center.align-middle
+                                            if (val == true)
+                                                +svgIcon('checkmark-1', 'svg-icon-lg text-success')
+                                                span.sr-only Yes
+                                            else 
+                                                +svgIcon('close-1', 'svg-icon-lg text-danger')
+                                                span.sr-only No
+                    
+                    tr.no-hover.no-stripe
+                        th
+                        td.text-center
+                            a.btn.btn-outline-muted(href="#") Remove
+                        td.text-center
+                            a.btn.btn-outline-muted(href="#") Remove
+                        td.text-center
+                            a.btn.btn-outline-muted(href="#") Remove
+                        td.text-center
+                            a.btn.btn-outline-muted(href="#") Remove
+

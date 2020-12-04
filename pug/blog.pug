@@ -1,0 +1,53 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'blog'  
+
+block content
+    
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Blog'})
+    - var heroHeading = 'Blog'
+    - var heroText = '<p class="lead text-muted">As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built party world. Of so am he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.</p>'
+
+    section.position-relative.py-6
+        img.bg-image(src=`${path}img/photo/photo-1467987506553-8f3916508521.jpg`, alt="")
+        .container
+            .row
+                .col-lg-6
+                    .bg-white.rounded-lg.shadow.p-5
+                        strong.text-uppercase.text-secondary.d-inline-block.mb-2.text-sm Featured
+                        h2.mb-3 Escape the city today
+                        p.text-muted As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built party world. Of so am he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity
+                        a.btn.btn-link.p-0(href="post.html") Continue reading 
+                            i.fa.fa-long-arrow-alt-right
+
+
+
+    - var posts = []
+    - posts.push({name: 'Autumn fashion tips and tricks', image: 'img/photo/photo-1512917774080-9991f1c4c750.jpg', intro: 'Pellentesque habitant morbi tristique senectus. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.  Mauris placerat eleifend leo.', author: 'John Slim', category: 'Travel'})        
+    - posts.push({name: 'Newest photo apps', image: 'img/photo/photo-1522771739844-6a9f6d5f14af.jpg', intro: 'ellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Aenean ultricies mi vitae est. ', author: 'John Slim', category: 'Living'})
+    - posts.push({name: 'Best books about Photography', image: 'img/photo/photo-1482463084673-98272196658a.jpg', intro: 'Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.  Mauris placerat eleifend leo.', author: 'John Slim', category: 'Travel'})
+    - posts.push({name: 'Pellentesque habitant morbi', image: 'img/photo/photo-1499695867787-121ffb7950bf.jpg', intro: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Aenean ultricies mi vitae est. ', author: 'John Slim', category: 'Living'})
+    - posts.push({name: '10 Free things to do in Venice', image: 'img/photo/photo-1495562569060-2eec283d3391.jpg', intro: 'Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.  Mauris placerat eleifend leo.', author: 'John Slim', category: 'Travel'})
+    - posts.push({name: 'Best of this year\'s Biennale', image: 'img/photo/photo-1514890547357-a9ee288728e0.jpg', intro: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.  Aenean ultricies mi vitae est. Mauris placerat eleifend leo.', author: 'John Slim', category: 'Guides'})    
+
+    section.py-6
+        .container
+            .row.mb-5
+                each val in posts
+                    +blog(val, 'hover-animate')
+        
+                
+            // Pagination 
+            nav(aria-label='Blog pagination')
+                ul.pagination.justify-content-between.mb-5
+                    li.page-item
+                        a.page-link.text-sm.rounded(href='#') 
+                            i.fa.fa-chevron-left.mr-1
+                            | Older posts
+                    
+                    li.page-item.disabled
+                        a.page-link.text-sm.rounded(href='#', tabindex='-1') Newer posts  
+                            i.fa.fa-chevron-right.ml-1

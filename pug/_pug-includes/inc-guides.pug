@@ -1,0 +1,34 @@
+if (!guidesClass)
+    - guidesClass = ''
+
+section.py-6(class=guidesClass)
+    .container
+        .row.mb-5
+            .col-md-8
+                p.subtitle.text-primary Stay and eat like a local
+                h2 Our guides
+            .col-md-4.d-lg-flex.align-items-center.justify-content-end
+                a.text-muted.text-sm(href="category.html") 
+                    | See all guides
+                    i.fas.fa-angle-double-right.ml-2
+
+        
+        - var guides = []
+        - guides.push({name: 'New York', subtitle: 'The big apple', image: 'new-york.jpg', stars: 5, person: 'Pamela', avatar: 'img/avatar/avatar-0.jpg'})
+        - guides.push({name: 'Paris', subtitle: 'Artist capital of Europe', image: 'paris.jpg', stars: 4, person: 'John', avatar: 'img/avatar/avatar-7.jpg'})
+        - guides.push({name: 'Barcelona', subtitle: 'Dalí, Gaudí, Barrio Gotico', image: 'barcelona.jpg', stars: 3, person: 'Julie', avatar: 'img/avatar/avatar-8.jpg'})
+        - guides.push({name: 'Prague', subtitle: 'City of hundred towers', image: 'prague.jpg', stars: 4, person: 'Barbora', avatar: 'img/avatar/avatar-9.jpg'})
+        
+        .swiper-container.guides-slider.mx-n2.pt-3
+            // Additional required wrapper
+            .swiper-wrapper.pb-5
+                // Slides
+                each val in guides
+                    .swiper-slide.h-auto.px-2
+                        .card.card-poster.gradient-overlay.hover-animate.mb-4.mb-lg-0
+                            a.tile-link(href="category.html")
+                            img.bg-image(src=`img/photo/${val.image}`, alt='Card image')
+                            .card-body.overlay-content
+                                h6.card-title.text-shadow.text-uppercase #{val.name}
+                                p.card-text.text-sm #{val.subtitle}
+            .swiper-pagination.d-md-none 

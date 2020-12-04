@@ -1,0 +1,70 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+
+block content
+       
+    - var breadcrumbs = []
+    
+    +progress(25)
+
+    section.py-5
+        .container
+
+            .row
+                .col-lg-7
+
+                    +stepsHeading('Review house rules', 1, 'Book your holiday home')
+
+
+                    .text-block
+                        include _pug-includes/inc-booking-alert.pug
+                    .text-block
+                        h5.mb-4 1 night in London
+
+                        .row.mb-3
+                            .col-md-6.d-flex.align-items-center.mb-3.mb-md-0
+                                .date-tile.mr-3
+                                    .text-uppercase 
+                                        span.text-sm Apr
+                                        br
+                                        strong.text-lg 17
+                                p.text-sm.mb-0 Wednesday check-in<br>3PM - 7PM
+                            .col-md-6.d-flex.align-items-center
+                                .date-tile.mr-3
+                                    .text-uppercase 
+                                        span.text-sm Apr
+                                        br
+                                        strong.text-lg 18
+                                p.text-sm.mb-0 Thursday check-out<br>11AM
+
+                    .text-block
+
+                        h5.mb-4 Things to keep in mind
+
+                        - equipment = []
+                        - equipment.push({name: 'Not suitable for children and infants - The entrance staircase doesn\'t have handrails', icon: 'fas fa-child'})
+                        - equipment.push({name: 'No parties or events', icon: 'fas fa-glass-cheers'})
+                        - equipment.push({name: 'No smoking', icon: 'fa-smoking-ban'})
+                        - equipment.push({name: 'No pets', icon: 'fa-cat'})
+
+                        ul.list-unstyled
+                            each val, index in equipment
+                                if (index < 4)
+                                    li.mb-2 
+                                        .media.align-items-center.mb-3
+                                            .icon-rounded.icon-rounded-sm.bg-secondary-light.mr-4
+                                                i.fa(class=`${val.icon} text-secondary fa-fw text-center`)
+                                            .media-body
+                                                span.text-sm #{val.name}
+
+
+                    +stepsAdd(1, 3, 'user-booking-')
+
+                .col-lg-5.pl-xl-5
+                    include _pug-includes/inc-booking-cards.pug
+
+               
+
+            

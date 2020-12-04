@@ -1,0 +1,9 @@
+.d-flex.justify-content-between.align-items-center.flex-column.flex-md-row.mb-4
+    .mr-3
+        p.mb-3.mb-md-0 <strong>12</strong> results found
+    div
+        label.form-label.mr-2(for="form_sort") Sort by
+        select.selectpicker(name="sort", id="form_sort", data-style="btn-selectpicker", title="")
+            - var sortBy = ['Most popular', 'Recommended', 'Newest', 'Oldest', 'Closest']
+            each val, index in sortBy
+                option(value=`sortBy_${index}`) #{val}   

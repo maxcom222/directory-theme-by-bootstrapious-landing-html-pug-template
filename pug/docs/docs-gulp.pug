@@ -1,0 +1,118 @@
+extends ../_pug-includes/layout
+
+block vars
+    - var active = 'docs'  
+    - var bodyAttrs = {'data-spy': "scroll", 'data-target': "#components-nav", 'data-offset':"80"}
+    - var path = '../'
+
+block content
+
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: '../index.html'})
+    - breadcrumbs.push({name: 'Documentation', link: 'docs-introduction.html'})
+    - breadcrumbs.push({name: 'Gulp'})
+    - var heroHeading = 'Gulp'
+    - var current = 'docs/docs-gulp.html'
+    
+    include ../_pug-includes/inc-hero
+    section.py-6
+        .container-fluid
+            .row.px-xl-5
+                .col-lg-2
+                    include ../_pug-includes/inc-docs-sidebar
+
+                .col-lg-10.col-xl-8.docs-content
+                    +componentDocItem('Getting started', '<p class="lead">To use this theme\'s dev tools, you will need to have Node and Gulp installed.</p>')
+                    
+                        h6.text-uppercase.mb-4 1. Install Node
+
+                        p.text-muted.mb-5 If you don't have Node installed on your machine, head to <a href="https://nodejs.org/en/download/">its official site</a> and choose an appropriate installation for your system.
+
+                        h6.text-uppercase.mb-4 2. Install gulp globally
+                        p.text-muted.mb-4 This will install Gulp CLI. If you have Gulp CLI already, you can skip this step.
+                        pre.mb-5
+                            code.language-javascript.
+                                $ npm install --global gulp-cli
+                        h6.text-uppercase.mb-4 3. Install project's dependencies
+                        p.text-muted.mb-4 This will install dependencies from theme's <code>package.json</code> file.
+                        pre.mb-5
+                            code.language-javascript.
+                                $ npm install
+                        h6.text-uppercase.mb-4 4. Run gulp
+                        p.text-muted.mb-4 This will run a default task from theme's Gulpfile. You're all set.                    
+                        pre.mb-5
+                            code.language-javascript.
+                                $ gulp
+
+                    +componentDocItem('Development - using Pug files', '<p class="mt-n2"><span class="badge badge-info-light">Recommended</span></p><p class="lead">Running <code class="font-weight-bold">gulp</code> command in the theme\'s folder will compile the sources to <code>dist</code> then start a local Browsersync instance on port 3000 to serve and refresh your pages as you edit.</p>')
+                        
+                            p.text-muted I strongly recommend using Pug files for development of your project, as it uses includes and mixins for repetitive code (navbar, footer, cards). 
+                            p.text-muted If you change the navbar, the change will be effective in all your pages, unlike when developing with HTML, where you would need to do all the changes in every file.
+
+                            h6.mb-4 This Gulp task will run following subtasks:
+                            
+                            ul
+                                li <strong>set-watch</strong>: Helper task
+                                li <strong>pug</strong>: All <code>.pug</code> files are processed from the <code>pug</code> folder to <code>dist</code> folder. 
+                                li <strong>browser-sync</strong>: Starts a Browsersync on port <code>3000</code> served from <code>dist</code>, defaults to <code>index.html</code>.</li>
+                                li <strong>vendor</strong>: Copies 3rd party modules to the vendor directory based on our <code>package.json</code> dependencies
+                                li <strong>sass-dev</strong>: Compiles style.default.scss into style.default.css - no sourcemaps, no autoprefixing, no minification
+                                li <strong>copy</strong>: Copies static assets from folders defined in the <code>copy</code> in the <code>gulpfile.js</code>
+                            
+                            p.text-muted After running all these subtasks, there is a watcher set for changes in the pug folder, SCSS and static asset files. 
+                            
+                    +componentDocItem('Development - using HTML files', '<p class="lead">Running <code class="font-weight-bold">gulp dev-html</code> in the theme\'s folder will compile the sources to <code>dist</code> then start a local Browsersync instance on port 3000 to serve and refresh your pages as you edit.</p>')
+                        
+                            h6.mb-4 This Gulp task will run following subtasks:
+                            
+                            ul
+                                li <strong>set-watch</strong>: Helper task
+                                li <strong>html</strong>: All <code>.html</code> files are copied from <code>html</code> folder to <code>dist</code> folder. Only newer files are copied.
+                                li <strong>browser-sync</strong>: Starts a Browsersync on port <code>3000</code> served from <code>dist</code>, defaults to <code>index.html</code>.</li>
+                                li <strong>vendor</strong>: Copies 3rd party modules to the vendor directory based on our <code>package.json</code> dependencies
+                                li <strong>sass-dev</strong>: Compiles style.default.scss into style.default.css - no sourcemaps, no autoprefixing, no minification
+                                li <strong>copy</strong>: Copies static assets from folders defined in the <code>copy</code> in the <code>gulpfile.js</code>
+                            
+                            p.text-muted After running all these subtasks, there is a watcher set for changes in the HTML, SCSS and static asset files. 
+
+                    +componentDocItem('Production build - Using Pug files', '<p class="mt-n2"><span class="badge badge-info-light">Recommended</span></p><p class="lead">Running <code class="font-weight-bold">gulp build</code> in the theme\'s folder will clean the <code>build</code> folder and then compile the sources into it.</p>')
+                        
+                            p.text-muted If you were using Pug files during the development, this task will create a build version of your work. The SCSS will be minified, source maps generatad and CSS will also contain vendor prefixes for maximum browser compatibility.
+
+                            p.text-muted.mb-4 The build Gulp task will run following subtasks:
+                            
+                            ul
+                                li <strong>clean</strong>: Deletes previous contents from the <code>dist</code> folder
+                                li <strong>pug</strong>:  All <code>.pug</code> files are processed from the <code>pug</code> folder to <code>build</code> folder. 
+                                li <strong>vendor</strong>: Copies 3rd party modules to the vendor directory based on our <code>package.json</code> dependencies
+                                li <strong>sass-build</strong>: Compiles <code>style.default.scss</code> into <code>style.default.css</code> and <code>style.default.min.css</code>. Vendor prefixing is done by the <code>gulp-autoprefixer</code> based on the setting in <code>.browserslistrc</code>. For the minified version, also the sourcemap file is generated.
+                                li <strong>copy</strong>: Copies static assets from folders defined in the <code>copy</code> in the <code>gulpfile.js</code>
+                            
+                    +componentDocItem('Production build - using HTML files', '<p class="lead">Running <code class="font-weight-bold">gulp build-html</code> in the theme\'s folder will clean the <code>build</code> folder and then compile the sources into it.</p>')
+                        
+                            p.text-muted.mb-4 The build Gulp task will run following subtasks:
+                            
+                            ul
+                                li <strong>clean</strong>: Deletes previous contents from the <code>dist</code> folder
+                                li <strong>html</strong>: All <code>.html</code> files are copied from <code>pages</code> to <code>dist</code>. Only newer files are copied.
+                                li <strong>vendor</strong>: Copies 3rd party modules to the vendor directory based on our <code>package.json</code> dependencies
+                                li <strong>sass-build</strong>: Compiles <code>style.default.scss</code> into <code>style.default.css</code> and <code>style.default.min.css</code>. Vendor prefixing is done by the <code>gulp-autoprefixer</code> based on the setting in <code>package.json</code> (<code>last 2 versions</code>). For the minified version, also the sourcemap file is generated.
+                                li <strong>copy</strong>: Copies static assets from folders defined in the <code>copy</code> in the <code>gulpfile.js</code>
+                            
+                            p.text-muted After running all these subtasks, there is a watcher set for changes in the HTML, SCSS and static asset files. 
+
+                .col-lg-2
+                    nav#components-nav.nav.nav-pills.flex-column.sticky-top.ml-1.p-3.mb-5.border-left(style="top: 120px;")
+                        h6.sidebar-heading Gulp
+                        - var components = ['Getting started', 'Development - using Pug files', 'Development - using HTML files', 'Production build - Using Pug files', 'Production build - using HTML files']
+                        each val in components
+                            +componentDocNav(val)       
+
+
+
+                    
+
+                    
+                    
+
+

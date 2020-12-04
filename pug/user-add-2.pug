@@ -1,0 +1,46 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+   
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Add new listing'})
+    - var heroHeading = 'Add new listing'
+    - var heroHeadingClass = 'hero-heading mb-5'
+    
+    //- include _pug-includes/inc-hero
+    
+    +progress(40)
+
+    section.py-5
+        .container
+            
+            +stepsHeading('Texts', 2)
+
+            form
+                .row.form-block
+                    .col-lg-4
+                        h4 Description
+                        p.text-muted.text-sm  #{dummyText[3]}
+                    .col-lg-7.ml-auto
+                        .form-group.mb-5
+                            label.form-label(for="form_description") Describe your place to guests
+                            textarea.form-control(name="name", id="form_description", rows="5", aria-describedby="descriptionHelp")
+                            small#descriptionHelp.form-text.text-muted.mt-2 #{dummyText[1]}    
+
+                        .form-group.mb-5
+                            label.form-label(for="form_availability") Your availability
+                            textarea.form-control(name="name", id="form_availability", rows="3", aria-describedby="availabilityHelp")
+                            small#availabilityHelp.form-text.text-muted.mt-2 #{dummyText[2]}    
+
+                        .form-group.mb-5
+                            label.form-label(for="form_neighbourhood") Your neighbourhood
+                            textarea.form-control(name="name", id="form_neighbourhood", rows="3", aria-describedby="hoodHelp")
+                            small#hoodHelp.form-text.text-muted.mt-2 #{dummyText[3]}    
+
+
+                +stepsAdd(2)

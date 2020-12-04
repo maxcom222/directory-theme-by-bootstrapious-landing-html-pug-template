@@ -1,0 +1,84 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Host view'})
+    - var heroClass = 'py-5 text-left bg-whsite'
+    - var heroHeading = 'Your nearest bookings'
+    - var heroHeadingClass = 'hero-heading mb-0'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5
+        .container
+
+            // Breadcrumbs 
+            ol(class=`breadcrumb ${breadcrumbClass}`)
+                each val in breadcrumbs
+                    if (val.link)
+                        li.breadcrumb-item
+                            a(href=val.link) #{val.name}
+                    else
+                        li.breadcrumb-item.active #{val.name}   
+            .d-flex.justify-content-between.align-items-end.mb-5
+                h1(class=heroHeadingClass) #{heroHeading}
+                a.btn.btn-link.text-muted(href="#") Past bookings
+
+            include _pug-includes/inc-user-sortby.pug
+
+            .list-group.shadow.mb-5
+                each val, index in bookingsJson
+                    if index < 5
+                        a.list-group-item.list-group-item-action.p-4(href='user-booking-detail.html')
+                            .row
+                                .col-lg-4.align-self-center.mb-4.mb-lg-0
+                                    .d-flex.align-items-center.mb-3
+                                        h2.h5.mb-0 #{val.name}
+                                        img.avatar.avatar-sm.avatar-border-white.ml-3(src=`${path}img/avatar/avatar-${index}.jpg`, alt='Jack London') 
+                                    p.text-sm.text-muted Double Room
+                                    if index % 4 == 0
+                                        - var badgeClass = 'badge-secondary-light'
+                                    else if index % 4 == 1
+                                        - var badgeClass = 'badge-primary-light'
+                                    else if index % 4 == 2
+                                        - var badgeClass = 'badge-danger-light'
+                                    else if index % 4 == 3
+                                        - var badgeClass = 'badge-success-light'
+                                    span.badge.badge-pill.p-2(class=badgeClass) #{val.checkIn} - #{val.checkOut}
+                                .col-lg-8
+                                    .row
+                                        .col-6.col-md-4.col-lg-3.py-3.mb-3.mb-lg-0
+                                            h6.label-heading Rate type
+                                            p.text-sm.font-weight-bold Bed & Breakfast
+                                            h6.label-heading Nights 
+                                            p.text-sm.font-weight-bold.mb-0 #{val.nights}
+                                        .col-6.col-md-4.col-lg-3.py-3
+                                            h6.label-heading Occupancy
+                                            p.text-sm.font-weight-bold #{val.occypancy}
+                                            h6.label-heading Charge
+                                            p.text-sm.font-weight-bold.mb-0 #{val.balance}
+                                        .col-6.col-md-4.col-lg-3.py-3
+                                            h6.label-heading Booked Date
+                                            p.text-sm.font-weight-bold #{val.checkIn}                                        
+                                            h6.label-heading Arrival Time
+                                            p.text-sm.font-weight-bold.mb-0 Around 4 PM
+                                        .col-12.col-lg-3.align-self-center
+                                            span.text-primary.text-sm.text-uppercase.mr-4.mr-lg-0
+                                                i.fa.fa-check.fa-fw.mr-2 
+                                                | Booking paid
+                                            br.d-none.d-lg-block
+                                            if index % 2 == 0
+                                                span.text-primary.text-sm.text-uppercase
+                                                    i.fa.fa-check.fa-fw.mr-2 
+                                                    | Confirmed
+                                            else
+                                                span.text-muted.text-sm.text-uppercase
+                                                    i.fa.fa-times.fa-fw.mr-2 
+                                                    | Confirmed
+            
+            include _pug-includes/inc-pagination.pug

@@ -1,0 +1,115 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Account', link: 'user-account.html'})
+    - breadcrumbs.push({name: 'Personal info'})
+    - var heroClass = 'py-5 text-left bg-white'
+    - var heroHeading = 'Personal info'
+    - var heroHeadingClass = 'hero-heading mb-0'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5
+        .container
+
+            // Breadcrumbs 
+            ol(class=`breadcrumb ${breadcrumbClass}`)
+                each val in breadcrumbs
+                    if (val.link)
+                        li.breadcrumb-item
+                            a(href=val.link) #{val.name}
+                    else
+                        li.breadcrumb-item.active #{val.name}   
+            
+            h1(class=heroHeadingClass) #{heroHeading}
+            
+            p.text-muted.mb-5 Manage your Personal info and settings here.
+
+            .row
+                .col-lg-7
+
+                    .text-block 
+
+                        .row.mb-3
+                            .col-sm-9
+                                h5 Personal Details
+                            .col-sm-3.text-right
+                                button.btn.btn-link.pl-0.text-primary.collapsed(type='button', data-toggle='collapse', data-target='#personalDetails', aria-expanded='false', aria-controls='personalDetails') Update
+
+                        
+                        p.text-sm.text-muted <i class="fa fa-id-card fa-fw mr-2"></i>John Doe<br><i class="fa fa-birthday-cake fa-fw mr-2"></i>06/22/1980<br><i class="fa fa-envelope-open fa-fw mr-2"></i>john.doe@directory.com  <span class="mx-2"> | </span>  <i class="fa fa-phone fa-fw mr-2"></i>+42055544466
+                    
+                        #personalDetails.collapse
+                            form(action="#")
+                                .row.pt-4
+                                    .form-group.col-md-6
+                                        label.form-label(for="name") Name
+                                        input.form-control(type="text", name="name", id="name", value="John Doe")
+                                    .form-group.col-md-6
+                                        label.form-label(for="date") Date of birth
+                                        input.form-control(type="text", name="date", id="date", value="06/22/1980")
+                                    .form-group.col-md-6
+                                        label.form-label(for="email") Email address
+                                        input.form-control(type="email", name="email", id="email", value="john.doe@directory.com")
+                                    .form-group.col-md-6
+                                        label.form-label(for="phone") Phone number
+                                        input.form-control(type="text", name="phone", id="phone", value="+42055544466")
+
+                                button.btn.btn-outline-primary.mb-4(type="submit") Save your personal details
+                    .text-block 
+                        .row.mb-3
+                            .col-sm-9
+                                h5 Address
+                            .col-sm-3.text-right
+                                button.btn.btn-link.pl-0.text-primary.collapsed(type='button', data-toggle='collapse', data-target='#address', aria-expanded='false', aria-controls='address') Change
+
+                        .media.text-sm.text-muted 
+                            i.fa.fa-address-book.fa-fw.mr-2
+                            .media-body.mt-n1 123 Main St., Apt #7<br>San Francisco, CA, 902 10
+
+                        #address.collapse
+                            - var states =  ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+                            
+                            form(action="#")
+                                .row.pt-4
+                                    .form-group.col-md-6
+                                        label.form-label(for="street") Street
+                                        input.form-control(type="text", name="street", id="street", value="123 Main St.")
+                                    .form-group.col-md-6
+                                        label.form-label(for="apt") Apt. (optional)
+                                        input.form-control(type="text", name="apt", id="apt", value="Apt #7")
+                                    .form-group.col-md-6
+                                        label.form-label(for="city") City
+                                        input.form-control(type="text", name="city", id="city", value="San Francisco")
+                                    .form-group.col-md-6
+                                        label.form-label(for="state") State
+                                        select.selectpicker.form-control(name="state", id="state", data-style="btn-selectpicker")
+                                            each val, index in states
+                                                if (index == 4)
+                                                    option(value=`state_${index}`, selected) #{val}    
+                                                else
+                                                    option(value=`state_${index}`) #{val}    
+                                                
+                                    .form-group.col-md-6
+                                        label.form-label(for="zip") ZIP
+                                        input.form-control(type="text", name="zip", id="zip", value="902 10")
+
+                                button.btn.btn-outline-primary Save address
+                    
+
+                .col-md-6.col-lg-4.ml-lg-auto
+                    .card.border-0.shadow
+                        .card-header.bg-primary-light.py-4.border-0
+                            .media.align-items-center
+                                    .media-body
+                                        h4.h6.subtitle.text-sm.text-primary What info is shared with others?
+                                    +svgIcon('identity-1', 'svg-icon svg-icon-light w-3rem h-3rem ml-3 text-primary')                    
+                        .card-body.p-4
+                            p.text-muted.text-sm.card-text Directory only releases contact information for hosts and guests <strong>after a reservation is confirmed</strong>.
+                            p.text-muted.text-sm.card-text Amet nisi eiusmod minim commodo sit voluptate aute ut quis ea veniam sunt proident ex. <strong>Exercitation culpa laboris</strong> consequat fugiat non ipsum veniam Lorem aliqua deserunt tempor elit veniam.

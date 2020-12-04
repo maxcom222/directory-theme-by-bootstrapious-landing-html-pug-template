@@ -1,0 +1,90 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Inbox', link: 'user-messages.html'})
+    - breadcrumbs.push({name: 'Your messages with Anna'})
+
+    - var heroClass = 'py-5 text-left bg-white'
+    - var heroHeading = 'Your messages with Anna'
+    - var heroHeadingClass = 'hero-heading mb-0'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5
+        .container
+
+            // Breadcrumbs 
+            ol(class=`breadcrumb ${breadcrumbClass}`)
+                each val in breadcrumbs
+                    if (val.link)
+                        li.breadcrumb-item
+                            a(href=val.link) #{val.name}
+                    else
+                        li.breadcrumb-item.active #{val.name}   
+            .d-flex.flex-column.flex-md-row.justify-content-md-between.align-items-md-center.mb-4
+                h1.mb-3.mb-md-0(class=heroHeadingClass) #{heroHeading}
+                div
+                    a.btn.btn-link.pl-0(href="user-messages.html") <i class="fa fa-arrow-left mr-2"></i> Back to all messages
+
+
+            
+
+            .card.border-0.shadow.mb-4
+                .card-body.p-4
+                    .text-block.pb-3
+                        .media.align-items-center
+                            .media-body
+                                h6 
+                                    a.text-reset(href="detail-rooms.html") Modern Apt - Vibrant Neighborhood
+                                p.text-muted.text-sm.mb-0 Entire home in New York
+                                +stars(4, 'mt-n1')
+                            a(href="detail-rooms.html")
+                                img.ml-3.rounded(src=`${path}img/photo/photo-1512917774080-9991f1c4c750.jpg`, alt="", width="100")
+                            
+
+                    .text-block.pt-3.pb-0
+                        ul.list-unstyled.text-sm.mb-0
+                            li.mb-3
+                                i.fas.fa-users.fa-fw.text-muted.mr-2
+                                | 3 guests
+                            li.mb-0
+                                i.far.fa-calendar.fa-fw.text-muted.mr-2
+                                | Apr 17, 2019 
+                                i.fas.fa-arrow-right.fa-fw.text-muted.mx-3
+                                | Apr 18, 2019
+
+            
+            // Chat Box
+            .px-4.py-5
+                .row
+                    each val in [0,1,2,3,4,5]
+                        if val % 2 == 0
+                            // Sender Message
+                            .media.col-md-9.col-xl-7.mb-3
+                                img.avatar.avatar-border-white(src=path + 'img/avatar/avatar-1.jpg', alt='user')
+                                .media-body.ml-3
+                                    .bg-gray-200.rounded.p-4.mb-2
+                                        p.text-sm.mb-0 #{dummyText[val]}
+                                    p.small.text-muted.ml-3 12:00 PM | Aug 13
+                        else
+                            // Reciever Message
+                            .media.col-md-9.col-xl-7.ml-auto.mb-3
+                                .media-body.mr-3
+                                    .bg-primary.rounded.p-4.mb-2
+                                        p.text-sm.mb-0.text-white #{dummyText[val]}
+                                    p.small.text-muted.ml-3 12:00 PM | Aug 13
+                                img.avatar.avatar-border-white(src=path + 'img/avatar/avatar-10.jpg', alt='user')
+                    
+            // Typing area
+            form.bg-light.rounded.shadow-sm(action='#')
+                .input-group
+                    textarea.form-control.border-0.p-4.bg-light.text-sm(placeholder='Type a message', aria-describedby='button-sendMessage')
+                    .input-group-append
+                        button#button-sendMessage.btn.btn-link(type='submit')
+                            i.fa.fa-paper-plane

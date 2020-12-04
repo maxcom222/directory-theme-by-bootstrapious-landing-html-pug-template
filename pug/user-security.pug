@@ -1,0 +1,108 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Account', link: 'user-account.html'})
+    - breadcrumbs.push({name: 'Login & security'})
+    - var heroClass = 'py-5 text-left bg-white'
+    - var heroHeading = 'Login & security'
+    - var heroHeadingClass = 'hero-heading mb-0'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5
+        .container
+
+            // Breadcrumbs 
+            ol(class=`breadcrumb ${breadcrumbClass}`)
+                each val in breadcrumbs
+                    if (val.link)
+                        li.breadcrumb-item
+                            a(href=val.link) #{val.name}
+                    else
+                        li.breadcrumb-item.active #{val.name}   
+            
+            h1(class=heroHeadingClass) #{heroHeading}
+            
+            p.text-muted.mb-5 Manage your Login & security and settings here.
+
+            .row
+                .col-lg-7
+
+                    .text-block 
+
+                        h3.mb-4 Login
+
+                        .row
+                            .col-sm-8
+                                h6 Password
+                                p.text-sm.text-muted Last updated 3 years ago
+                            .col.text-right
+                                button.btn.btn-link.pl-0.text-primary.collapsed(type='button', data-toggle='collapse', data-target='#updatePassword', aria-expanded='false', aria-controls='updatePassword') Update
+                    
+                        #updatePassword.collapse
+                            .row.mt-4
+                                .form-group.col-12
+                                    label.form-label(for="password-current") Current Password
+                                    input.form-control(type="password", name="password-current", id="password-current")
+                                .form-group.col-md-6
+                                    label.form-label(for="password-new") New Password
+                                    input.form-control(type="password", name="password-new", id="password-new")
+                                .form-group.col-md-6
+                                    label.form-label(for="password-confirm") Confirm Password
+                                    input.form-control(type="password", name="password-confirm", id="password-confirm")
+
+                            button.btn.btn-outline-primary Update Password
+                    
+                    .text-block 
+
+                        h3.mb-4 Social accounts
+                        
+                        .row
+                            .col-sm-8
+                                h6 Facebook
+                                p.text-sm.text-muted Not connected
+                            .col.text-right
+                                a.btn.btn-text.text-primary.pl-0(href="#") Connect
+                        
+                        
+                        .row
+                            .col-sm-8
+                                h6 Google
+                                p.text-sm Connected
+                            .col.text-right
+                                a.btn.btn-text.text-primary.pl-0(href="#") Disconnect
+
+
+                    .text-block.mb-5.mb-lg-0 
+
+                        h3.mb-4 Device history
+
+                        .media
+                            .icon-rounded.bg-secondary-light
+                                +svgIcon('imac-screen-1', 'text-secondary w-2rem h-2rem')        
+                            .media-body.pt-2.ml-3
+                                strong Windows 10.0 
+                                | · Chrome
+                                .badge.badge-secondary-light.text-uppercase Current  Session
+                                p.text-sm.text-muted Ostrava, Moravskoslezsky kraj · April 6, 2020 at 01:51pm
+                                a.btn.btn-text.text-primary.pl-0(href="#") Log out device
+                    
+
+                .col-md-6.col-lg-4.ml-lg-auto
+                    .card.border-0.shadow
+                        .card-header.bg-primary-light.py-4.border-0
+                            .media.align-items-center
+                                    .media-body
+                                        h4.h6.subtitle.text-sm.text-primary Let's make your account more secure
+                                    +svgIcon('shield-security-1', 'svg-icon svg-icon-light w-3rem h-3rem ml-3 text-primary')                    
+                        .card-body.p-4
+                            h6.card-text Your account security: 
+                            p.card-text.mb-4 <span class="badge badge-info-light">Medium</span>
+                            p.text-muted.card-text We’re always working on ways to increase safety in our community. 
+                            p.text-muted.card-text That’s why we look at every account to make sure it’s as secure as possible.

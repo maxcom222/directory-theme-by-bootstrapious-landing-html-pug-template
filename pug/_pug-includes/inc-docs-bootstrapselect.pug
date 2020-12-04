@@ -1,0 +1,35 @@
+.row
+    .col-lg-6.text-center.mb-5
+        p.text-muted Light-themed Bootstrap Select
+        select.selectpicker.mb-3(name="sort", id="form_sort", data-style="btn-selectpicker", title="")
+            - var sortBy = ['Most popular', 'Recommended', 'Newest', 'Oldest', 'Closest']
+            each val, index in sortBy
+                option(value=`sortBy_${index}`) #{val}   
+        
+        code.d-block select.selectpicker(data-style="btn-selectpicker")
+    .col-lg-6.text-center.mb-5
+        p.text-muted Primary Bootstrap Select
+        select.selectpicker.mb-3(name="sort", id="form_sort2", data-style="btn-primary", title="")
+            - var sortBy = ['Most popular', 'Recommended', 'Newest', 'Oldest', 'Closest']
+            each val, index in sortBy
+                option(value=`sortBy_${index}`) #{val}   
+        
+        code.d-block select.selectpicker(data-style="btn-primary")
+    
+    .col-lg-6.text-center.mb-5
+        p.text-muted Secondary Bootstrap Select
+        select.selectpicker.mb-3(name="sort", id="form_sort3", data-style="btn-secondary", title="")
+            - var sortBy = ['Most popular', 'Recommended', 'Newest', 'Oldest', 'Closest']
+            each val, index in sortBy
+                option(value=`sortBy_${index}`) #{val}   
+        
+        code.d-block select.selectpicker(data-style="btn-secondary")
+   
+    .col-lg-6.text-center.mb-5
+        p.text-muted Muted Bootstrap Select
+        select.selectpicker.mb-3(name="sort", id="form_sort4", data-style="btn-muted", title="")
+            - var sortBy = ['Most popular', 'Recommended', 'Newest', 'Oldest', 'Closest']
+            each val, index in sortBy
+                option(value=`sortBy_${index}`) #{val}   
+        
+        code.d-block select.selectpicker(data-style="btn-muted")

@@ -1,0 +1,14 @@
+// Brands Section
+section.py-6.bg-gray-100
+    .container
+        h5.text-center.text-uppercase.letter-spacing-3.mb-5 As seen on
+        // Brands Slider
+        .swiper-container.brands-slider
+            - var brands = [1,2,3,4,5,6,1,2,3,4]
+            .swiper-wrapper.pb-5
+                each val in brands
+                    // item
+                    .swiper-slide.h-auto.d-flex.align-items-center.justify-content-center
+                        a(href="#")
+                            img.img-fluid.w-6rem.opacity-5(src=`${path}img/brand/brand-${val}.svg`, alt=`Brand ${val}`)
+

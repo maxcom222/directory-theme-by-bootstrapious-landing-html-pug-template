@@ -1,0 +1,90 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+    - var active = 'user'
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Account', link: 'user-account.html'})
+    - breadcrumbs.push({name: 'Messages'})
+
+    - var heroClass = 'py-5 text-left bg-white'
+    - var heroHeading = 'Inbox'
+    - var heroHeadingClass = 'hero-heading mb-0'
+    - var breadcrumbClass = 'pl-0  justify-content-start'
+    
+    section.py-5
+        .container
+                    // Breadcrumbs 
+                    ol(class=`breadcrumb ${breadcrumbClass}`)
+                        each val in breadcrumbs
+                            if (val.link)
+                                li.breadcrumb-item
+                                    a(href=val.link) #{val.name}
+                            else
+                                li.breadcrumb-item.active #{val.name}   
+                    .d-flex.justify-content-between.align-items-center.mb-5
+                        h1(class=heroHeadingClass) #{heroHeading}
+                        a.btn.btn-link.text-muted(href="#") Archived Messages
+
+
+                    .d-flex.justify-content-between.align-items-end.mb-4
+                        select.selectpicker.mr-3.mb-3.mb-lg-0(name="bulk", id="form_bulk", data-style="btn-selectpicker", title="Bulk Actions")
+                            - var bulk = ['Edit', 'Archive', 'Delete']
+                            each val, index in bulk
+                                option(value=`bulk_${index}`) #{val}                     
+                        div
+                            label.form-label.mr-2(for="form_sort") Sort by
+                            select.selectpicker.mr-3.mb-3.mb-lg-0(name="sort", id="form_sort", data-style="btn-selectpicker", title="")
+                                - var sortBy = ['Newest', 'Oldest', 'Paid']
+                                each val, index in sortBy
+                                    option(value=`sortBy_${index}`) #{val}   
+
+                    .list-group.shadow.mb-5
+                        each val, index in bookingsJson
+                            if index < 5
+                               .list-group-item.list-group-item-action.p-4
+
+                                    .row
+
+                                        .col-2.col-lg-1.align-self-lg-center.py-3.d-flex.align-items-lg-center
+
+                                            .custom-control.custom-checkbox
+                                                input.custom-control-input(id=`select_message_${index}`,type='checkbox')
+                                                label.custom-control-label(for=`select_message_${index}`) 
+
+                                            .form-star.d-none.d-sm-inline-block.mt-n1
+                                                if index % 3 == 0
+                                                    input(id=`star_message_${index}`, type='checkbox', name='star', checked)
+                                                else 
+                                                    input(id=`star_message_${index}`, type='checkbox', name='star')
+                                                label.star-label(for=`star_message_${index}`)
+                                                    span.sr-only Important Message
+
+                                        .col-9.col-lg-4.align-self-center.mb-3.mb-lg-0
+
+                                            .d-flex.align-items-center.mb-1.mb-lg-3
+                                                h2.h5.mb-0 #{val.name}
+                                                img.avatar.avatar-sm.avatar-border-white.ml-3(src=`${path}img/avatar/avatar-${index}.jpg`, alt='Jack London') 
+                                            p.text-sm.text-muted Double Room
+                                            if index % 4 == 0
+                                                - var badgeClass = 'badge-secondary-light'
+                                            else if index % 4 == 1
+                                                - var badgeClass = 'badge-primary-light'
+                                            else if index % 4 == 2
+                                                - var badgeClass = 'badge-danger-light'
+                                            else if index % 4 == 3
+                                                - var badgeClass = 'badge-success-light'
+                                            span.badge.badge-pill.p-2(class=badgeClass) #{val.checkIn}
+                                            a.stretched-link(href='user-messages-detail.html')
+                                        .col-10.ml-auto.col-lg-7
+                                            .row
+                                                .col-md-8.py-3
+                                                    p.text-sm.mb-0 #{dummyText[index]}
+                                                .col-md-4.text-right.py-3
+                                                    p.text-sm #{val.checkIn}
+                                                a.stretched-link(href='user-messages-detail.html')
+                                                

@@ -1,0 +1,117 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'text'  
+
+block content
+    
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Knowledge Base'})
+    - var heroHeading = 'Knowledge Base'    
+    
+    - var heroText = '<form><p class="text-muted mb-4">Non adipisicing nisi commodo et consectetur est veniam pariatur. Fugiat occaecat nisi incididunt nostrud anim culpa eiusmod excepteur duis elit elit.</p><div class="input-group"><input class="form-control" type="text" placeholder="Search Something ... "><div class="input-group-append"><button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button></div></div></form>'
+    
+    include _pug-includes/inc-hero.pug
+
+    section
+        .container
+            - var advantages = []
+            - advantages.push({name: 'Help & Documentation', icon:'destination-map-1'})
+            - advantages.push({name: 'Developer Resources', icon:'laptop-screen-1'})
+            - advantages.push({name: 'Chat With Us', icon:'chat-app-1'})
+
+            .row.py-5.pt-lg-0.mt-lg-n5
+                each val, index in advantages
+                    .col-lg-4.mb-3.mb-lg-0.text-center
+                        .card.border-0.shadow-sm.hover-animate.h-100
+                            .card-body.p-4
+                                .icon-rounded.bg-primary-light.mb-3
+                                    +svgIcon(val.icon, 'text-primary w-2rem h-2rem')
+                                h3.h5 #{val.name}
+                                p.text-muted.text-sm.mb-0 #{dummyText[index].substr(0, 100)}
+                                a.stretched-link(href="knowledge-base-topic.html") 
+                                    span.sr-only See Topic
+
+    section.py-5
+        .container
+            .row.mb-5
+                .col-md-8
+                    p.subtitle.text-secondary What do you need to know?  
+                    h2 Choose Your Topic
+                .col-md-4.d-lg-flex.align-items-center.justify-content-end
+                    a.text-muted.text-sm(href="#") 
+                        | See all topics
+                        i.fas.fa-angle-double-right.ml-2    
+
+            - topics = ['Introduction', 'Usage', 'Renting']
+                
+            .row
+                each val in topics
+                    .col-lg-4.mb-4
+                        h3.h5.text-dark.d-flex.align-items-center.mb-4
+                            a.text-reset(href='knowledge-base-topic.html')
+                                span.badge.badge-secondary-light.badge-pill.py-1.mr-1 #{val.length}
+                                | #{val}
+                            
+                        - subtopics = ['Sint consequat aliquip?', 'Adipisicing voluptate magna quis sunt dolor velit.', 'Ad pariatur anim magna?', 'officia aliqua fugiat ex?']
+
+                        ul.list-unstyled.ml-3.text-sm
+                            each subtopic in subtopics
+                                li.mb-2
+                                    a.text-muted(href='knowledge-base-topic.html') 
+                                        i.far.fa-file.mr-2
+                                        | #{subtopic}
+
+            - topics = ['Fees', 'Other']
+
+            .row
+                each val in topics
+                    .col-lg-4.mb-4
+                        h3.h5.text-dark.d-flex.align-items-center.mb-4
+                            a.text-reset(href='#')
+                                span.badge.badge-secondary-light.badge-pill.py-1.mr-1 #{val.length}
+                                | #{val}
+                            
+                        - subtopics = ['Sint consequat aliquip?', 'Adipisicing voluptate magna quis sunt dolor velit.', 'Ad pariatur anim magna?', 'officia aliqua fugiat ex?']
+
+                        ul.list-unstyled.ml-3.text-sm
+                            each subtopic in subtopics
+                                li.mb-2
+                                     a.text-muted(href='#') 
+                                        i.far.fa-file.mr-2
+                                        | #{subtopic}
+
+                .col-lg-4.mb-4
+
+
+    section.py-6.bg-gray-100
+        .container
+            .row
+                .col-lg-10.col-xl-8.mx-auto.text-center
+                    h4.subtitle.text-primary.mb-4 Get Support From Real People
+                    p.text-muted.mb-5 #{dummyText[3]}
+
+                    - support = [1, 2, 3, 4, 5]
+
+                    ul.list-unstyled.d-flex.justify-content-center
+                        each supportPerson in support
+                            li
+                                a(href="#")
+                                    img.avatar.avatar-lg.avatar-border-white.hover-animate.mx-2(src=`${path}img/avatar/avatar-${supportPerson}.jpg`, alt='')
+
+    section.pb-5
+        .container
+            .row
+                .col-md-8.col-lg-6.mx-auto
+                    .card.border-0.shadow.mt-n5.mb-5
+                        .card-header.bg-primary-100.py-4.border-0
+                            .media.align-items-center
+                                    .media-body
+                                        p.subtitle.text-sm.text-primary Drop Us a Line
+                                        h4.mb-0 Contact
+                                    +svgIcon('fountain-pen-1', 'svg-icon svg-icon-light w-3rem h-3rem ml-3 text-primary')
+
+                        .card-body
+                            p.text-muted #{dummyText[4]}
+                            a.btn.btn-primary(href='#') Let us know

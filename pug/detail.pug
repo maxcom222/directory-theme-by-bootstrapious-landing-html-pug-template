@@ -1,0 +1,182 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'detail'  
+    - var navbarClass = ''  
+    - var headerClass = ''  
+    - var mapUsed = true
+
+block content
+    // Hero Section
+    section.pt-7.pb-5.d-flex.align-items-end.dark-overlay.bg-cover(style="background-image: url('img/photo/restaurant-1515164783716-8e6920f3e77c.jpg');")
+        .container.overlay-content
+            .d-flex.justify-content-between.align-items-start.flex-column.flex-lg-row.align-items-lg-end
+                .text-white.mb-4.mb-lg-0
+                    .badge.badge-pill.badge-transparent.px-3.py-2.mb-4 Eat &amp; Drink
+                    
+                    h1.text-shadow.verified Fifteen Restaurant & Bar
+                    
+                    p
+                        i.fa-map-marker-alt.fas.mr-2
+                        |  53 Broadway, Brooklyn, NY 1129
+
+                    p.mb-0.d-flex.align-items-center
+                        i.fa.fa-xs.fa-star.text-primary
+                        i.fa.fa-xs.fa-star.text-primary
+                        i.fa.fa-xs.fa-star.text-primary
+                        i.fa.fa-xs.fa-star.text-primary
+                        i.fa.fa-xs.fa-star.text-gray-200.mr-4                    
+                            
+                        | 8 Reviews
+                
+                .calltoactions
+                    a.btn.btn-primary(href="#leaveReview", onclick="$('#leaveReview').collapse('show')", data-smooth-scroll) Leave a Review
+
+
+    section.py-6
+        .container
+            .row
+                .col-lg-8
+
+                    // About Listing
+                    .text-block
+                        h3.mb-3 About
+                        
+                        p.text-muted  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+                        
+                        p.text-muted  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    .text-block
+                        // Listing Location
+                        h3.mb-4 Location
+                            
+                        .map-wrapper-300.mb-3
+                            #detailMap.h-100
+
+                    .text-block
+                        // Gallery
+                        h3.mb-4 Gallery
+                        - gallery = []
+                        - gallery.push({small: 'restaurant-1515164783716-8e6920f3e77c.jpg', big:  'restaurant-1515164783716-8e6920f3e77c.jpg'})
+                        - gallery.push({small: 'restaurant-1466978913421-dad2ebd01d17.jpg', big:  'restaurant-1466978913421-dad2ebd01d17.jpg'})
+                        - gallery.push({small: 'restaurant-1477763858572-cda7deaa9bc5.jpg', big:  'restaurant-1477763858572-cda7deaa9bc5.jpg'})
+                        - gallery.push({small: 'restaurant-1505275350441-83dcda8eeef5.jpg', big: 'restaurant-1505275350441-83dcda8eeef5.jpg'})
+                        - gallery.push({small: 'restaurant-1508766917616-d22f3f1eea14.jpg', big:  'restaurant-1508766917616-d22f3f1eea14.jpg'})
+                        - gallery.push({small: 'restaurant-1430931071372-38127bd472b8.jpg', big:  'restaurant-1430931071372-38127bd472b8.jpg'})
+
+                        .row.gallery.ml-n1.mr-n1
+                            each val in gallery
+                                .col-lg-4.col-6.px-1.mb-2
+                                    a(href='img/photo/' + val.big)
+                                        img.img-fluid(src='img/photo/' + val.small, alt='...')
+
+                    // Amenities
+                    .text-block
+                        h3.mb-4 Amenities
+                            
+                        - var amenitiesItems = ['Elevator', 'Vegan friendly', 'Alcohol served', 'No smoking', 'Parking spaces (paid)', 'WiFi']
+
+                        ul.amenities-list.list-inline
+                            each val in amenitiesItems
+                                li.list-inline-item.mb-3
+                                    .d-flex.align-items-center
+                                        .icon-circle.bg-secondary.mr-2
+                                            i.fa.fa-check
+                                        span #{val}
+
+                    .text-block
+                        include _pug-includes/inc-detail-reviews.pug
+
+                        include _pug-includes/inc-detail-reviewform.pug   
+                                            
+                
+                .col-lg-4
+                    .pl-xl-4
+                        // Opening Hours      
+                        .card.border-0.shadow.mb-5
+
+                            .card-header.bg-gray-100.py-4.border-0
+                                .media.align-items-center
+                                        .media-body
+                                            p.subtitle.text-sm.text-primary Opening in 5 minutes
+                                            h4.mb-0 Opening Hours 
+                                        +svgIcon('wall-clock-1', 'svg-icon svg-icon-light w-3rem h-3rem ml-3 text-muted')
+
+                            .card-body
+
+                                - var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+                                table.table.text-sm.mb-0
+
+                                    each val, index in days
+                                        tr
+                                            - var additionalClass = ''
+                                            if (index == 0) 
+                                                - additionalClass = 'border-0'
+                                            
+                                            th.pl-0(class=additionalClass) #{val}
+                                            td.pr-0.text-right(class=additionalClass) #{(index+1 == days.length) ? 'Closed' : '8:00 am - 6:00 pm'}
+
+
+                        // Contact
+                        .card.border-0.shadow.mb-5
+                            .card-header.bg-gray-100.py-4.border-0
+                                .media.align-items-center
+                                        .media-body
+                                            p.subtitle.text-sm.text-primary Drop Us a Line
+                                            h4.mb-0 Contact
+                                        +svgIcon('fountain-pen-1', 'svg-icon svg-icon-light w-3rem h-3rem ml-3 text-muted')
+
+                            .card-body
+                                - var contactInfo = []
+                                - contactInfo.push({text: '(020) 123 456 789', class: 'text-gray-00', icon: 'fa fa-phone'})
+                                - contactInfo.push({text: 'info@example.com', class: '', icon: 'fa fa-envelope'})
+                                - contactInfo.push({text: 'www.example.com', class: '', icon: 'fa fa-globe'})
+                                - contactInfo.push({text: 'Facebook', class: 'text-blue', icon: 'fab fa-facebook'})
+                                - contactInfo.push({text: 'Twitter', class: '', icon: 'fab fa-twitter'})
+                                - contactInfo.push({text: 'Instagram', class: '', icon: 'fab fa-instagram'})
+                                - contactInfo.push({text: 'Google+', class: '', icon: 'fab fa-google-plus'})
+
+                                ul.list-unstyled.mb-4
+                                    each val in contactInfo
+                                        li.mb-2 
+                                            a(href="#", class=`${val.class} text-sm text-decoration-none`)
+                                                i(class=`${val.icon} mr-3`)
+                                                span.text-muted #{val.text}
+
+
+                                .text-center
+                                    a.btn.btn-outline-primary.btn-block(href="#") 
+                                        i.far.fa-paper-plane.mr-2
+                                        | Send a Message
+
+                        
+                        .text-center
+                            p
+                                a.text-secondary(href="#") 
+                                    i.fa.fa-heart
+                                    |  Bookmark This Listing
+                            span 79 people bookmarked this place 
+
+
+    .py-6.bg-gray-100 
+        .container
+            h5.mb-0 Similar places
+            p.subtitle.text-sm.text-primary.mb-4 You may also like         
+
+            include _pug-includes/inc-slider-places.pug
+
+
+block additionalScripts
+    include _pug-includes/scripts-map.pug
+    
+    script(src='js/map-detail.js')
+
+    script.
+        createDetailMap({
+            mapId: 'detailMap',
+            mapCenter: [40.732346, -74.0014247],
+            markerShow: true,
+            markerPosition: [40.732346, -74.0014247],
+            markerPath: 'img/marker.svg',
+        })
+    

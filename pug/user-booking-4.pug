@@ -1,0 +1,38 @@
+extends _pug-includes/layout.pug
+
+block vars
+
+block content
+       
+    - var breadcrumbs = []
+    
+    +progress(100)
+
+    section.py-5
+        .container
+
+            .row
+                .col-lg-7
+
+                    +stepsHeading('Booking placed', 4, 'Book your holiday home')
+
+                    .text-block
+
+                        p.text-muted Thank you for your booking, Ondrej. 
+                        p.text-muted.mb-5 #{dummyText[3]}
+
+                        p.text-center.mb-5
+                            a.btn.btn-primary.mx-2.mb-2(href="user-booking-detail.html") 
+                                i.far.fa-file.mr-2
+                                | View your order
+                            a.btn.btn-outline-muted.mb-2(href="#") Or something else
+
+                        p.mb-5.text-center
+                            img.img-fluid(src="img/illustration/undraw_celebration_0jvk.svg", alt="", style="width: 400px;")
+
+                .col-lg-5.pl-xl-5
+                    include _pug-includes/inc-booking-cards.pug
+
+               
+
+            

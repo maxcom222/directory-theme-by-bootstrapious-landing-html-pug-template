@@ -1,0 +1,32 @@
+section.pt-6
+    .container
+        .row.mb-6
+            .col-lg-8
+                h2 Popular destinations in August
+                p.text-muted.mb-0 #{dummyText[3]}
+        
+        - var guides = []
+        - guides.push({name: 'Kathmandu', subtitle: 'Spirituality & mountains', image: 'kathmandu.jpg', stars: 5, person: 'Pamela', avatar: 'img/avatar/avatar-0.jpg'})
+        - guides.push({name: 'Medellín', subtitle: 'Tropical paradise', image: 'medellin.jpg', stars: 4, person: 'John', avatar: 'img/avatar/avatar-7.jpg'}) 
+        - guides.push({name: 'Bangkok', subtitle: 'Temples and street food', image: 'bangkok.jpg', stars: 3, person: 'Julie', avatar: 'img/avatar/avatar-8.jpg'})
+        - guides.push({name: 'Kyoto', subtitle: 'Imperial capital', image: 'kyoto.jpg', stars: 4, person: 'Barbora', avatar: 'img/avatar/avatar-9.jpg'})
+        - guides.push({name: 'Los Angeles', subtitle: 'City of angeles', image: 'los-angeles.jpg', stars: 4, person: 'Barbora', avatar: 'img/avatar/avatar-9.jpg'})
+        - guides.push({name: 'London', subtitle: 'Galleries and shopping', image: 'london.jpg', stars: 5, person: 'Pamela', avatar: 'img/avatar/avatar-0.jpg'})
+        - guides.push({name: 'Madrid', subtitle: 'Aquí no hay playa', image: 'madrid.jpg', stars: 4, person: 'John', avatar: 'img/avatar/avatar-7.jpg'})
+        - guides.push({name: 'Havana', subtitle: 'La Havana', image: 'havana.jpg', stars: 4, person: 'Barbora', avatar: 'img/avatar/avatar-9.jpg'})         
+        - guides.push({name: 'Barcelona', subtitle: 'Dalí, Gaudí, Barrio Gotico', image: 'barcelona.jpg', stars: 3, person: 'Julie', avatar: 'img/avatar/avatar-8.jpg'})
+        
+    .container-fluid
+        .row
+            each val,index in guides
+                if (index < 9)
+                    if (index == 8)
+                        - additionalClass = 'd-none d-lg-block d-xl-none'
+                    .col-6.col-lg-4.col-xl-3.px-0(class=additionalClass)
+                        .d-flex.align-items-center.dark-overlay.hover-scale-bg-image(style="min-height: 400px;")
+                            img.bg-image(src=`${path}img/photo/${val.image}`, alt="")
+                            .p-3.p-sm-5.text-white.z-index-20
+                                h4.h2 #{val.name}
+                                p.mb-4 #{val.subtitle}
+                                a.btn.btn-link.text-reset.pl-0.stretched-link.text-decoration-none(href="#") Take me there
+                                    i.fa.fa-chevron-right.ml-2

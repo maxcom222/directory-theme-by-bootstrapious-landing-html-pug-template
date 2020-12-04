@@ -1,0 +1,23 @@
+// Places
+section.bg-gray-100
+    div.bg-cover(style=`height: 250px; background-image: url(${path}img/photo/places-divider.jpg);`)
+    .container.pb-lg-3
+        .search-bar.rounded.p-3.p-lg-4.position-relative.mt-n4.z-index-20
+            form(action="#")
+                .row
+                    .col-lg-4.d-flex.align-items-center.form-group
+                        input.form-control.border-0.shadow-0(type="search", name="search", placeholder="What are you searching for?")
+                    .col-md-6.col-lg-3.d-flex.align-items-center.form-group
+                        .input-label-absolute.input-label-absolute-right.w-100
+                            label.label-absolute(for="location")
+                                i.fa.fa-crosshairs
+                                span.sr-only City
+                            input.form-control.border-0.shadow-0(type="text", name="location", placeholder="Location" id="location")      
+                    .col-md-6.col-lg-3.d-flex.align-items-center.form-group.no-divider
+                        select.selectpicker(title='Categories', data-style="btn-form-control")
+                            option(value='small') Restaurants
+                            option(value='medium') Hotels
+                            option(value='large') Cafes
+                            option(value='x-large') Garages
+                    .col-lg-2.form-group.mb-0
+                        button.btn.btn-primary.btn-block.h-100(type="submit") Search    

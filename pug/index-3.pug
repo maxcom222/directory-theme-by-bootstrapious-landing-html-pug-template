@@ -1,0 +1,134 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'home'  
+    - headerClass = 'header header-absolute'
+    //- hideNavbar = true
+    - bodyAttrs = {'style': 'padding-top: 0;'}
+    - navbarClass = 'navbar-dark bg-transparent'
+    - inlineLogo = true
+
+
+block content
+    - slider = []
+    - slider.push({title: 'Japan', headingClass: 'mb-3', image: 'img/photo/photo-1493976040374-85c8e12f0c0e.jpg', containerClass: 'align-items-center', subtitle: 'Blue & White', subtitleClass: 'font-weight-light', text: dummyText[2].substr(0,200),  button: 'Start exploring Japan <i class="fa fa-angle-right ml-2"></i>', buttonBorder: true, columnClass: 'col-lg-6', slideClass: '', sideIcons: true, cards: false})        
+    - slider.push({title: 'Morocco', headingClass: 'mb-5', image: 'img/photo/photo-1558114965-eeb97aa84c3b.jpg', containerClass: 'align-items-center', text: dummyText[3] + ' ' + dummyText[4], columnClass: 'col-12', slideClass: '', cards: true})          
+    - slider.push({title: 'Peru', headingClass: 'mb-3', image: 'img/photo/photo-1526392060635-9d6019884377.jpg', containerClass: 'align-items-center', subtitle: 'Discover South America', subtitleClass: 'font-weight-light', text: dummyText[1].substr(0,100), columnClass: 'col-lg-6', slideClass: 'bg-cover-right', bottomIcons: true, cards: false})
+
+  
+
+    - icons = []
+    - icons.push({name: 'Flights', icon: 'airplane-mode-1', badge: 'from $345', text: ''})
+    - icons.push({name: 'Holidays', icon: 'suitcase-1', badge: 'from $1,245', text: ''})
+    - icons.push({name: 'Guide & gallery', icon: 'image-gallery-1', badge: '', text: dummyText[2]})    
+
+    // Slider main container
+    .swiper-container.home-slider.multi-slider
+        // Additional required wrapper
+        .swiper-wrapper
+            // Slides
+            each val, index in slider
+                .swiper-slide.bg-cover.dark-overlay(style=`background-image: url('${val.image}');`, class=val.slideClass)
+                    .container.h-100
+                        .d-flex.h-100.text-white.overlay-content(class=val.containerClass, data-swiper-parallax="-500")
+                            .w-100
+                                .row
+                                    div(class=val.columnClass)
+                                        if (val.subtitle)
+                                            p.subtitle.text-white.letter-spacing-3.mb-3(class=val.subtitleClass) #{val.subtitle}
+                                        h2.display-3.font-weight-bold(class=val.headingClass, style="line-height: 1") #{val.title}
+                                        if (val.text)
+                                            p.mb-5 #{val.text}
+                                        if (val.button)
+                                            if (!val.buttonBorder)
+                                                a.btn.btn-text.text-white.pl-0(href="#") #{val.button}
+                                            else
+                                                a.btn.btn-outline-light.d-none.d-sm-inline-block(href="#") !{val.button}
+                                    if (val.sideIcons)
+                                        .col-lg-6.pl-lg-5.my-3.my-md-5.my-lg-0
+                                            each icon, index in icons
+                                                - iconMb = ''        
+                                                if (index != icons.length - 1)
+                                                    - iconMb = 'mb-2 mb-md-5'
+                                                a.media.text-reset.text-decoration-none.hover-animate(href="#", class=iconMb)
+                                                    .icon-rounded.bg-white.opacity-7.mr-4
+                                                        +svgIcon(icon.icon, 'text-dark w-2rem h-2rem')
+                                                    .media-body
+                                                        h5 #{icon.name}
+                                                        if (icon.badge)
+                                                            .badge.badge-light #{icon.badge}
+                                                        if (icon.text)
+                                                            p See more  
+                                    
+                                if (val.bottomIcons)
+                                    .row.mt-3.mt-md-5
+                                        each icon in icons
+                                            .col-md-4.mb-2.mb-md-0
+                                                a.media.text-reset.text-decoration-none.hover-animate(href="#")
+                                                    .icon-rounded.bg-white.opacity-7.mr-4
+                                                        +svgIcon(icon.icon, 'text-dark w-2rem h-2rem')
+                                                    .media-body
+                                                        h5 #{icon.name}
+                                                        if (icon.badge)
+                                                            .badge.badge-light #{icon.badge}
+                                                        if (icon.text)
+                                                            p See more
+
+                                if (val.cards)
+                                     - var itemClass = 'd-none d-md-block col-md-4 mb-5'
+                                     - var cards = []
+                                     - cards.push({name:'Fez', image: 'img/photo/fez.jpg', stars: 5, subtitle: 'Central Morocco'})
+                                     - cards.push({name:'Marrakech', image: 'img/photo/marrakech.jpg', stars: 4, subtitle: 'Central Morocco'})
+                                     - cards.push({name:'Essaouira', image: 'img/photo/essaouira.jpg', stars: 5, subtitle: 'Coast'})
+
+                                        a.d-md-none.btn.btn-outline-light(href="#") Start exploring
+
+                                        .row
+                                            each card, cardIndex in cards
+                                                if (cardIndex < 3)
+                                                    +travelDarkCard(card, itemClass)                             
+                                    
+
+        .swiper-pagination.swiper-pagination-white
+        .swiper-nav.d-none.d-lg-block
+            .swiper-button-prev#homePrev
+            .swiper-button-next#homeNext
+
+
+    - points = []
+    - points.push({name: 'Travel', icon: ''})
+    - points.push({name: 'Relax', icon: ''})
+    - points.push({name: 'Explore', icon: ''})
+    section.py-6
+        .container
+            .row
+                each val, index in points
+                    - no = index + 1
+                    .col-lg-4.px-5
+                        p.advantage-number #{no}
+                        .pl-lg-5
+                            h6.text-uppercase #{val.name}
+                            p.text-muted.text-sm.mb-5.mb-lg-0 #{dummyText[index].substr(0, 135)}.
+
+
+    include _pug-includes/inc-places.pug
+
+    - guidesClass = 'bg-gray-100'
+    include _pug-includes/inc-guides.pug
+
+    include _pug-includes/inc-packages.pug
+
+    section.py-6
+        .container
+            .row.mb-5
+                .col-md-8
+                    p.subtitle.text-secondary Hurry up, these are expiring soon.        
+                    h2 Last minute deals
+                .col-md-4.d-lg-flex.align-items-center.justify-content-end
+                    a.text-muted.text-sm(href="category.html") 
+                        | See all deals
+                        i.fas.fa-angle-double-right.ml-2
+
+            include _pug-includes/inc-slider-rooms.pug
+
+    include _pug-includes/inc-instagram.pug

@@ -1,0 +1,6 @@
+- var icons = ['smartphone-1', 'telephone-operator-1', 'airplane-mode-1', 'destination-map-1', 'beach-1', 'dollar-sign-1', 'open-box-1', 'pen-1', 'pay-1', 'giftbox-1', 'store-1', 'bank-cards-1']
+
+.row
+    each val in icons
+        .col-3.col-md-2.d-flex.justify-content-center
+            +svgIcon(val ,'w-3rem h-3rem mb-5 svg-icon-light')

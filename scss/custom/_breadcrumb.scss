@@ -1,0 +1,24 @@
+/*
+* ===================================================
+*     Breadcrumb
+* ===================================================
+*/
+
+.breadcrumb {
+    font-size: $font-size-sm;
+}
+
+.breadcrumb.text-white {
+    .breadcrumb-item {
+        color: $white;
+
+        a {
+            color: $white;
+        }
+
+        &::before {
+            color: $white;
+        }
+    }
+
+}

@@ -1,0 +1,32 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+
+block content
+       
+    - var breadcrumbs = []
+    - breadcrumbs.push({name: 'Home', link: 'index.html'})
+    - breadcrumbs.push({name: 'Add new listing'})
+    - var heroHeading = 'Add new listing'
+    - var heroHeadingClass = 'hero-heading mb-5'
+    
+    //- include _pug-includes/inc-hero
+    
+    +progress(0)
+
+    section.py-5.py-lg-7
+        .container
+            .row
+                .col-lg-5
+                    p.subtitle.text-primary Add a new listing
+                    h1.h2.mb-5 Let's get started
+
+                    p.text-muted #{dummyText[2]}
+                    p.text-muted.mb-5 #{dummyText[3]}
+
+                    p.mb-5.mb-lg-0 
+                        a.btn.btn-primary(href="user-add-1.html") Add your listing
+
+                .col-lg-5.ml-auto.d-flex.align-items-center
+                    img.img-fluid(src="img/illustration/undraw_celebration_0jvk.svg", alt="", style="width: 400px;")

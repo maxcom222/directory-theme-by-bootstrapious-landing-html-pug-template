@@ -1,0 +1,129 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var active = 'home'  
+
+
+block content
+    section.hero-home
+        .swiper-container.hero-slider
+            .swiper-wrapper.dark-overlay
+                .swiper-slide(style='background-image:url(img/photo/photo-1501621965065-c6e1cf6b53e2.jpg)')
+                .swiper-slide(style='background-image:url(img/photo/photo-1519974719765-e6559eac2575.jpg)')
+                .swiper-slide(style='background-image:url(img/photo/photo-1490578474895-699cd4e2cf59.jpg)')
+                .swiper-slide(style='background-image:url(img/photo/photo-1534850336045-c6c6d287f89e.jpg)')
+
+        .container.py-6.py-md-7.text-white.z-index-20
+            .row
+                .col-xl-10
+                    .text-center.text-lg-left
+                        p.subtitle.letter-spacing-4.mb-2.text-secondary.text-shadow The best holiday experience
+                        h1.display-3.font-weight-bold.text-shadow Stay like a local
+                    
+                    .search-bar.mt-5.p-3.p-lg-1.pl-lg-4
+                        form(action="#")
+                            .row
+                                .col-lg-4.d-flex.align-items-center.form-group
+                                    input.form-control.border-0.shadow-0(type="text", name="search", placeholder="What are you searching for?")
+                                .col-lg-3.d-flex.align-items-center.form-group
+                                    .input-label-absolute.input-label-absolute-right.w-100
+                                        label.label-absolute(for="location")
+                                            i.fa.fa-crosshairs
+                                            span.sr-only City
+                                        input.form-control.border-0.shadow-0(type="text", name="location", placeholder="Location" id="location")                                        
+                                .col-lg-3.d-flex.align-items-center.form-group.no-divider
+                                    select.selectpicker(title='Categories', data-style="btn-form-control")
+                                        option(value='small') Restaurants
+                                        option(value='medium') Hotels
+                                        option(value='large') Cafes
+                                        option(value='x-large') Garages
+                                .col-lg-2
+                                    button.btn.btn-primary.btn-block.rounded-xl.h-100(type="submit") Search 
+
+
+    section.py-6.bg-gray-100
+        .container
+            .text-center.pb-lg-4
+                p.subtitle.text-secondary One-of-a-kind vacation rentals
+                h2.mb-5 Booking with us is easy
+            
+            - var advantages = []
+            - advantages.push({name: 'Find the perfect rental', icon:'destination-map-1'})
+            - advantages.push({name: 'Book with confidence', icon:'pay-by-card-1'})
+            - advantages.push({name: 'Enjoy your vacation', icon:'heart-1'})
+
+            .row
+                each val, index in advantages
+                    .col-lg-4.mb-3.mb-lg-0.text-center
+                        .px-0.px-lg-3
+                            .icon-rounded.bg-primary-light.mb-3
+                                +svgIcon(val.icon, 'text-primary w-2rem h-2rem')
+                            h3.h5 #{val.name}
+                            p.text-muted #{dummyText[index].substr(0, 100)}
+
+
+
+    include _pug-includes/inc-guides.pug
+
+    section.py-6.bg-gray-100 
+        .container
+            .row.mb-5
+                .col-md-8
+                    p.subtitle.text-secondary Hurry up, these are expiring soon.        
+                    h2 Last minute deals
+                .col-md-4.d-lg-flex.align-items-center.justify-content-end
+                    a.text-muted.text-sm(href="category.html") 
+                        | See all deals
+                        i.fas.fa-angle-double-right.ml-2
+
+            include _pug-includes/inc-slider-rooms.pug
+
+    
+    include _pug-includes/inc-divider.pug
+
+
+    section.py-7
+        .container
+            .text-center
+                p.subtitle.text-primary Testimonials
+                h2.mb-5 Our dear customers said about us
+            // Slider main container
+            - var itemClass = 'w-100 h-100'
+            .swiper-container.testimonials-slider.testimonials
+                // Additional required wrapper
+                .swiper-wrapper.pt-2.pb-5
+                    // Slides
+                    each val in roomsJson.features
+                        .swiper-slide.px-3
+                            .testimonial.card.rounded-lg.shadow.border-0
+                                .testimonial-avatar
+                                    img.img-fluid(src=`${path}img/avatar/avatar-3.jpg`, alt="...") 
+                                .text
+                                    .testimonial-quote
+                                        i.fas.fa-quote-right
+                                    p.testimonial-text Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                    strong Jessica Watson
+
+                .swiper-pagination      
+
+    section.py-6.bg-gray-100 
+        .container
+            .row.mb-5
+                .col-md-8
+                    p.subtitle.text-secondary Stories from around the globe
+                    h2 From our travel blog
+                .col-md-4.d-md-flex.align-items-center.justify-content-end
+                    a.text-muted.text-sm(href="blog.html") 
+                        | See all articles
+                        i.fas.fa-angle-double-right.ml-2
+
+            .row
+                - var posts = []
+                - posts.push({name: 'Autumn fashion tips and tricks', image: 'img/photo/photo-1512917774080-9991f1c4c750.jpg', intro: 'Pellentesque habitant morbi tristique senectus. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.  Mauris placerat eleifend leo.', author: 'John Slim', category: 'Travel'})        
+                - posts.push({name: 'Newest photo apps', image: 'img/photo/photo-1522771739844-6a9f6d5f14af.jpg', intro: 'ellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Aenean ultricies mi vitae est. ', author: 'John Slim', category: 'Living'})
+                - posts.push({name: 'Best books about Photography', image: 'img/photo/photo-1482463084673-98272196658a.jpg', intro: 'Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.  Mauris placerat eleifend leo.', author: 'John Slim', category: 'Travel'})
+
+                each val in posts
+                    +blog(val, 'hover-animate')
+
+    include _pug-includes/inc-instagram.pug

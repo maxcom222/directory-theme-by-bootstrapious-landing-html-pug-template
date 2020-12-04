@@ -1,0 +1,19 @@
+button(type="button", class="btn btn-primary btn-sm d-none d-lg-block", data-toggle="collapse", data-target="#style-switch", id="style-switch-button")
+    +svgIcon('configuration-1', 'svg-icon-md')
+
+#style-switch.collapse
+    .p-4
+        h6.text-uppercase.mb-4 Select theme colour
+
+        form.mb-3
+            select.form-control.style-switch-select(name="colour",id="colour")
+                option(value="") select colour variant
+                option(value=`${path}css/style.default.css`) blue
+                option(value=`${path}css/style.pink.css`) pink
+                option(value=`${path}css/style.green.css`) green
+                option(value=`${path}css/style.red.css`) red
+                option(value=`${path}css/style.violet.css`) violet
+                option(value=`${path}css/style.sea.css`) sea
+
+        p.text-muted.text-xs.mb-0 Stylesheet switching in this demo is done with JavaScript and can cause a blink while page loads. This will not happen in your production code.
+          

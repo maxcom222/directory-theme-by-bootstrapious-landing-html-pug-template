@@ -1,0 +1,51 @@
+mixin ie(condition)
+  <!--[!{condition}]>
+  block
+  <![endif]-->
+
+meta(charset='utf-8')
+meta(http-equiv='X-UA-Compatible', content='IE=edge')
+title Directory Theme by Bootstrapious
+meta(name='description', content='')
+meta(name='viewport', content='width=device-width, initial-scale=1')
+meta(name='robots', content='all,follow')
+
+// Price Slider Stylesheets 
+link(rel='stylesheet', href=`${path}vendor/nouislider/nouislider.css`)
+
+// Google fonts - Playfair Display
+link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700')
+// Google fonts - Poppins
+link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700')
+
+// swiper
+link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css')
+
+
+// Magnigic Popup
+link(rel='stylesheet', href=`${path}vendor/magnific-popup/magnific-popup.css`) 
+
+if (mapUsed)
+    // Leaflet Maps
+    link(rel='stylesheet', href='https://unpkg.com/leaflet@1.5.1/dist/leaflet.css',
+  integrity='sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==', crossorigin='')
+
+// theme stylesheet
+link(rel='stylesheet', href=`${path}css/style.default.css`, id='theme-stylesheet')
+
+// Custom stylesheet - for your changes
+link(rel='stylesheet', href=`${path}css/custom.css`)
+
+// Favicon
+link(rel='shortcut icon', href=`${path}img/favicon.png`)
+
+// Tweaks for older IEs
++ie('if lt IE 9')
+    script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+    script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+
+// Font Awesome CSS
+link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.8.1/css/all.css', integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf', crossorigin='anonymous')
+
+if (active == 'docs')
+  link(rel='stylesheet', href=`${path}vendor/prismjs/themes/prism-okaidia.css`)

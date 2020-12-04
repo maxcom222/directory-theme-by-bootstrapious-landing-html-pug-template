@@ -1,0 +1,56 @@
+/*
+* ===================================================
+*    Detail page
+* ===================================================
+*/
+
+.detail-slider {
+    overflow: hidden;
+    max-height: 300px;
+
+    img {
+        visibility: hidden
+    }
+
+    &.swiper-container-horizontal {
+        img {
+            visibility: visible;
+        }
+    }
+}
+
+.review {
+    padding-top: 2rem;
+    padding-right: 1rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    border-bottom: 1px solid $gray-200;
+
+    &:first-of-type {
+        padding-top: 1rem;
+    }
+
+    &:last-of-type {
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+}
+
+.review-text {
+    padding-top: 1rem;
+}
+
+.text-block {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $gray-200;
+
+    &:first-of-type {
+        padding-top: 0;
+    }
+
+    &:last-of-type {
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+}

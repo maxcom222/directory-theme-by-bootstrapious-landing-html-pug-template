@@ -1,0 +1,64 @@
+extends _pug-includes/layout.pug
+
+block vars 
+    - var active = 'login'
+    - var hideTopbar = true
+    - var hideNavbar = true
+    - var hideFooter = true
+
+block content
+
+    .container-fluid.px-3
+        .row.min-vh-100
+            .col-md-8.col-lg-6.col-xl-5.d-flex.align-items-center
+                .w-100.py-5.px-md-5.px-xl-6.position-relative
+                    .mb-5
+                        img.img-fluid.mb-3(src='img/logo-square.svg', alt='...', style='max-width: 4rem;')            
+                        h2 Welcome back
+
+                    form.form-validate
+                        .form-group
+                            label.form-label(for='loginUsername')  Email Address
+                            input.form-control(name="loginUsername", id="loginUsername", type='email', placeholder='name@address.com', autocomplete='off', required, data-msg="Please enter your email")
+                        .form-group.mb-4
+                            .row
+                                .col
+                                    label.form-label(for='loginPassword')  Password
+                                .col-auto
+                                    a.form-text.small(href='#') Forgot password?
+                                
+                            input.form-control(name="loginPassword",  id="loginPassword", placeholder="Password", type='password', required, data-msg="Please enter your password")
+                        .form-group.mb-4
+                            .custom-control.custom-checkbox
+                                input#loginRemember.custom-control-input(type='checkbox')
+                                label.custom-control-label.text-muted(for='loginRemember') 
+                                    span.text-sm Remember me for 30 days
+
+                        // Submit
+                        button.btn.btn-lg.btn-block.btn-primary
+                            | Sign in
+
+                        hr.my-3.hr-text.letter-spacing-2(data-content="OR")
+                        
+                        button.btn.btn.btn-outline-primary.btn-block.btn-social.mb-3
+                            i.fa-2x.fa-facebook-f.fab.btn-social-icon 
+                            | Connect <span class="d-none d-sm-inline">with Facebook</span>
+
+                        button.btn.btn.btn-outline-muted.btn-block.btn-social.mb-3
+                            i.fa-2x.fa-google.fab.btn-social-icon 
+                            | Connect <span class="d-none d-sm-inline">with Google</span>
+
+                        hr.my-4
+
+                        p.text-center
+                            small.text-muted.text-center
+                                | Don't have an account yet? 
+                                a(href='signup.html') Sign Up                
+
+                    a(href="index.html").close-absolute.mr-md-5.mr-xl-6.pt-5 
+                        +svgIcon('close-1', 'w-3rem h-3rem')                                
+               
+            .col-md-4.col-lg-6.col-xl-7.d-none.d-md-block
+                // Image
+                .bg-cover.h-100.mr-n3(style='background-image: url(img/photo/photo-1497436072909-60f360e1d4b1.jpg);')
+

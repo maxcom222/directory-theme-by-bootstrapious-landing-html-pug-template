@@ -1,0 +1,15 @@
+// Slider main container
+- var itemClass = 'w-100 h-100 hover-animate'
+.swiper-container.swiper-container-mx-negative.items-slider-full.px-lg-5.pt-3
+    // Additional required wrapper
+    .swiper-wrapper.pb-5
+        // Slides
+        each val in restaurantsJson.features
+            .swiper-slide.h-auto.px-2
+                +venue(val.properties, itemClass)
+        each val in restaurantsJson.features
+            .swiper-slide.h-auto.px-2
+                +venue(val.properties, itemClass)                
+
+    // If we need pagination
+    .swiper-pagination

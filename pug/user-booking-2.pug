@@ -1,0 +1,68 @@
+extends _pug-includes/layout.pug
+
+block vars
+    - var loggedUser = true
+
+block content
+       
+    - var breadcrumbs = []
+    
+    +progress(50)
+
+    section.py-5
+        .container
+
+            .row
+                .col-lg-7
+
+                    +stepsHeading('Who\'s coming?', 2, 'Book your holiday home')
+
+                    .text-block
+                        include _pug-includes/inc-booking-alert.pug
+
+                    .text-block
+                        
+                        label.h5(for="form_guests") Guests
+                        p.text-sm.text-muted #{dummyText[0].substr(0, 100)}.
+                        
+                        .row
+                            .col-lg-6.mb-3
+                                - var guests = [1,2,3,4,5]
+                                select.selectpicker.form-control(name="guests", id="form_guests", data-style="btn-selectpicker", title=" ")
+                                    each val, index in guests
+                                        if index == 2
+                                            option(value=`guests_${index}`, selected) #{val}
+                                        else
+                                            option(value=`guests_${index}`) #{val}
+
+                                - var purposes = ['Personal travel', 'Business travel']
+                        
+                    .text-block
+                        h5 What's the main purpose of this trip?
+                        p.text-sm.text-muted #{dummyText[1].substr(0, 100)}.
+                        ul.list-unstyled
+                            each val,index in purposes
+                                li
+                                    .custom-control.custom-radio
+                                        input.custom-control-input(type='radio', id=`purpose_${index}`, name="purpose")
+                                        label.custom-control-label(for=`purpose_${index}`) #{val}      
+                    
+                    .text-block
+                        .media
+                            .media-body
+                                h5 Say hello to your host
+                                p.text-sm.text-muted #{dummyText[2].substr(0, 100)}.
+                            img.avatar.ml-4(src=`${path}img/avatar/avatar-10.jpg`, alt='Jack London')
+
+                        textarea.form-control(name="hello", rows="4")
+
+                    +stepsAdd(2, 3, 'user-booking-')
+
+                    
+
+                .col-lg-5.pl-xl-5
+                    include _pug-includes/inc-booking-cards.pug
+
+               
+
+            

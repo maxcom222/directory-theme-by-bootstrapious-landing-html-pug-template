@@ -1,0 +1,55 @@
+.card.mb-3
+    .card-body
+        h6.text-uppercase.mb-4 Form Group
+        form
+            .form-group
+                label.form-label(for='exampleInputEmail1') Email address
+                input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
+                small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+.card.mb-3
+    .card-body
+        h6.text-uppercase.mb-4 Input Sizes
+        form
+            .form-group
+                input#exampleInputSm.form-control.form-control-sm(type='text', aria-describedby='inputSm', placeholder='Form Control Small')
+            .form-group
+                input#exampleInputSt.form-control(type='text', aria-describedby='inputSt', placeholder='Form Control Standard')
+            .form-group
+                input#exampleInputLg.form-control.form-control-lg(type='text', aria-describedby='inputLg', placeholder='Form Control Large')
+.card.mb-3
+    .card-body
+        h6.text-uppercase.mb-4 Input Group
+        form
+            .input-group
+                .input-group-prepend
+                    span#basic-addon1.input-group-text @
+                input.form-control(type='text', placeholder='Username', aria-label='Username', aria-describedby='basic-addon1')
+.card
+    .card-body
+        h6.text-uppercase.mb-4  Custom Inputs
+        form
+            .form-group
+                .custom-control.custom-checkbox
+                    input#custom-check-1.custom-control-input(type='checkbox')
+                    label.custom-control-label(for='custom-check-1') Check this custom checkbox
+            .form-group
+                .custom-control.custom-checkbox-switch
+                    input#custom-switch-1.custom-control-input(type='checkbox')
+                    label.custom-control-label(for='custom-switch-1') Switch this custom checkbox
+            .form-group                                            
+                .custom-control.custom-radio
+                    input#radio1.custom-control-input(name='radio', type='radio')
+                    label.custom-control-label(for='radio1') Toggle this custom radio
+                .custom-control.custom-radio
+                    input#radio2.custom-control-input(name='radio', type='radio')
+                    label.custom-control-label(for='radio2') Or toggle this other custom radio
+            .form-group
+                select.custom-select
+                    option(selected='') Open this select menu
+                    option(value='1') One
+                    option(value='2') Two
+                    option(value='3') Three
+            .form-group
+                .custom-file
+                    input#customFile.custom-file-input(type='file')
+                    label.custom-file-label(for='customFile') Choose file
